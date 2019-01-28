@@ -16,3 +16,7 @@ Vacancy consists of:
 - contact phone;
 - employment type (full-time etc.);
 - description;
+
+## tests & builds
+
+[![travis build](https://img.shields.io/travis/com/allan-walpy/01-19-vacancy-task-1.svg?style=for-the-badge)](https://travis-ci.com/allan-walpy/01-19-vacancy-task-1)
