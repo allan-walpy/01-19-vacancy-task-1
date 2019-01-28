@@ -1,13 +1,56 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-  </PropertyGroup>
+    <!-- assembly config; -->
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <RuntimeFrameworkVersion>2.2.1</RuntimeFrameworkVersion>
+        <RuntimeIdentifiers>ubuntu.18.04-x64;win10-x64;</RuntimeIdentifiers>
+        <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+        <!--
+            * see more about `AspNetCoreHostingModel` tag at microsoft docs
+            * https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#hosting-models
+        -->
+        <AssemblyName>App.Server</AssemblyName>
+        <RootNamespace>App.Server</RootNamespace>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-  </ItemGroup>
+    <!-- package info; -->
+    <PropertyGroup>
+        <AssemblyTitle>App.Server</AssemblyTitle>
+        <PackageId>App.Server</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>allan_walpy aka Andrey Lysenkov</Authors>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <Description>Some test task</Description>
+        <PackageProjectUrl>https://github.com/allan-walpy/01-19-vacancy-task-1/tree/master/src</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/allan-walpy/01-19-vacancy-task-1/blob/master/license</PackageLicenseUrl>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/allan-walpy/01-19-vacancy-task-1.git</RepositoryUrl>
+    </PropertyGroup>
+
+    <!-- compilation config; -->
+    <PropertyGroup>
+        <OutputPath>../out/bin/server/$(Configuration)/</OutputPath>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>../../out/bin/server/$(Configuration)/$(TargetFramework)/server.xml</DocumentationFile>
+        <DebugSymbols>false</DebugSymbols>
+        <IncludeSource>true</IncludeSource>
+    </PropertyGroup>
+
+    <!-- system dependencies; -->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <!-- debug configuration; -->
+    <PropertyGroup Condition="$(Configuration)=='Debug'">
+        <!-- disable documentation warnings; -->
+        <!-- 1591 - not xml documented member; -->
+        <!-- 1573 - not xml documented parametr; -->
+        <NoWarn>1591;1573;</NoWarn>
+        <!-- define debug in code; -->
+        <DefineConstants>DEBUG;</DefineConstants>
+    </PropertyGroup>
 
 </Project>
