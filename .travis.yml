@@ -1,0 +1,32 @@
+language: csharp
+solution: project.sln
+
+matrix:
+  include:
+
+    - os: linux
+      dist: xenial
+      sudo: enabled
+      mono: none
+      dotnet: 2.2
+
+    - os: windows
+      language: shell
+      install:
+        - choco install mysql
+        - choco install dotnetcore-sdk
+
+script:
+  - dotnet restore --verbosity q
+  - dotnet build --configuration debug --no-restore --verbosity q
+
+notifications:
+  email:
+    template:
+      - "%{author}/%{repository_slug}.%{branch} -> %{commit_message}"
+      - "%{result} [%{duration}] -> %{message}"
+      - "%{build_url} | %{compare_url}"
+    recipients:
+      - walpy.notice@gmail.com
+    on_success: change
+    on_failure: change
