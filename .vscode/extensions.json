@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        // c# in vs code;
+        "ms-vscode.csharp",
+        // c# xml documentation;
+        "k--kato.docomment",
+        // built in references view;
+        "ms-vscode.references-view"
+    ],
+    "unwantedRecommendations": []
+}
