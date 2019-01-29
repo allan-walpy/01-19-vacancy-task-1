@@ -7,7 +7,7 @@ namespace App.Server
 {
     public class Startup
     {
-        private IConfiguration _configuration { get; }
+        private readonly IConfiguration _configuration;
 
         public Startup(IConfiguration configuration)
         {
@@ -16,6 +16,7 @@ namespace App.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApiSpecification(_configuration);
             services.AddAppMvc();
         }
 
@@ -25,6 +26,8 @@ namespace App.Server
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseApiSpecification();
 
             app.UseMvc();
         }

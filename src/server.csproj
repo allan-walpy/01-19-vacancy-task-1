@@ -43,6 +43,13 @@
         <PackageReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
+    <!-- dev dependencies; -->
+    <ItemGroup>
+        <!-- TODO:FIXME: temp fix;
+            when specifying `5.*` - can't load 5.0.0-beta, 'cause 5.0.0 > 5.0.0-beta(?); -->
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-beta" />
+    </ItemGroup>
+
     <!-- debug configuration; -->
     <PropertyGroup Condition="$(Configuration)=='Debug'">
         <!-- disable documentation warnings; -->
