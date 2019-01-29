@@ -3,10 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace App.Server.Controllers
 {
-    [Route("api/[controller]")]
+    //TODO:FIXME:SUGGESTION get rid of magic strings(?);
+    [Route("api/vacancy")]
     [ApiController]
     public class VacancyController
     {
+        [HttpGet]
+        public IActionResult GetAll()
+            => throw new NotImplementedException();
+
         [HttpGet("{id}")]
         public IActionResult Get(string id)
             => throw new NotImplementedException();

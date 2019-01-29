@@ -15,7 +15,7 @@ namespace App.Server
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                // TODO:FIXME: to method;
+                //TODO:FIXME: to method;
                 .ConfigureAppConfiguration((config) =>
                 {
                     //TODO:FIXME: magic string;

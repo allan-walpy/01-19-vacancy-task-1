@@ -36,7 +36,7 @@ namespace App.Server
                 app.UseDebugClient();
             }
 
-            app.UseMvc();
+            app.UseAppMvc();
         }
     }
 }

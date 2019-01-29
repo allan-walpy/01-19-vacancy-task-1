@@ -12,11 +12,14 @@ namespace App.Server
     public static class Extensions
     {
         public static IServiceCollection AddAppMvc(this IServiceCollection services)
-            => services.AddMvc()
+            => services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+            })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .Services;
 
-        public static void AddApiSpecification(
+        public static IServiceCollection AddApiSpecification(
             this IServiceCollection services,
             IConfiguration config)
         {
@@ -46,18 +49,20 @@ namespace App.Server
                     config["app:executionPath"],
                     "server.xml"));
             });
+            return services;
         }
 
-        public static void UseApiSpecification(this IApplicationBuilder app)
+        public static IApplicationBuilder UseApiSpecification(this IApplicationBuilder app)
         {
             app.UseSwagger(options =>
             {
-                // TODO:FIXME: magic string;
+                //TODO:FIXME: magic string;
                 options.RouteTemplate = "/api/{documentName}.json";
             });
+            return app;
         }
 
-        public static void UseDebugClient(this IApplicationBuilder app)
+        public static IApplicationBuilder UseDebugClient(this IApplicationBuilder app)
         {
             //TODO:FIXME: magic strings;
             app.UseSwaggerUI(options =>
@@ -68,6 +73,20 @@ namespace App.Server
                 options.RoutePrefix = "api/debug";
                 options.DocExpansion(DocExpansion.List);
             });
+            return app;
+        }
+
+        public static IApplicationBuilder UseAppMvc(this IApplicationBuilder app)
+        {
+            //TODO:FIXME:SUGGESTION: get rid of magic strings;
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "api",
+                    template: "api/{controller}/{action=Get}/{id?}"
+                );
+            });
+            return app;
         }
     }
 }
