@@ -9,6 +9,5 @@ namespace App.Server
             => services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .Services;
-
     }
 }
