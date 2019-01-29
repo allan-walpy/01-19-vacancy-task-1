@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Server.Controllers
@@ -6,8 +7,20 @@ namespace App.Server.Controllers
     [ApiController]
     public class VacancyController
     {
-        [HttpGet]
-        public IActionResult Test()
-            => new OkObjectResult("Test Call");
+        [HttpGet("{id}")]
+        public IActionResult Get(string id)
+            => throw new NotImplementedException();
+
+        [HttpPost]
+        public IActionResult Add()
+            => throw new NotImplementedException();
+
+        [HttpPatch("{id}")]
+        public IActionResult Update(string id)
+            => throw new NotImplementedException();
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(string id)
+            => throw new NotImplementedException();
     }
 }
