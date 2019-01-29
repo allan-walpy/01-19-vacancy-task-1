@@ -16,7 +16,7 @@ namespace App.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApiSpecification(_configuration);
+            services.AddApiSpecification();
             services.AddAppMvc();
         }
 

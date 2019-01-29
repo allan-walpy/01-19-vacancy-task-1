@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
@@ -13,15 +12,13 @@ namespace App.Server
     {
         public static IServiceCollection AddAppMvc(this IServiceCollection services)
             => services.AddMvc(options =>
-            {
-                options.EnableEndpointRouting = false;
-            })
+                {
+                    options.EnableEndpointRouting = false;
+                })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .Services;
 
-        public static IServiceCollection AddApiSpecification(
-            this IServiceCollection services,
-            IConfiguration config)
+        public static IServiceCollection AddApiSpecification(this IServiceCollection services)
         {
             //TODO:FIXME: get rid of magic strings;
             services.AddSwaggerGen(options =>
@@ -45,9 +42,8 @@ namespace App.Server
                         }
                     });
 
-                options.IncludeXmlComments(Path.Join(
-                    config["app:executionPath"],
-                    "server.xml"));
+                options.IncludeXmlComments(
+                    Path.Join(Program.ExecutionPath, "server.xml"));
             });
             return services;
         }
@@ -77,16 +73,6 @@ namespace App.Server
         }
 
         public static IApplicationBuilder UseAppMvc(this IApplicationBuilder app)
-        {
-            //TODO:FIXME:SUGGESTION: get rid of magic strings;
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "api",
-                    template: "api/{controller}/{action=Get}/{id?}"
-                );
-            });
-            return app;
-        }
+            => app.UseMvc();
     }
 }
