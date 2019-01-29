@@ -6,7 +6,7 @@
         <RuntimeFrameworkVersion>2.2.1</RuntimeFrameworkVersion>
         <RuntimeIdentifiers>ubuntu.18.04-x64;win10-x64;</RuntimeIdentifiers>
         <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
-        <!--h
+        <!--
             * see more about `AspNetCoreHostingModel` tag at microsoft docs
             * https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#hosting-models
         -->

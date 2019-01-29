@@ -5,7 +5,9 @@
         // c# xml documentation;
         "k--kato.docomment",
         // built in references view;
-        "ms-vscode.references-view"
+        "ms-vscode.references-view",
+        // highlight of comments;
+        "aaron-bond.better-comments"
     ],
     "unwantedRecommendations": []
 }
