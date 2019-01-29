@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace App.Server
 {
@@ -26,7 +27,7 @@ namespace App.Server
                     new OpenApiInfo
                     {
                         Title = "vacancy.app",
-                        Version = "vacancy.app v1.0.0",
+                        Version = "1.0.0",
                         Description = "test task for managing vacancies",
                         Contact = new OpenApiContact
                         {
@@ -53,6 +54,19 @@ namespace App.Server
             {
                 // TODO:FIXME: magic string;
                 options.RouteTemplate = "/api/{documentName}.json";
+            });
+        }
+
+        public static void UseDebugClient(this IApplicationBuilder app)
+        {
+            //TODO:FIXME: magic strings;
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint(
+                    "/api/scheme.json",
+                    "vacancy.app v1.0.0");
+                options.RoutePrefix = "api/debug";
+                options.DocExpansion(DocExpansion.List);
             });
         }
     }

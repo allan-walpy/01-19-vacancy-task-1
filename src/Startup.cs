@@ -22,12 +22,19 @@ namespace App.Server
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            var isDevelopment = env.IsDevelopment();
+
+            if (isDevelopment)
             {
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseApiSpecification();
+
+            if (isDevelopment)
+            {
+                app.UseDebugClient();
+            }
 
             app.UseMvc();
         }
