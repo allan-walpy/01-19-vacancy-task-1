@@ -111,7 +111,7 @@ namespace App.Server
                 );
                 routes.MapRoute(
                     "default",
-                    "{controller=IndexPageRedirect}/{action=RedirectIndexPage}"
+                    "{controller=IndexPage}/{action=Redirect}"
                 );
             });
     }
