@@ -72,7 +72,47 @@ namespace App.Server
             return app;
         }
 
+        public static IApplicationBuilder UseAppDefaultFiles(this IApplicationBuilder app)
+        {
+            var options = new DefaultFilesOptions();
+            options.RequestPath = "/web";
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("index");
+            app.UseDefaultFiles(options);
+            return app;
+        }
+
+        public static IApplicationBuilder UseAppStaticFiles(this IApplicationBuilder app)
+        {
+            var options = new StaticFileOptions();
+            options.RequestPath = "/web/static";
+            app.UseStaticFiles(options);
+            return app;
+        }
+
         public static IApplicationBuilder UseAppMvc(this IApplicationBuilder app)
-            => app.UseMvc();
+            => app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    "api.scheme",
+                    "api/scheme.json"
+                );
+                routes.MapRoute(
+                    "api.debug",
+                    "api/debug/*"
+                );
+                routes.MapRoute(
+                    "api",
+                    "api/{controller}/*"
+                );
+                routes.MapRoute(
+                    "web",
+                    "web/{controller=Home}/{action=Index}"
+                );
+                routes.MapRoute(
+                    "default",
+                    "{controller=IndexPageRedirect}/{action=RedirectIndexPage}"
+                );
+            });
     }
 }

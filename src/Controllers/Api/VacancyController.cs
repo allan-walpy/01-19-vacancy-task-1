@@ -1,19 +1,16 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 
-namespace App.Server.Controllers
+namespace App.Server.Controllers.Api
 {
-    //TODO:FIXME:SUGGESTION get rid of magic strings(?);
-    [Route("api/vacancy")]
-    [ApiController]
-    public class VacancyController
+    public class VacancyController : ApiControllerBase
     {
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(string id)
             => throw new NotImplementedException();
 
         [HttpGet("{id}")]
-        public IActionResult Get([FromRoute] string id)
+        public IActionResult Get(string id)
             => throw new NotImplementedException();
 
         [HttpPost]
@@ -21,11 +18,11 @@ namespace App.Server.Controllers
             => throw new NotImplementedException();
 
         [HttpPatch("{id}")]
-        public IActionResult Update([FromRoute] string id)
+        public IActionResult Update(string id)
             => throw new NotImplementedException();
 
         [HttpDelete("{id}")]
-        public IActionResult Delete([FromRoute] string id)
+        public IActionResult Delete(string id)
             => throw new NotImplementedException();
     }
 }

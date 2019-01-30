@@ -36,6 +36,9 @@ namespace App.Server
                 app.UseDebugClient();
             }
 
+            app.UseAppDefaultFiles();
+            app.UseAppStaticFiles();
+
             app.UseAppMvc();
         }
     }
