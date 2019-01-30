@@ -7,7 +7,9 @@ namespace App.Server
 {
     public class Startup
     {
-        private readonly IConfiguration _configuration;
+        public const string IsDevEnviromentConfigKey = "debug";
+
+        private IConfiguration _configuration;
 
         public Startup(IConfiguration configuration)
         {
@@ -17,10 +19,13 @@ namespace App.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApiSpecification();
+            services.AddAppDatabase();
             services.AddAppMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IHostingEnvironment env)
         {
             var isDevelopment = env.IsDevelopment();
 

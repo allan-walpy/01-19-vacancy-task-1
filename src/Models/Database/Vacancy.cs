@@ -8,6 +8,7 @@ namespace App.Server.Models.Database
     public class Vacancy
     {
         [Key]
+        [MaxLength(64)]
         public string Id { get; set; }
 
         [Required]
@@ -35,7 +36,7 @@ namespace App.Server.Models.Database
         [Required]
         public string Description { get; set; }
 
-        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime LastUpdated { get; set; }
     }
 }

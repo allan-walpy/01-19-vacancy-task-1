@@ -16,6 +16,10 @@ namespace App.Server.Models.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Vacancy>()
+                .Property(v => v.LastUpdated)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP");
         }
     }
 }

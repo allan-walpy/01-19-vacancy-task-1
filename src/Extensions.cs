@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
+using App.Server.Services;
+
 namespace App.Server
 {
     public static class Extensions
@@ -45,6 +47,12 @@ namespace App.Server
                 options.IncludeXmlComments(
                     Path.Join(Program.ExecutionPath, "server.xml"));
             });
+            return services;
+        }
+
+        public static IServiceCollection AddAppDatabase(this IServiceCollection services)
+        {
+            services.AddSingleton<DatabaseService>();
             return services;
         }
 
