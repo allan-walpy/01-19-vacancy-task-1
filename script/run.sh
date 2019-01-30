@@ -3,4 +3,4 @@
 ## runs app;
 ##   must be launched from root repository folder;
 
-dotnet run --project ./src/server.csproj
+dotnet run --project ./src/server.csproj "$@"
