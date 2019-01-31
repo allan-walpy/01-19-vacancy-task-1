@@ -25,8 +25,6 @@ namespace App.Server.Services
             Logger = loggerFactory.CreateLogger<DatabaseService>();
 
             ConnectionString = GetConnectionString(config);
-
-            ConfigureDatabase();
         }
 
         private string GetConnectionString(IConfiguration config)
@@ -57,45 +55,23 @@ namespace App.Server.Services
             return optionsBuilder.Options;
         }
 
-        private string GetDatabaseName()
-        {
-            var parametrs = ConnectionString.Split(';').ToList()
-                .ConvertAll<KeyValuePair<string, string>>((parametrLine) =>
-                {
-                    var keyValue = parametrLine.Contains('=')
-                        ? parametrLine.Split('=', 2).ToList()
-                        : new List<string> { parametrLine, String.Empty };
-                    return new KeyValuePair<string, string>(keyValue[0], keyValue[1]);
-                }).ToDictionary((keyValuePair) => keyValuePair.Key, (keyValuePair) => keyValuePair.Value);
-            return parametrs.ContainsKey("database") ? parametrs["database"] : null;
-        }
-
-        private void ConfigureDatabase()
-        {
-            using (var databaseContext = GetContext())
-            {
-                databaseContext.Database.OpenConnection();
-                try
-                {
-                    var databaseName = GetDatabaseName();
-                    var tableName = Constants.Database.VacancyTableName;
-                    var command = $"SET IDENTITY_INSERT {databaseName}.{tableName} ON";
-
-                    //databaseContext.Database.ExecuteSqlCommand(command);
-                }
-                finally
-                {
-                    databaseContext.Database.CloseConnection();
-                }
-            }
-        }
-
         private DatabaseContext GetContext()
         {
             var options = GetDatabaseOptions();
             var result = new DatabaseContext(options);
             Logger.LogTrace($"{nameof(DatabaseService)}:{nameof(GetContext)}", "Fetched DatabaseContext with {ConnectionString}", ConnectionString);
             return result;
+        }
+
+        private void OnVacancyAdd(VacancyModel vacancy, long timestamp)
+        {
+            vacancy.CreatedAt = timestamp;
+            vacancy.LastUpdated = timestamp;
+        }
+
+        private void OnVacancyUpdate(VacancyModel vacancy, long timestamp)
+        {
+
         }
 
         public VacancyModel Get(string vacancyId)
@@ -110,12 +86,9 @@ namespace App.Server.Services
         {
             using (var databaseContext = GetContext())
             {
-                vacancy.Id = Guid.NewGuid().ToString();
-
                 databaseContext.Vacancies.Add(vacancy);
-
                 databaseContext.SaveChanges();
-                return vacancy.Id;
+                return vacancy.Id.ToString();
             }
         }
 

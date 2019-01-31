@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,9 @@ namespace App.Server
         public const string PrivateConfigFile = "appsettings.private.json";
         public static string ExecutionPath
             => Path.GetDirectoryName(typeof(Program).Assembly.Location);
+
+        public static long CurrentTimestamp
+            => DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
         public static void Main(string[] args)
         {

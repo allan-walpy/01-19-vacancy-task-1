@@ -2,14 +2,15 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-using Const = App.Server.Constants.Database;
+using App.Server.Models.Attributes;
 
 namespace App.Server.Models.Database
 {
-    [Table(Const.OrganizationTableName)]
+    [Table(Constants.Database.OrganizationTableName)]
     public class OrganizationModel
     {
         [Key]
+        [ValidGuidString]
         public string Id { get; set; }
 
         [Required]

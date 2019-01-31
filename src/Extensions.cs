@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -122,5 +123,8 @@ namespace App.Server
                     "{controller=IndexPage}/{action=Redirect}"
                 );
             });
+
+        public static bool IsValidByRegexPattern(this string value, string pattern)
+            => (new Regex(pattern)).IsMatch(value);
     }
 }

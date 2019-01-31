@@ -1,17 +1,16 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-using Const = App.Server.Constants.Database;
+using App.Server.Models.Attributes;
 
 namespace App.Server.Models.Database
 {
-    [Table(Const.VacancyTableName)]
+    [Table(Constants.Database.VacancyTableName)]
     public class VacancyModel
     {
         [Key]
-        [MaxLength(64)]
+        [ValidGuidString]
         public string Id { get; set; }
 
         [Required]
@@ -24,10 +23,8 @@ namespace App.Server.Models.Database
 
         [Required]
         public OrganizationModel Organization { get; set; }
-        [ForeignKey(Const.OrganizationTableName)]
-        public int OrganizationId { get; set; }
 
-        public EmploymentType[] EmploymentType { get; set; }
+        public ICollection<EmploymentType> EmploymentType { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C0}")]
         [DataType(DataType.Currency)]
@@ -39,10 +36,13 @@ namespace App.Server.Models.Database
         [MaxLength(20)]
         [MinLength(11)]
         [DataType(DataType.PhoneNumber)]
+        [ValidPhoneNumber]
         public string ContactPhone { get; set; }
 
-        [DataType(DataType.DateTime)]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public long LastUpdated { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public long CreatedAt { get; set; }
     }
 }
