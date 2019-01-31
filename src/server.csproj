@@ -44,13 +44,10 @@
         <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.*" />
         <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="*" />
-
     </ItemGroup>
 
     <!-- dev dependencies; -->
     <ItemGroup>
-        <!-- TODO:FIXME: temp fix;
-            when specifying `5.*` - can't load 5.0.0-beta, 'cause 5.0.0 > 5.0.0-beta(?); -->
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-beta" />
     </ItemGroup>
 
