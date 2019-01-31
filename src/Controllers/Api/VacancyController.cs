@@ -7,22 +7,27 @@ namespace App.Server.Controllers.Api
     {
         [HttpGet]
         public IActionResult GetAll(string id)
+            //TODO:FIXME:;
             => throw new NotImplementedException();
 
         [HttpGet("{id}")]
         public IActionResult Get(string id)
+            //TODO:FIXME:;
             => throw new NotImplementedException();
 
         [HttpPost]
         public IActionResult Add([FromBody] object vacancy)
+            //TODO:FIXME:;
             => throw new NotImplementedException();
 
         [HttpPatch("{id}")]
         public IActionResult Update(string id)
+            //TODO:FIXME:;
             => throw new NotImplementedException();
 
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
+            //TODO:FIXME:;
             => throw new NotImplementedException();
     }
 }

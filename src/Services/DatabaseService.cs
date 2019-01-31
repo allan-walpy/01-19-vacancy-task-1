@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
+using App.Server;
 using App.Server.Models.Database;
 
 namespace App.Server.Services
@@ -40,7 +41,7 @@ namespace App.Server.Services
             var connectionKey = $"{ConnectionKeyPrefix}:{connectionName}";
             Logger.LogDebug(logEventId, "Fetched connection string key for database {connectionKey}", connectionKey);
 
-            var connectionString = config.GetSection("ConnectionStrings")[connectionKey];
+            var connectionString = config.GetSection("ConnetionStrings")[connectionKey];
             Logger.LogTrace(logEventId, "Fetched connection string for database {connectionString}", connectionString);
 
             return connectionString;
@@ -75,7 +76,7 @@ namespace App.Server.Services
                 try
                 {
                     databaseContext.Database.ExecuteSqlCommand(
-                        $"SET IDENTITY_INSERT {GetDatabaseName()}.Vacancy ON");
+                        $"SET IDENTITY_INSERT {GetDatabaseName()}.{Constants.Database.VacancyTableName} ON");
                 }
                 finally
                 {
@@ -92,7 +93,7 @@ namespace App.Server.Services
             return result;
         }
 
-        public Vacancy Get(string vacancyId)
+        public VacancyModel Get(string vacancyId)
         {
             using (var databaseContext = GetContext())
             {
@@ -100,7 +101,7 @@ namespace App.Server.Services
             }
         }
 
-        public string Add(Vacancy vacancy)
+        public string Add(VacancyModel vacancy)
         {
             using (var databaseContext = GetContext())
             {
@@ -123,14 +124,9 @@ namespace App.Server.Services
 
             using (var databaseContext = GetContext())
             {
-                vacancy.LastUpdated = DateTime.Now;
-
-                //! not implemented;
-
-                databaseContext.SaveChanges();
+                //TODO:FIXME:;
+                throw new NotImplementedException();
             }
-
-            throw new NotImplementedException();
         }
     }
 }

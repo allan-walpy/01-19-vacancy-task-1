@@ -2,18 +2,19 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using Const = App.Server.Constants.Database;
+
 namespace App.Server.Models.Database
 {
-    public class Organization
+    [Table(Const.OrganizationTableName)]
+    public class OrganizationModel
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required]
         public string Name { get; set; }
 
-        public List<Vacancy> Vacancy { get; set; }
-        [ForeignKey("Vacancy")]
-        public List<string> VacancyId { get; set; }
+        public ICollection<VacancyModel> Vacancy { get; set; }
     }
 }

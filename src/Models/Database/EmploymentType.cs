@@ -8,36 +8,36 @@ namespace App.Server.Models.Database
         /// <summary>
         /// Полный день
         /// </summary>
-        FullTime,
+        FullTime = 0b01_00_00,
 
         /// <summary>
         /// Частичная занятость
         /// </summary>
-        PartialTime,
+        PartialTime = 0b10_00_00,
 
         /// <summary>
         /// Постоянный график
         /// </summary>
-        FixedScheldure,
+        FixedScheldure = 0b00_01_00,
 
         /// <summary>
         /// Сменный график
         /// </summary>
-        ShiftScheldure,
+        ShiftScheldure = 0b00_10_00,
 
         /// <summary>
         /// Гибкий график
         /// </summary>
-        FlexibleScheldure,
+        FlexibleScheldure = 0b00_11_00,
 
         /// <summary>
         /// Удалённая работа
         /// </summary>
-        RemoteMethod,
+        RemoteMethod = 0b00_00_10,
 
         /// <summary>
         /// Вахтовый метод
         /// </summary>
-        ShiftMethod
+        ShiftMethod = 0b00_00_11
     }
 }
