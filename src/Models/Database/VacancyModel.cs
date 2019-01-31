@@ -39,10 +39,10 @@ namespace App.Server.Models.Database
         [ValidPhoneNumber]
         public string ContactPhone { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [Required]
         public long LastUpdated { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [Required]
         public long CreatedAt { get; set; }
     }
 }

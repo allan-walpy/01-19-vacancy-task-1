@@ -63,15 +63,16 @@ namespace App.Server.Services
             return result;
         }
 
-        private void OnVacancyAdd(VacancyModel vacancy, long timestamp)
+        private void OnVacancyAdd(VacancyModel vacancy)
         {
+            var timestamp = Program.CurrentTimestamp;
             vacancy.CreatedAt = timestamp;
             vacancy.LastUpdated = timestamp;
         }
 
-        private void OnVacancyUpdate(VacancyModel vacancy, long timestamp)
+        private void OnVacancyUpdate(VacancyModel vacancy)
         {
-
+            vacancy.LastUpdated = Program.CurrentTimestamp;
         }
 
         public VacancyModel Get(string vacancyId)
@@ -84,6 +85,7 @@ namespace App.Server.Services
 
         public string Add(VacancyModel vacancy)
         {
+            OnVacancyAdd(vacancy);
             using (var databaseContext = GetContext())
             {
                 databaseContext.Vacancies.Add(vacancy);
@@ -100,6 +102,7 @@ namespace App.Server.Services
                 return false;
             }
 
+            OnVacancyUpdate(vacancy);
             using (var databaseContext = GetContext())
             {
                 //TODO:FIXME:;
