@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -6,6 +5,20 @@ namespace App.Server.Models.Database
 {
     public class DatabaseContext : DbContext
     {
+        public static Person DefaultContactPerson
+            => new Person
+            {
+                Name = null,
+                Surname = null,
+                ThirdName = null
+            };
+
+        public static EmploymentType[] DefaultEmploymentType
+            => new EmploymentType[0];
+
+        public static long DefaultLastUpdated
+            => 0;
+
         public DbSet<VacancyModel> Vacancies { get; set; }
         public DbSet<OrganizationModel> Organizations { get; set; }
 
@@ -34,7 +47,8 @@ namespace App.Server.Models.Database
             modelBuilder.Entity<VacancyModel>()
                 .Property(v => v.LastUpdated)
                 .HasValueGenerator(typeof(CurrentTimestampGenerator))
-                .ValueGeneratedOnAddOrUpdate();
+                .ValueGeneratedOnAddOrUpdate()
+                .HasDefaultValue(Defaults.LastUpdated);
 
             modelBuilder.Entity<VacancyModel>()
                 .Property(v => v.ContactPerson)
@@ -63,7 +77,8 @@ namespace App.Server.Models.Database
         {
             modelBuilder.Entity<OrganizationModel>()
                 .HasMany(o => o.Vacancy)
-                .WithOne(v => v.Organization);
+                .WithOne(v => v.Organization)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

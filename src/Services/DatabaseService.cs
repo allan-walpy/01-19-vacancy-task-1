@@ -62,7 +62,9 @@ namespace App.Server.Services
             var parametrs = ConnectionString.Split(';').ToList()
                 .ConvertAll<KeyValuePair<string, string>>((parametrLine) =>
                 {
-                    var keyValue = parametrLine.Split('=', 2);
+                    var keyValue = parametrLine.Contains('=')
+                        ? parametrLine.Split('=', 2).ToList()
+                        : new List<string> { parametrLine, String.Empty };
                     return new KeyValuePair<string, string>(keyValue[0], keyValue[1]);
                 }).ToDictionary((keyValuePair) => keyValuePair.Key, (keyValuePair) => keyValuePair.Value);
             return parametrs.ContainsKey("database") ? parametrs["database"] : null;
@@ -75,8 +77,11 @@ namespace App.Server.Services
                 databaseContext.Database.OpenConnection();
                 try
                 {
-                    databaseContext.Database.ExecuteSqlCommand(
-                        $"SET IDENTITY_INSERT {GetDatabaseName()}.{Constants.Database.VacancyTableName} ON");
+                    var databaseName = GetDatabaseName();
+                    var tableName = Constants.Database.VacancyTableName;
+                    var command = $"SET IDENTITY_INSERT {databaseName}.{tableName} ON";
+
+                    //databaseContext.Database.ExecuteSqlCommand(command);
                 }
                 finally
                 {
