@@ -17,6 +17,7 @@ namespace App.Server.Models.Database
         [ValidVacancyTitle]
         public string Title { get; set; }
 
+        [ValidSalary]
         [DataType(DataType.Currency)]
         public decimal? Salary { get; set; }
 

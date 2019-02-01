@@ -11,6 +11,7 @@ namespace App.Server.Models.Requests
         [ValidVacancyTitle]
         public string Title { get; set; }
 
+        [ValidSalary]
         public decimal? Salary { get; set; }
 
         [Required]

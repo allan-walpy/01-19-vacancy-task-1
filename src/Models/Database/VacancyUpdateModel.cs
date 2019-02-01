@@ -14,6 +14,7 @@ namespace App.Server.Models.Database
 
         public UpdateCommandModel<List<string>> EmploymentType { get; set; }
 
+        [ValidUpdateField(typeof(ValidSalaryAttribute))]
         public UpdateCommandModel<decimal?> Salary { get; set; }
 
         public UpdateCommandModel<Person> ContactPerson { get; set; }
