@@ -36,7 +36,7 @@ namespace App.Server.Services
         private (bool, TModel) Exists(TId id)
         {
             var item = Get(id);
-            var isFounded = (item == null);
+            var isFounded = (item != null);
             return (isFounded, item);
         }
 

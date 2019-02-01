@@ -33,6 +33,7 @@ namespace App.Server.Controllers.Api
         }
 
         [HttpPost]
+        [Consumes(ConsumesType)]
         public IActionResult Add([FromBody] VacancyAddRequest vacancy)
         {
             var id = ControllerService.Add(vacancy.ToModel(OrganizationService));
@@ -45,6 +46,7 @@ namespace App.Server.Controllers.Api
         }
 
         [HttpPatch("{id}")]
+        [Consumes(ConsumesType)]
         public IActionResult Update(string id, [FromBody] VacancyUpdateModel update)
         {
             var vacancy = ControllerService.Get(id);
