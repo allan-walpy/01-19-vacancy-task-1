@@ -12,7 +12,7 @@ namespace App.Server.Models.Database
             Action<VacancyModel, TFieldValue> parametrUpdateAction,
             UpdateCommandModel<TFieldValue> fieldUpdate)
         {
-            if (fieldUpdate.IsModified)
+            if (fieldUpdate?.IsModified ?? false)
             {
                 parametrUpdateAction(vacancy, fieldUpdate.Value);
             }
@@ -22,7 +22,7 @@ namespace App.Server.Models.Database
         {
             UpdateField(vacancy, ((item, value) => item.Title = value), update.Title);
             UpdateField(vacancy, ((item, value) => item.Description = value), update.Description);
-            UpdateField(vacancy, ((item, value) => item.EmploymentType = value), update.EmploymentType);
+            UpdateField(vacancy, ((item, value) => item.EmploymentType = value.ToEmploymentType()), update.EmploymentType);
             UpdateField(vacancy, ((item, value) => item.Salary = value), update.Salary);
             UpdateField(vacancy, ((item, value) => item.ContactPerson = value), update.ContactPerson);
             UpdateField(vacancy, ((item, value) => item.ContactPhone = value), update.ContactPhone);

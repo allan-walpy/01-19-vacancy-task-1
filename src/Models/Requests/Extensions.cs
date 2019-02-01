@@ -11,9 +11,6 @@ namespace App.Server.Models.Requests
     {
         public const int PersonMaxLength = ValidPersonNameAttribute.MaxLength * 6;
 
-        public static EmploymentType ToEmploymentType(this string value)
-            => Enum.Parse<EmploymentType>(value);
-
         public static VacancyModel ToModel(
             this VacancyAddRequest request,
             IDatabaseOrganizationService organizationService)
@@ -26,7 +23,7 @@ namespace App.Server.Models.Requests
                 ContactPhone = request.ContactPhone,
                 ContactPerson = request.ContactPerson,
                 EmploymentType = request.EmploymentType
-                    .ConvertAll<EmploymentType>((item) => item.ToEmploymentType())
+                    .ConvertAll((item) => item.ToEmploymentType())
             };
 
             var organizationName = request.Organization;
