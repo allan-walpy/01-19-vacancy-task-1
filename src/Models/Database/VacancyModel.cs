@@ -17,6 +17,10 @@ namespace App.Server.Models.Database
         [MaxLength(64)]
         public string Title { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C0}")]
+        [DataType(DataType.Currency)]
+        public decimal? Salary { get; set; }
+
         [Required]
         [MaxLength(4096)]
         public string Description { get; set; }
@@ -26,9 +30,6 @@ namespace App.Server.Models.Database
 
         public ICollection<EmploymentType> EmploymentType { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:C0}")]
-        [DataType(DataType.Currency)]
-        public decimal? Salary { get; set; }
 
         [MaxLength(256)]
         public Person ContactPerson { get; set; }

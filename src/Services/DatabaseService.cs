@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-using App.Server;
 using App.Server.Models.Database;
 
 namespace App.Server.Services
@@ -55,7 +54,7 @@ namespace App.Server.Services
             return optionsBuilder.Options;
         }
 
-        private DatabaseContext GetContext()
+        public DatabaseContext GetContext()
         {
             var options = GetDatabaseOptions();
             var result = new DatabaseContext(options);
@@ -63,16 +62,29 @@ namespace App.Server.Services
             return result;
         }
 
-        private void OnVacancyAdd(VacancyModel vacancy)
+        public DbSet<VacancyModel> GetVacanciesTable(DatabaseContext databaseContext)
+            => databaseContext.Vacancies;
+
+        public DbSet<OrganizationModel> GetOrganizationsTable(DatabaseContext databaseContext)
+            => databaseContext.Organizations;
+
+        public void OnVacancyAdd(VacancyModel vacancy)
         {
             var timestamp = Program.CurrentTimestamp;
             vacancy.CreatedAt = timestamp;
             vacancy.LastUpdated = timestamp;
         }
 
-        private void OnVacancyUpdate(VacancyModel vacancy)
+        public void OnVacancyUpdate(VacancyModel vacancy)
         {
             vacancy.LastUpdated = Program.CurrentTimestamp;
+        }
+
+        private (bool, VacancyModel) Exists(string vacancyId)
+        {
+            var vacancy = Get(vacancyId);
+            var isFounded = (vacancy == null);
+            return (isFounded, vacancy);
         }
 
         public VacancyModel Get(string vacancyId)
@@ -94,19 +106,43 @@ namespace App.Server.Services
             }
         }
 
-        public bool Update(string vacancyId, object update)
+        public bool Update(string vacancyId, VacancyUpdateModel update)
         {
-            var vacancy = Get(vacancyId);
-            if (vacancy == null)
+            var (isExists, vacancy) = Exists(vacancyId);
+            if (!isExists)
             {
                 return false;
             }
 
+            vacancy.Update(update);
             OnVacancyUpdate(vacancy);
             using (var databaseContext = GetContext())
             {
-                //TODO:FIXME:;
-                throw new NotImplementedException();
+                databaseContext.Vacancies.Update(vacancy);
+                return databaseContext.SaveChanges() > 0;
+            }
+        }
+
+        public bool Delete(string vacancyId)
+        {
+            var (isExists, vacancy) = Exists(vacancyId);
+            if (!isExists)
+            {
+                return false;
+            }
+
+            using (var databaseContext = GetContext())
+            {
+                databaseContext.Vacancies.Remove(vacancy);
+                return databaseContext.SaveChanges() > 0;
+            }
+        }
+
+        public List<VacancyModel> GetRangeBy(Func<VacancyModel, bool> predicate)
+        {
+            using (var databaseContext = GetContext())
+            {
+                return databaseContext.Vacancies.Where(predicate).ToList();
             }
         }
     }
