@@ -1,4 +1,4 @@
-namespace App.Server.Models.Database
+namespace App.Server.Models
 {
     /// <summary>
     /// Тип занятости

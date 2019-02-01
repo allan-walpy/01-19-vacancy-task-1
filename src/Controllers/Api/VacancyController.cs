@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using App.Server.Models.Database;
 using App.Server.Models.Requests;
+using App.Server.Models.Responses;
 using App.Server.Services;
 
 namespace App.Server.Controllers.Api
@@ -28,7 +29,7 @@ namespace App.Server.Controllers.Api
                 return new NotFoundResult();
             }
 
-            return new OkObjectResult(vacancy);
+            return new OkObjectResult(vacancy.ToResponse(OrganizationService));
         }
 
         [HttpPost]
