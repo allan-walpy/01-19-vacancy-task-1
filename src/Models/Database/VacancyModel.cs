@@ -6,7 +6,7 @@ using App.Server.Models.Attributes;
 
 namespace App.Server.Models.Database
 {
-    [Table(Constants.Database.VacancyTableName)]
+    [Table(DatabaseContext.VacancyTableName)]
     public class VacancyModel
     {
         [Key]
@@ -14,15 +14,14 @@ namespace App.Server.Models.Database
         public string Id { get; set; }
 
         [Required]
-        [MaxLength(64)]
+        [ValidVacancyTitle]
         public string Title { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:C0}")]
         [DataType(DataType.Currency)]
         public decimal? Salary { get; set; }
 
         [Required]
-        [MaxLength(4096)]
+        [ValidVacancyDescription]
         public string Description { get; set; }
 
         [Required]
@@ -30,12 +29,8 @@ namespace App.Server.Models.Database
 
         public ICollection<EmploymentType> EmploymentType { get; set; }
 
-
-        [MaxLength(256)]
         public Person ContactPerson { get; set; }
 
-        [MaxLength(20)]
-        [MinLength(11)]
         [DataType(DataType.PhoneNumber)]
         [ValidPhoneNumber]
         public string ContactPhone { get; set; }

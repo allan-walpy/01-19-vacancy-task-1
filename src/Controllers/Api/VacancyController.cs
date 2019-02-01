@@ -1,23 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
 
 using App.Server.Models.Database;
+using App.Server.Models.Requests;
 using App.Server.Services;
 
 namespace App.Server.Controllers.Api
 {
     public class VacancyController : ApiControllerBase
     {
-        private VacancyControllerService Service { get; }
+        private VacancyControllerService ControllerService { get; }
+        private IDatabaseOrganizationService OrganizationService { get; }
 
-        public VacancyController(VacancyControllerService serivce)
+        public VacancyController(
+            VacancyControllerService controllerSerivce,
+            IDatabaseOrganizationService organizationService)
         {
-            Service = serivce;
+            ControllerService = controllerSerivce;
+            OrganizationService = organizationService;
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
-            var vacancy = Service.Get(id);
+            var vacancy = ControllerService.Get(id);
             if (vacancy == null)
             {
                 return new NotFoundResult();
@@ -27,9 +32,9 @@ namespace App.Server.Controllers.Api
         }
 
         [HttpPost]
-        public IActionResult Add([FromBody] VacancyModel vacancy)
+        public IActionResult Add([FromBody] VacancyAddRequest vacancy)
         {
-            var id = Service.Add(vacancy);
+            var id = ControllerService.Add(vacancy.ToModel(OrganizationService));
             if (id == null)
             {
                 return new ConflictResult();
@@ -39,15 +44,15 @@ namespace App.Server.Controllers.Api
         }
 
         [HttpPatch("{id}")]
-        public IActionResult Update(string id, VacancyUpdateModel update)
+        public IActionResult Update(string id, [FromBody] VacancyUpdateModel update)
         {
-            var vacancy = Service.Get(id);
+            var vacancy = ControllerService.Get(id);
             if (vacancy == null)
             {
                 return new NotFoundResult();
             }
 
-            var updatedVacancy = Service.Update(id, update);
+            var updatedVacancy = ControllerService.Update(id, update);
             vacancy.Update(update);
             bool success = vacancy.IsIdenticTo(updatedVacancy);
 
@@ -62,13 +67,13 @@ namespace App.Server.Controllers.Api
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            var exists = Service.Exists(id);
+            var exists = ControllerService.Exists(id);
             if (!exists)
             {
                 return new NotFoundResult();
             }
 
-            var success = Service.Delete(id);
+            var success = ControllerService.Delete(id);
             if (!success)
             {
                 return new ConflictResult();

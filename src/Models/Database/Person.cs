@@ -4,6 +4,7 @@ namespace App.Server.Models.Database
 {
     public class Person
     {
+
         [ValidPersonName]
         public string Name { get; set; }
 

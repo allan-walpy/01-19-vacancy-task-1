@@ -25,7 +25,7 @@ namespace App.Server.Services
 
         protected abstract DbSet<TModel> GetTable(DatabaseContext databaseContext);
 
-        public TModel Get(TId id)
+        public virtual TModel Get(TId id)
         {
             using (var databaseContext = DatabaseService.GetContext())
             {
@@ -40,7 +40,7 @@ namespace App.Server.Services
             return (isFounded, item);
         }
 
-        public bool Add(TModel item)
+        public virtual bool Add(TModel item)
         {
             OnAddAction(item);
             using (var databaseContext = DatabaseService.GetContext())
@@ -50,7 +50,7 @@ namespace App.Server.Services
             }
         }
 
-        public TModel Update(TId id, TModel updatedItem)
+        public virtual TModel Update(TId id, TModel updatedItem)
         {
             var (isExists, item) = Exists(id);
             if (!isExists)
@@ -67,7 +67,7 @@ namespace App.Server.Services
             }
         }
 
-        public bool Delete(TId id)
+        public virtual bool Delete(TId id)
         {
             var (isExists, item) = Exists(id);
             if (!isExists)

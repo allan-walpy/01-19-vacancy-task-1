@@ -1,29 +1,14 @@
-using System.Text.RegularExpressions;
-using System.ComponentModel.DataAnnotations;
-
 namespace App.Server.Models.Attributes
 {
     //? applied on Name, Surname, ThirdName - string values;
-    public class ValidPersonNameAttribute : ValidationAttribute
+    public class ValidPersonNameAttribute : ValidStringTypePropertyAttribute
     {
-        private const string ValidRegex = @"[А-я-]*$";
+        public const string ValidRegex = "^[А-я-]*$";
+        public const int MaxLength = 20;
+        public const int MinLength = 0;
 
-        private static bool IsValidByRegex(string pattern, string value)
-        {
-            var regex = new Regex(pattern);
-            return regex.IsMatch(value);
-        }
-
-        public override bool IsValid(object value)
-        {
-            var name = value as string;
-            if (name == null)
-            {
-                //? if one of names not specified;
-                return value is string;
-            }
-
-            return name.IsValidByRegexPattern(ValidRegex);
-        }
+        public ValidPersonNameAttribute()
+            : base(ValidRegex, MinLength, MaxLength)
+        { }
     }
 }

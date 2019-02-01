@@ -6,7 +6,7 @@ using App.Server.Models.Attributes;
 
 namespace App.Server.Models.Database
 {
-    [Table(Constants.Database.OrganizationTableName)]
+    [Table(DatabaseContext.OrganizationTableName)]
     public class OrganizationModel
     {
         [Key]

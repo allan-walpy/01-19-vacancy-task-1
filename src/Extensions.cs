@@ -55,6 +55,7 @@ namespace App.Server
         {
             services.AddSingleton<IDatabaseService, DatabaseService>();
             services.AddSingleton<IDatabaseVacancyService, DatabaseVacancyService>();
+            services.AddSingleton<IDatabaseOrganizationService, DatabaseOrganizationService>();
             services.AddSingleton<VacancyControllerService>();
             return services;
         }

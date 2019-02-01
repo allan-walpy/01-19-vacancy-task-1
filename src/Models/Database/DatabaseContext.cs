@@ -7,7 +7,8 @@ namespace App.Server.Models.Database
 {
     public class DatabaseContext : DbContext
     {
-        private static long DefaultTimestamp => 0;
+        public const string VacancyTableName = "Vacancies";
+        public const string OrganizationTableName = "Organizations";
         private static string DefaultGuid => System.Guid.Empty.ToString();
 
         public DbSet<VacancyModel> Vacancies { get; set; }
