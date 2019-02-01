@@ -6,7 +6,7 @@ namespace App.Server.Controllers.Api
     public class VacancyController : ApiControllerBase
     {
         [HttpGet]
-        public IActionResult GetAll(string id)
+        public IActionResult GetAll()
             //TODO:FIXME:;
             => throw new NotImplementedException();
 

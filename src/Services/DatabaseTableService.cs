@@ -11,12 +11,12 @@ namespace App.Server.Services
     {
         private Action<TModel> OnAddAction { get; }
         private Action<TModel> OnUpdateAction { get; }
-        protected DatabaseService DatabaseService { get; }
+        protected IDatabaseService DatabaseService { get; }
 
         public DatabaseTableService(
             Action<TModel> onAddAction,
             Action<TModel> onUpdateAction,
-            DatabaseService databaseService)
+            IDatabaseService databaseService)
         {
             OnAddAction = onAddAction;
             OnUpdateAction = onUpdateAction;

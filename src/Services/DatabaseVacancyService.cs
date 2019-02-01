@@ -10,7 +10,7 @@ namespace App.Server.Services
     public class DatabaseVacancyService
         : DatabaseTableService<VacancyModel, string>, IDatabaseVacancyService
     {
-        public DatabaseVacancyService(DatabaseService databaseService)
+        public DatabaseVacancyService(IDatabaseService databaseService)
             : base(
                 onAddAction: OnVacancyAddAction,
                 onUpdateAction: OnVacancyUpdateAction,

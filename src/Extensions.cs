@@ -53,7 +53,7 @@ namespace App.Server
 
         public static IServiceCollection AddAppDatabase(this IServiceCollection services)
         {
-            services.AddSingleton<DatabaseService>();
+            services.AddSingleton<IDatabaseService, DatabaseService>();
             return services;
         }
 
