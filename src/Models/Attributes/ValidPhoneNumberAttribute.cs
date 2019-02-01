@@ -6,10 +6,10 @@ namespace App.Server.Models.Attributes
     public class ValidPhoneNumberAttribute : ValidationAttribute
     {
         private const string ValidRegexMobile =
-            @"^[+]{0,1}\d{1} \(\d{3}) \d{3}-\d{2}-\d{2}$";
+            @"^\d{1} \(\d{3}) \d{3}-\d{2}-\d{2}$";
 
         private const string ValidRegexHomePhone =
-            @"^[+]{0,1}\d{1} \(\d{4}) \d{2}-\d{2}-\d{2}$";
+            @"^\d{1} \(\d{4}) \d{2}-\d{2}-\d{2}$";
 
         public override bool IsValid(object value)
         {
