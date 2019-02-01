@@ -54,6 +54,8 @@ namespace App.Server
         public static IServiceCollection AddAppDatabase(this IServiceCollection services)
         {
             services.AddSingleton<IDatabaseService, DatabaseService>();
+            services.AddSingleton<IDatabaseVacancyService, DatabaseVacancyService>();
+            services.AddSingleton<VacancyControllerService>();
             return services;
         }
 

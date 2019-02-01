@@ -32,6 +32,18 @@ namespace App.Server.Services
         protected override DbSet<VacancyModel> GetTable(DatabaseContext databaseContext)
             => databaseContext.Vacancies;
 
+        public VacancyModel Update(string id, VacancyUpdateModel update)
+        {
+            var vacancy = Get(id);
+            if (vacancy == null)
+            {
+                return null;
+            }
+
+            vacancy.Update(update);
+            return Update(id, updatedItem: vacancy);
+        }
+
         public List<VacancyModel> GetRangeBy(Func<VacancyModel, bool> predicate)
         {
             using (var databaseContext = DatabaseService.GetContext())

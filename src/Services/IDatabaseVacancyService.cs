@@ -9,5 +9,7 @@ namespace App.Server.Services
         : IDatabaseTableService<VacancyModel, string>
     {
         List<VacancyModel> GetRangeBy(Func<VacancyModel, bool> predicate);
+
+        VacancyModel Update(string id, VacancyUpdateModel update);
     }
 }
