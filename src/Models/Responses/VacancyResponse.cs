@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 
-using App.Server.Models.Database;
-
 namespace App.Server.Models.Responses
 {
     public class VacancyResponse
@@ -14,7 +12,7 @@ namespace App.Server.Models.Responses
 
         public string Description { get; set; }
 
-        public OrganizationModel Organization { get; set; }
+        public OrganizationResponse Organization { get; set; }
 
         public ICollection<string> EmploymentType { get; set; }
 

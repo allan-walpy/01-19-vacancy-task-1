@@ -7,6 +7,13 @@ namespace App.Server.Models.Responses
 {
     public static class Extensions
     {
+        public static OrganizationResponse ToResponse(this OrganizationModel model)
+            => new OrganizationResponse
+            {
+                Id = model.Id,
+                Name = model.Name
+            };
+
         public static VacancyResponse ToResponse(
             this VacancyModel model,
             IDatabaseOrganizationService organizationService)
@@ -16,12 +23,13 @@ namespace App.Server.Models.Responses
                 Title = model.Title,
                 Salary = model.Salary,
                 Description = model.Description,
-                Organization = organizationService.Get(model.OrganizationId),
+                Organization = organizationService.Get(model.OrganizationId).ToResponse(),
                 EmploymentType = model.EmploymentType.ToList()
                     .ConvertAll((item) => item.ToString()),
                 ContactPerson = model.ContactPerson,
                 ContactPhone = model.ContactPhone,
-                LastUpdated = model.LastUpdated
+                LastUpdated = model.LastUpdated,
+                CreatedAt = model.CreatedAt
             };
     }
 }
