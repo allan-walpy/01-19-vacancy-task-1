@@ -1,10 +1,12 @@
+using System.ComponentModel.DataAnnotations;
+
 using App.Server.Models.Attributes;
 
-namespace App.Server.Models.Database
+namespace App.Server.Models
 {
     public class Person
     {
-
+        [Required]
         [ValidPersonName]
         public string Name { get; set; }
 

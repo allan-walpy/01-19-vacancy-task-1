@@ -37,8 +37,9 @@ namespace App.Server.Models.Attributes
             var name = value as string;
             if (name == null)
             {
-                //? if one of names not specified;
-                return value is string;
+                //? validation on non string and null strings values is always true;
+                //? use Required on string values to make them not nullabale;
+                return true;
             }
 
             return base.IsValid(name)

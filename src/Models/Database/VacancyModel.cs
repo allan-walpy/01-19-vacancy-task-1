@@ -27,6 +27,9 @@ namespace App.Server.Models.Database
         [Required]
         public OrganizationModel Organization { get; set; }
 
+        [ForeignKey(DatabaseContext.OrganizationTableName)]
+        public string OrganizationId { get; set; }
+
         public ICollection<EmploymentType> EmploymentType { get; set; }
 
         public Person ContactPerson { get; set; }

@@ -23,14 +23,7 @@ namespace App.Server.Models.Requests
         [Required]
         public List<string> EmploymentType { get; set; }
 
-        [ValidPersonName]
-        public string ContactPersonName { get; set; }
-
-        [ValidPersonName]
-        public string ContactPersonSurname { get; set; }
-
-        [ValidPersonName]
-        public string ContactPersonThirdName { get; set; }
+        public Person ContactPerson { get; set; }
 
         [ValidPhoneNumber]
         public string ContactPhone { get; set; }

@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 
 using App.Server.Models.Attributes;
 using App.Server.Models.Database;
@@ -25,19 +24,14 @@ namespace App.Server.Models.Requests
                 Salary = request.Salary,
                 Description = request.Description,
                 ContactPhone = request.ContactPhone,
-                ContactPerson = new Person
-                {
-                    Name = request.ContactPersonName,
-                    Surname = request.ContactPersonSurname,
-                    ThirdName = request.ContactPersonThirdName
-                },
+                ContactPerson = request.ContactPerson,
                 EmploymentType = request.EmploymentType
                     .ConvertAll<EmploymentType>((item) => item.ToEmploymentType())
             };
 
             var organizationName = request.Organization;
-            result.Organization = organizationService.GetByName(organizationName);
-            if (result.Organization == null)
+            result.OrganizationId = organizationService.GetByName(organizationName)?.Id;
+            if (result.OrganizationId == null)
             {
                 result.Organization = new OrganizationModel
                 {
