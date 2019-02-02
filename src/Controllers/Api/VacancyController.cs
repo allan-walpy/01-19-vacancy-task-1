@@ -21,6 +21,22 @@ namespace App.Server.Controllers.Api
             OrganizationService = organizationService;
         }
 
+        /// <summary>
+        /// Returns vacancy by id
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     GET /api/vacancy/40213585-be3b-4ad6-a6f6-e5d1c2e5cb25
+        ///
+        /// </remarks>
+        /// <param name="id">Vacancy Guid</param>
+        /// <returns>Vacancy information</returns>
+        /// <response code="200">Success</response>
+        /// <response code="404">No vacancy with such id</response>
+        /// <response code="500">Unknown Server Error</response>
+        [ProducesResponseType(typeof(VacancyResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
@@ -33,8 +49,38 @@ namespace App.Server.Controllers.Api
             return new OkObjectResult(vacancy.ToResponse(OrganizationService));
         }
 
-        [HttpPost]
+        /// <summary>
+        /// Add new vacancy to database
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /api/vacancy/
+        ///     {
+        ///         Title: "Младший разработчик на платформе .Net (Junior .Net Developer)",
+        ///         Salary: 15000,
+        ///         Description: "Требуется разработчик для создания программы бегущих строк, прям как в матрице",
+        ///         Organization: "ООО \"Иновации Каждый День\"",
+        ///         EmploymentType: [
+        ///             "FullTime",
+        ///             "RemoteMethod"
+        ///         ],
+        ///         ContactPerson: {
+        ///             "Name": "Neo"
+        ///         },
+        ///         ContactPhone: "8 (906) 645-13-27"
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="vacancy">Vacancy info</param>
+        /// <returns>id of added vacancy</returns>
+        /// <response code="200">Success</response>
+        /// <response code="409">Unable to save to database</response>
+        /// <response code="500">Unknown Server Error</response>
+        [ProducesResponseType(typeof(VacancyResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         [Consumes(ConsumesType)]
+        [HttpPost]
         public IActionResult Add([FromBody] VacancyAddRequest vacancy)
         {
             var id = ControllerService.Add(vacancy.ToModel(OrganizationService));

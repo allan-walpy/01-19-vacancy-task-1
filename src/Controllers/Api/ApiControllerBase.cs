@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Server.Controllers.Api
@@ -5,6 +6,7 @@ namespace App.Server.Controllers.Api
     [ApiController]
     [Route("api/[controller]/")]
     [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     //? disabled due to: https://github.com/allan-walpy/01-19-vacancy-task-1/issues/11 ;
     // [Consumes("application/json")]
     public abstract class ApiControllerBase : Controller
