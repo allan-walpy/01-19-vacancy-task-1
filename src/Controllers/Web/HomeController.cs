@@ -8,5 +8,10 @@ namespace App.Server.Controllers.Web
         {
             return View("some");
         }
+
+        public ActionResult Help()
+        {
+            return View("Help");
+        }
     }
 }
