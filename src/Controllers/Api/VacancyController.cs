@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using App.Server.Models.Database;
@@ -42,7 +43,7 @@ namespace App.Server.Controllers.Api
                 return new ConflictResult();
             }
 
-            return new OkObjectResult(id);
+            return new CustomObjectResult(id, StatusCodes.Status201Created);
         }
 
         [HttpPatch("{id}")]
