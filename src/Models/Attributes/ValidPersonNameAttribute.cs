@@ -1,6 +1,6 @@
 namespace App.Server.Models.Attributes
 {
-    //? applied on Name, Surname, ThirdName - string values;
+    //? applied on Name, Surname, MiddleName - string values;
     public class ValidPersonNameAttribute : ValidStringTypePropertyAttribute
     {
         public const string ValidRegex = "^[А-яA-z-]*$";

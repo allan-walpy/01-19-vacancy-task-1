@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
+using App.Server.Models.Responses;
 using App.Server.Models.Requests;
 using App.Server.Services;
 
@@ -15,7 +16,7 @@ namespace App.Server.Controllers.Api
         }
 
         /// <summary>
-        /// Delete existing vacancy
+        /// Осуществляет поиск по вакансиям
         /// </summary>
         /// <remarks>
         /// Sample request:
@@ -36,7 +37,7 @@ namespace App.Server.Controllers.Api
         ///     }
         ///
         /// </remarks>
-        /// <returns>list of vacancies sorted by `LastUpdated` descending</returns>
+        /// <returns>Список вакансий удовлетворяющий запросу в убывающем порядке поля <see cref="VacancyResponse.LastUpdated" /></returns>
         /// <response code="200">Success</response>
         /// <response code="200">Malformed request</response>
         /// <response code="500">Unknown Server Error</response>

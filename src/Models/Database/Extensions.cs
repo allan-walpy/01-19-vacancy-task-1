@@ -42,7 +42,7 @@ namespace App.Server.Models.Database
                 || (!HasNull(person1, person2)
                     && person1.Name == person2.Name
                     && person1.Surname == person2.Surname
-                    && person1.ThirdName == person2.ThirdName);
+                    && person1.MiddleName == person2.MiddleName);
         }
 
         private static bool IsIdenticEmploymentTypes(

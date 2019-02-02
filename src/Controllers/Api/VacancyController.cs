@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using App.Server.Models.Attributes;
 using App.Server.Models.Database;
 using App.Server.Models.Requests;
 using App.Server.Models.Responses;
@@ -10,9 +9,6 @@ using App.Server.Services;
 
 namespace App.Server.Controllers.Api
 {
-    /// <summary>
-    /// Vacancies Managent
-    /// </summary>
     public class VacancyController : ApiControllerBase
     {
         private VacancyControllerService ControllerService { get; }
@@ -27,7 +23,7 @@ namespace App.Server.Controllers.Api
         }
 
         /// <summary>
-        /// Returns all stored vacancies
+        /// Возвращает все вакансии, хранящиеся в базе данных
         /// </summary>
         /// <remarks>
         /// Sample request:
@@ -35,16 +31,17 @@ namespace App.Server.Controllers.Api
         ///     GET /api/vacancy/
         ///
         /// </remarks>
-        /// <returns>Vacancy information</returns>
+        /// <returns>Все имеющиеся вакансии в убывающем порядке поля <see cref="VacancyResponse.LastUpdated" /></returns>
         /// <response code="200">Success</response>
         /// <response code="500">Unknown Server Error</response>
         [ProducesResponseType(typeof(List<VacancyResponse>), StatusCodes.Status200OK)]
         [HttpGet]
         public IActionResult Get()
-            => new OkObjectResult(ControllerService.Get());
+            => new OkObjectResult(ControllerService.Get()
+                .ConvertAll((vacancyModel) => vacancyModel.ToResponse(OrganizationService)));
 
         /// <summary>
-        /// Returns vacancy by id
+        /// Возвращает вакансию с указанным Guid
         /// </summary>
         /// <remarks>
         /// Sample request:
@@ -52,8 +49,8 @@ namespace App.Server.Controllers.Api
         ///     GET /api/vacancy/40213585-be3b-4ad6-a6f6-e5d1c2e5cb25
         ///
         /// </remarks>
-        /// <param name="id">Vacancy Guid</param>
-        /// <returns>Vacancy information</returns>
+        /// <param name="id">Guid вакансии</param>
+        /// <returns>Информация о вакансии</returns>
         /// <response code="200">Success</response>
         /// <response code="404">No vacancy with such id</response>
         /// <response code="500">Unknown Server Error</response>
@@ -72,7 +69,7 @@ namespace App.Server.Controllers.Api
         }
 
         /// <summary>
-        /// Add new vacancy to database
+        /// Добавляет вакансию в базу данных
         /// </summary>
         /// <remarks>
         /// Sample request:
@@ -94,8 +91,8 @@ namespace App.Server.Controllers.Api
         ///     }
         ///
         /// </remarks>
-        /// <param name="vacancy">Vacancy info</param>
-        /// <returns>id of added vacancy</returns>
+        /// <param name="vacancy">Информация о вакансии</param>
+        /// <returns>Guid добавленной вакансии</returns>
         /// <response code="200">Success</response>
         /// <response code="400">Malformed request</response>
         /// <response code="409">Unable to save to database</response>
@@ -117,7 +114,7 @@ namespace App.Server.Controllers.Api
         }
 
         /// <summary>
-        /// Update existing vacancy
+        /// Обновляет существующую вакансию
         /// </summary>
         /// <remarks>
         /// Sample request:
@@ -139,15 +136,15 @@ namespace App.Server.Controllers.Api
         ///     }
         ///
         /// </remarks>
-        /// <param name="id">Vacancy Guid</param>
-        /// <param name="update">List of changed parametrs and their values</param>
-        /// <returns>Updated Vacancy</returns>
+        /// <param name="id">Guid вакансии</param>
+        /// <param name="update">Список изменений</param>
+        /// <returns>Обновленная версия вакансии</returns>
         /// <response code="200">Success</response>
         /// <response code="400">Malformed request</response>
         /// <response code="404">No vacancy with such id</response>
         /// <response code="409">Excpected updated vacancy not match with actual</response>
         /// <response code="500">Unknown Server Error</response>
-        [ProducesResponseType(typeof(VacancyModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(VacancyResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(UpdatesNotMatchResponse), StatusCodes.Status409Conflict)]
@@ -170,17 +167,17 @@ namespace App.Server.Controllers.Api
                 return new ConflictObjectResult(
                     new UpdatesNotMatchResponse
                     {
-                        Actual = updatedVacancy,
-                        Excpected = vacancy
+                        Actual = updatedVacancy.ToResponse(OrganizationService),
+                        Excpected = vacancy.ToResponse(OrganizationService)
                     });
             }
 
-            return new OkObjectResult(updatedVacancy);
+            return new OkObjectResult(updatedVacancy.ToResponse(OrganizationService));
         }
 
 
         /// <summary>
-        /// Delete existing vacancy
+        /// Удаляет существующую вакансию
         /// </summary>
         /// <remarks>
         /// Sample request:
@@ -188,7 +185,7 @@ namespace App.Server.Controllers.Api
         ///     DELETE /api/vacancy/40213585-be3b-4ad6-a6f6-e5d1c2e5cb25
         ///
         /// </remarks>
-        /// <param name="id">Vacancy Guid</param>
+        /// <param name="id">Guid вакансии</param>
         /// <response code="200">Success</response>
         /// <response code="404">No vacancy with such id</response>
         /// <response code="409">Unable to delete from database</response>
