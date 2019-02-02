@@ -8,7 +8,9 @@ namespace App.Server.Models.Attributes
         protected Type EnumType { get; }
 
         public ValidEnumAttribute(Type enumType)
-        { }
+        {
+            EnumType = enumType;
+        }
 
         public override bool IsValid(object value)
         {

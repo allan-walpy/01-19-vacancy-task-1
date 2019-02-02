@@ -16,11 +16,33 @@ namespace App.Server.Models.Services
             IDatabaseOrganizationService organizationService)
             : base(options)
         {
+            Predicates = GetPredicates(organizationService);
+        }
+
+        protected List<Func<VacancyModel, bool>> GetPredicates(
+            IDatabaseOrganizationService organizationService)
+        {
             var predicates = new List<Func<VacancyModel, bool>> { };
 
-            predicates.Add(new SalaryFilter(options.SalaryOptions).GetPredicate());
-            predicates.Add(new OrganizationFilter(options.OrganizationOptions, organizationService).GetPredicate());
-            predicates.Add(new KeyWordsFilter(options.KeyWordsOptions).GetPredicate());
+            if (Options.SalaryOptions != null)
+            {
+                predicates.Add(new SalaryFilter(Options.SalaryOptions)
+                    .GetPredicate());
+            }
+
+            if (Options.OrganizationOptions != null)
+            {
+                predicates.Add(new OrganizationFilter(Options.OrganizationOptions, organizationService)
+                    .GetPredicate());
+            }
+
+            if (Options.KeyWordsOptions != null)
+            {
+                predicates.Add(new KeyWordsFilter(Options.KeyWordsOptions)
+                    .GetPredicate());
+            }
+
+            return predicates;
         }
 
         protected override bool Check(VacancyModel vacancy)

@@ -7,26 +7,32 @@ namespace App.Server.Models.Services
     public static class Extensions
     {
         public static SalaryFilterOptions FromModel(this SalaryFilterModel model)
-            => new SalaryFilterOptions
-            {
-                Max = model.Max,
-                Min = model.Min
-            };
+            => model == null
+                ? null
+                : new SalaryFilterOptions
+                {
+                    Max = model.Max,
+                    Min = model.Min
+                };
 
         public static OrganizationFilterOptions FromModel(this OrganizationFilterModel model)
-            => new OrganizationFilterOptions
-            {
-                Id = model.Id,
-                Name = model.Name
-            };
+            => model == null
+                ? null
+                : new OrganizationFilterOptions
+                {
+                    Id = model.Id,
+                    Name = model.Name
+                };
 
         public static KeyWordsFilterOptions FromModel(this KeyWordsFilterModel model)
-            => new KeyWordsFilterOptions
-            {
-                SearchString = model.SearchString,
-                Match = Enum.Parse<KeyWordsFilter.SearchStringMatch>(model.Match, ignoreCase: true),
-                Scope = Enum.Parse<KeyWordsFilter.SearchStringScope>(model.Scope, ignoreCase: true)
-            };
+            => model == null
+                ? null
+                : new KeyWordsFilterOptions
+                {
+                    SearchString = model.SearchString,
+                    Match = Enum.Parse<KeyWordsFilter.SearchStringMatch>(model.Match, ignoreCase: true),
+                    Scope = Enum.Parse<KeyWordsFilter.SearchStringScope>(model.Scope, ignoreCase: true)
+                };
 
         public static SearchFilterOptions FromRequest(this SearchRequest request)
             => new SearchFilterOptions

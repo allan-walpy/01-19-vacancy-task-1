@@ -10,6 +10,11 @@ namespace App.Server.Models.Attributes
 
         public override bool IsValid(object value)
         {
+            if (value == null)
+            {
+                return true;
+            }
+
             var hasAnyProperty = GetPropertyIsNotNullList(value)
                 .Any((hasProperty) => hasProperty == true);
 
