@@ -19,9 +19,11 @@ namespace App.Server.Models.Requests
         public string Description { get; set; }
 
         [Required]
+        [ValidOrganizationName]
         public string Organization { get; set; }
 
         [Required]
+        [ValidEnumList(typeof(EmploymentType))]
         public List<string> EmploymentType { get; set; }
 
         public Person ContactPerson { get; set; }
