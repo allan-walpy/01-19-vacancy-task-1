@@ -20,8 +20,8 @@ namespace App.Server.Models.Attributes
                 return true;
             }
 
-            object result = null;
-            var success = Enum.TryParse(EnumType, stringValue, ignoreCase: true, result: out result);
+            object dummy;
+            var success = Enum.TryParse(EnumType, stringValue, ignoreCase: true, result: out dummy);
             return success;
         }
     }

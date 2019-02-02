@@ -56,16 +56,16 @@ namespace App.Server.Models.Services
 
         protected List<Func<VacancyModel, bool>> GetScopeMethods(Func<string, bool> matchMethod)
         {
-            var result = new List<Func<VacancyModel, bool>> { };
+            var result = new List<Func<VacancyModel, bool>>();
             switch (Options.Scope)
             {
-                //? can't use two identic cases in swotch (for SearchStringScope.Both);
+                //? can't use two identic cases in switch (for `SearchStringScope.Both`);
                 //? see https://stackoverflow.com/a/44848705/6256541 ;
                 case SearchStringScope value when
                     (value == SearchStringScope.Title
                         || value == SearchStringScope.Both):
                     result.Add(
-                        (vacancy) =>  matchMethod(vacancy.Title)
+                        (vacancy) => matchMethod(vacancy.Title)
                     );
                     break;
                 case SearchStringScope.Description:

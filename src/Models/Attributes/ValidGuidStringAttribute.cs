@@ -13,9 +13,9 @@ namespace App.Server.Models.Attributes
                 return false;
             }
 
-            Guid guidParsed = Guid.Empty;
-            bool success = System.Guid.TryParse(stringValue, out guidParsed);
-            return success & (guidParsed != Guid.Empty);
+            Guid guidParsed;
+            var success = System.Guid.TryParse(stringValue, out guidParsed);
+            return success;
         }
     }
 }

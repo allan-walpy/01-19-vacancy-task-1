@@ -9,7 +9,7 @@ namespace App.Server.Models.Attributes
 
         public ValidPhoneNumberAttribute()
             : base(
-                validRegexes: new string[] { ValidRegexMobile, ValidRegexHomePhone },
+                validRegexes: new[] { ValidRegexMobile, ValidRegexHomePhone },
                 maxLength: MaxLength,
                 minLength: MinLength)
         { }

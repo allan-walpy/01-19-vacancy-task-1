@@ -22,7 +22,7 @@ namespace App.Server.Models.Services
         protected List<Func<VacancyModel, bool>> GetPredicates(
             IDatabaseOrganizationService organizationService)
         {
-            var predicates = new List<Func<VacancyModel, bool>> { };
+            var predicates = new List<Func<VacancyModel, bool>>();
 
             if (Options.SalaryOptions != null)
             {

@@ -19,7 +19,7 @@ namespace App.Server.Models.Attributes
                     message: "At least one property must be specified");
             }
 
-            var propertiesNames = new List<string> { };
+            var propertiesNames = new List<string>();
             propertiesNames.AddRange(otherPropertiesName);
 
             PropertiesName = propertiesNames;
@@ -28,12 +28,12 @@ namespace App.Server.Models.Attributes
         protected List<PropertyInfo> GetPropertiesInfo(object value)
         {
             var valueType = value.GetType();
-            return PropertiesName.ConvertAll<PropertyInfo>((name) => valueType.GetProperty(name));
+            return PropertiesName.ConvertAll((name) => valueType.GetProperty(name));
         }
 
         protected List<bool> GetPropertyIsNullList(object value)
             => GetPropertiesInfo(value)
-                .ConvertAll<bool>((propertyInfo) => IsExists(propertyInfo) && IsNull(propertyInfo, value));
+                .ConvertAll((propertyInfo) => IsExists(propertyInfo) && IsNull(propertyInfo, value));
 
         protected List<bool> GetPropertyIsNotNullList(object value)
             => GetPropertyIsNullList(value).ConvertAll((b) => !b);

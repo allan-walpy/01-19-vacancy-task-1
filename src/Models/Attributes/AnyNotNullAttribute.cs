@@ -16,7 +16,7 @@ namespace App.Server.Models.Attributes
             }
 
             var hasAnyProperty = GetPropertyIsNotNullList(value)
-                .Any((hasProperty) => hasProperty == true);
+                .Any((hasProperty) => hasProperty);
 
             return hasAnyProperty;
         }

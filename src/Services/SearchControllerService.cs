@@ -22,16 +22,17 @@ namespace App.Server.Services
         {
             var result = new SearchResponse
             {
-                Result = new List<VacancyResponse> { }
+                Result = new List<VacancyResponse>()
             };
 
             var searchFilter = new SearchFilter(request.FromRequest(), OrganizationService);
             var predicate = searchFilter.GetPredicate();
 
             var resultList = VacancyService.GetRangeBy(predicate);
-            result.Result = resultList.ConvertAll<VacancyResponse>(
+            result.Result = resultList.ConvertAll(
                 (vacancyModel) => vacancyModel.ToResponse(OrganizationService));
 
+            //? `LastUpdate` descending sorting;
             result.Result.Sort((vacancy1, vacancy2) => (int)(vacancy2.LastUpdated - vacancy1.LastUpdated));
 
             return result;

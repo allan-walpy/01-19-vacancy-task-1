@@ -12,8 +12,8 @@ namespace App.Server.Models.Attributes
         public ValidStringTypePropertyAttribute(string[] validRegexes, int minLength, int maxLength)
             : base(minLength, maxLength)
         {
-            Regexes = validRegexes?.ToList() ?? new List<string> { };
-            if (Regexes.Count == 0)
+            Regexes = validRegexes?.ToList();
+            if (Regexes == null || Regexes.Count == 0)
             {
                 throw new ArgumentOutOfRangeException(
                     nameof(validRegexes),
@@ -23,7 +23,7 @@ namespace App.Server.Models.Attributes
         }
 
         public ValidStringTypePropertyAttribute(string validRegex, int minLength, int maxLength)
-            : this(new string[] { validRegex }, minLength, maxLength)
+            : this(new[] { validRegex }, minLength, maxLength)
         { }
 
         protected static bool IsValidByRegex(string pattern, string value)

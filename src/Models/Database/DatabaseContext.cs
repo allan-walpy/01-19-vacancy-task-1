@@ -5,7 +5,7 @@ using App.Server.Models.Database.ValueGenerators;
 
 namespace App.Server.Models.Database
 {
-    public class DatabaseContext : DbContext
+    public sealed class DatabaseContext : DbContext
     {
         public const string VacancyTableName = "Vacancies";
         public const string OrganizationTableName = "Organizations";
