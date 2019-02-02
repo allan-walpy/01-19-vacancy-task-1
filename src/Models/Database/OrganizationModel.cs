@@ -14,6 +14,7 @@ namespace App.Server.Models.Database
         public string Id { get; set; }
 
         [Required]
+        [ValidOrganizationName]
         public string Name { get; set; }
 
         public ICollection<VacancyModel> Vacancy { get; set; }

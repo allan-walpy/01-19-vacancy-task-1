@@ -10,6 +10,5 @@ namespace App.Server.Models
 
         public static List<EmploymentType> ToEmploymentType(this List<string> list)
             => list?.ConvertAll(ToEmploymentType);
-
     }
 }
