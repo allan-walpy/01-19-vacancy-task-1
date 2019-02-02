@@ -5,13 +5,11 @@ using App.Server.Models.Attributes;
 
 namespace App.Server.Models.Requests
 {
-
     /// <summary>
     /// Запрос на добавление вакансии
     /// </summary>
     public class VacancyAddRequest
     {
-
         /// <summary>
         /// Название должности
         /// </summary>
@@ -30,19 +28,7 @@ namespace App.Server.Models.Requests
         /// <summary>
         /// Описание работы
         /// </summary>
-        /// <example>
-        /// Обязанности:
-        ///  - разработка ПО;
-        /// Требования:
-        ///  - знания C#;
-        ///  - понимание основных принципов ООП;
-        ///  - опыт работы с ASP.NET Core/MVC/WebAPI;
-        ///  - опыт работы с Entity Framework Core;
-        ///  - опыт работы с git;
-        ///  - умение разбираться с технической англоязычной документацией;
-        ///  - умение работать в команде;
-        ///  - умение писать код, понятный другим разработчикам;
-        /// </example>
+        /// <example>## Обязанности:\n\n  - разработка ПО;\n\n## Требования:\n\n  - знания C#;\n  - понимание основных принципов ООП;\n  - опыт работы с ASP.NET Core/MVC/WebAPI;\n  - опыт работы с Entity Framework Core;\n  - опыт работы с git;\n  - умение разбираться с технической англоязычной документацией;\n  - умение работать в команде\n  - умение писать код, понятный другим разработчикам;</example>
         [Required]
         [ValidVacancyDescription]
         public string Description { get; set; }

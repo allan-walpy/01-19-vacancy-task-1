@@ -175,7 +175,6 @@ namespace App.Server.Controllers.Api
             return new OkObjectResult(updatedVacancy.ToResponse(OrganizationService));
         }
 
-
         /// <summary>
         /// Удаляет существующую вакансию
         /// </summary>
