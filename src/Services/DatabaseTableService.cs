@@ -33,13 +33,6 @@ namespace App.Server.Services
             }
         }
 
-        private (bool, TModel) Exists(TId id)
-        {
-            var item = Get(id);
-            var isFounded = (item != null);
-            return (isFounded, item);
-        }
-
         public virtual bool Add(TModel item)
         {
             OnAddAction(item);
@@ -52,8 +45,8 @@ namespace App.Server.Services
 
         public virtual TModel Update(TId id, TModel updatedItem)
         {
-            var (isExists, item) = Exists(id);
-            if (!isExists)
+            var item = Get(id);
+            if (item == null)
             {
                 return null;
             }
@@ -69,8 +62,8 @@ namespace App.Server.Services
 
         public virtual bool Delete(TId id)
         {
-            var (isExists, item) = Exists(id);
-            if (!isExists)
+            var item = Get(id);
+            if (item == null)
             {
                 return false;
             }
