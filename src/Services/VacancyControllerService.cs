@@ -5,10 +5,14 @@ namespace App.Server.Services
     public sealed class VacancyControllerService
     {
         private IDatabaseVacancyService VacancyService { get; }
+        private IDatabaseOrganizationService OrganizationService { get; }
 
-        public VacancyControllerService(IDatabaseVacancyService vacancyService)
+        public VacancyControllerService(
+            IDatabaseVacancyService vacancyService,
+            IDatabaseOrganizationService organizationService)
         {
             VacancyService = vacancyService;
+            OrganizationService = organizationService;
         }
 
         public VacancyModel Get(string id)
@@ -27,6 +31,20 @@ namespace App.Server.Services
             => VacancyService.Update(id, vacancyUpdate);
 
         public bool Delete(string id)
-            => VacancyService.Delete(id);
+        {
+            var organizationId = Get(id)?.OrganizationId;
+            bool success = VacancyService.Delete(id);
+
+            if (success && organizationId != null)
+            {
+                var organization = OrganizationService.GetWithVacancies(organizationId);
+                if (organization.Vacancies.Count == 0)
+                {
+                    OrganizationService.Delete(organizationId);
+                }
+            }
+
+            return success;
+        }
     }
 }

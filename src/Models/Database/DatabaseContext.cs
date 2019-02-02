@@ -64,7 +64,7 @@ namespace App.Server.Models.Database
         private void ConfigureRelationships(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<OrganizationModel>()
-                .HasMany(o => o.Vacancy)
+                .HasMany(o => o.Vacancies)
                 .WithOne(v => v.Organization)
                 .OnDelete(DeleteBehavior.Cascade);
         }

@@ -9,12 +9,18 @@ namespace App.Server.Services
     public class DatabaseOrganizationService
         : DatabaseTableService<OrganizationModel, string>, IDatabaseOrganizationService
     {
-        public DatabaseOrganizationService(IDatabaseService databaseService)
+        protected IDatabaseVacancyService VacancyService { get; }
+
+        public DatabaseOrganizationService(
+            IDatabaseService databaseService,
+            IDatabaseVacancyService vacancyService)
             : base(
                 onAddAction: null,
                 onUpdateAction: null,
                 databaseService: databaseService)
-        { }
+        {
+            VacancyService = vacancyService;
+        }
 
         protected override DbSet<OrganizationModel> GetTable(DatabaseContext databaseContext)
             => databaseContext.Organizations;
@@ -33,6 +39,13 @@ namespace App.Server.Services
                     .Where((organization) => NamePredicateMethod(organization, name))
                     .SingleOrDefault();
             }
+        }
+
+        public OrganizationModel GetWithVacancies(string id)
+        {
+            var result = Get(id);
+            result.Vacancies = VacancyService.GetRangeBy((vacancy) => vacancy.OrganizationId == id);
+            return result;
         }
     }
 }

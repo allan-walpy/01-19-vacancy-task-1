@@ -6,5 +6,7 @@ namespace App.Server.Services
         : IDatabaseTableService<OrganizationModel, string>
     {
         OrganizationModel GetByName(string name);
+
+        OrganizationModel GetWithVacancies(string id);
     }
 }
