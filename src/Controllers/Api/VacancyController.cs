@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,23 @@ namespace App.Server.Controllers.Api
             ControllerService = controllerSerivce;
             OrganizationService = organizationService;
         }
+
+        /// <summary>
+        /// Returns all stored vacancies
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     GET /api/vacancy/
+        ///
+        /// </remarks>
+        /// <returns>Vacancy information</returns>
+        /// <response code="200">Success</response>
+        /// <response code="500">Unknown Server Error</response>
+        [ProducesResponseType(typeof(List<VacancyResponse>), StatusCodes.Status200OK)]
+        [HttpGet]
+        public IActionResult Get()
+            => new OkObjectResult(ControllerService.Get());
 
         /// <summary>
         /// Returns vacancy by id

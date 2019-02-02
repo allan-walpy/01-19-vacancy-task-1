@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using App.Server.Models.Database;
 
 namespace App.Server.Services
@@ -14,6 +16,9 @@ namespace App.Server.Services
             VacancyService = vacancyService;
             OrganizationService = organizationService;
         }
+
+        public List<VacancyModel> Get()
+            => VacancyService.GetRangeBy((vacancy) => true);
 
         public VacancyModel Get(string id)
             => VacancyService.Get(id);
