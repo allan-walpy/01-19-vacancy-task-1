@@ -32,9 +32,6 @@ namespace App.Server.Services
             result.Result = resultList.ConvertAll(
                 (vacancyModel) => vacancyModel.ToResponse(OrganizationService));
 
-            //? `LastUpdate` descending sorting;
-            result.Result.Sort((vacancy1, vacancy2) => (int)(vacancy2.LastUpdated - vacancy1.LastUpdated));
-
             return result;
         }
     }

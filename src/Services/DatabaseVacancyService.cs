@@ -48,7 +48,11 @@ namespace App.Server.Services
         {
             using (var databaseContext = DatabaseService.GetContext())
             {
-                return GetTable(databaseContext).Where(predicate).ToList();
+                var result = GetTable(databaseContext).Where(predicate).ToList();
+
+                //? `LastUpdate` descending sorting;
+                result.Sort((vacancy1, vacancy2) => (int)(vacancy2.LastUpdated - vacancy1.LastUpdated));
+                return result;
             }
         }
     }
