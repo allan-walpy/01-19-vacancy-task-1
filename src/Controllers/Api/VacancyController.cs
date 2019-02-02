@@ -10,6 +10,9 @@ using App.Server.Services;
 
 namespace App.Server.Controllers.Api
 {
+    /// <summary>
+    /// Vacancies Managent
+    /// </summary>
     public class VacancyController : ApiControllerBase
     {
         private VacancyControllerService ControllerService { get; }
@@ -57,7 +60,7 @@ namespace App.Server.Controllers.Api
         [ProducesResponseType(typeof(VacancyResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]
-        public IActionResult Get([ValidGuidString] string id)
+        public IActionResult Get(string id)
         {
             var vacancy = ControllerService.Get(id);
             if (vacancy == null)
@@ -94,9 +97,11 @@ namespace App.Server.Controllers.Api
         /// <param name="vacancy">Vacancy info</param>
         /// <returns>id of added vacancy</returns>
         /// <response code="200">Success</response>
+        /// <response code="400">Malformed request</response>
         /// <response code="409">Unable to save to database</response>
         /// <response code="500">Unknown Server Error</response>
         [ProducesResponseType(typeof(VacancyResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [Consumes(ConsumesType)]
         [HttpPost]
@@ -138,15 +143,17 @@ namespace App.Server.Controllers.Api
         /// <param name="update">List of changed parametrs and their values</param>
         /// <returns>Updated Vacancy</returns>
         /// <response code="200">Success</response>
+        /// <response code="400">Malformed request</response>
         /// <response code="404">No vacancy with such id</response>
         /// <response code="409">Excpected updated vacancy not match with actual</response>
         /// <response code="500">Unknown Server Error</response>
         [ProducesResponseType(typeof(VacancyModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(UpdatesNotMatchResponse), StatusCodes.Status409Conflict)]
         [Consumes(ConsumesType)]
         [HttpPatch("{id}")]
-        public IActionResult Update([ValidGuidString] string id, [FromBody] VacancyUpdateModel update)
+        public IActionResult Update(string id, [FromBody] VacancyUpdateModel update)
         {
             var vacancy = ControllerService.Get(id);
             if (vacancy == null)
@@ -190,7 +197,7 @@ namespace App.Server.Controllers.Api
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [HttpDelete("{id}")]
-        public IActionResult Delete([ValidGuidString] string id)
+        public IActionResult Delete(string id)
         {
             var exists = ControllerService.Exists(id);
             if (!exists)
