@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 using App.Server.Models.Database;
@@ -24,8 +25,8 @@ namespace App.Server.Models.Responses
                 Salary = model.Salary,
                 Description = model.Description,
                 Organization = organizationService.Get(model.OrganizationId).ToResponse(),
-                EmploymentType = model.EmploymentType.ToList()
-                    .ConvertAll((item) => item.ToString()),
+                EmploymentType = model.EmploymentType?.ToList()
+                    ?.ConvertAll((item) => Enum.GetName(typeof(EmploymentType), item)),
                 ContactPerson = model.ContactPerson,
                 ContactPhone = model.ContactPhone,
                 LastUpdated = model.LastUpdated,
