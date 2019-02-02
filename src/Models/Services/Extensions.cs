@@ -24,8 +24,8 @@ namespace App.Server.Models.Services
             => new KeyWordsFilterOptions
             {
                 SearchString = model.SearchString,
-                Match = Enum.Parse<KeyWordsFilter.SearchStringMatch>(model.Match),
-                Scope = Enum.Parse<KeyWordsFilter.SearchStringScope>(model.Scope)
+                Match = Enum.Parse<KeyWordsFilter.SearchStringMatch>(model.Match, ignoreCase: true),
+                Scope = Enum.Parse<KeyWordsFilter.SearchStringScope>(model.Scope, ignoreCase: true)
             };
 
         public static SearchFilterOptions FromRequest(this SearchRequest request)
@@ -34,6 +34,6 @@ namespace App.Server.Models.Services
                 SalaryOptions = request.Salary.FromModel(),
                 OrganizationOptions = request.Organization.FromModel(),
                 KeyWordsOptions = request.KeyWords.FromModel()
-            }
+            };
     }
 }

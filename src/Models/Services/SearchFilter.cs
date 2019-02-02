@@ -7,7 +7,7 @@ using App.Server.Services;
 
 namespace App.Server.Models.Services
 {
-    public abstract class SearchFilter : SearchFilterBase<SearchFilterOptions>
+    public class SearchFilter : SearchFilterBase<SearchFilterOptions>
     {
         protected List<Func<VacancyModel, bool>> Predicates { get; }
 

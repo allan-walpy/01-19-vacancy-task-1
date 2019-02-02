@@ -1,21 +1,21 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 
 using App.Server.Models.Requests;
-using App.Server.Models.Responses;
+using App.Server.Services;
 
 namespace App.Server.Controllers.Api
 {
     public class SearchController : ApiControllerBase
     {
-        public SearchController()
-        { }
+        protected SearchControllerService ControllerService { get; set; }
+        public SearchController(SearchControllerService controllerService)
+        {
+            ControllerService = controllerService;
+        }
 
         [HttpPost]
         [Consumes(ConsumesType)]
         public IActionResult Search([FromBody] SearchRequest request)
-        {
-            throw new NotImplementedException();
-        }
+            => new OkObjectResult(ControllerService.Search(request));
     }
 }
