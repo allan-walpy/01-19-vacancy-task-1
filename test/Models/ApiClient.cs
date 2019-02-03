@@ -4,6 +4,8 @@ namespace App.Server.Test.Models
 {
     public class ApiClient
     {
+        protected static ApiCallModel AddApiCall { get; set; }
+
         public ApiClient()
         { }
 

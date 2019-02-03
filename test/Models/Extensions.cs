@@ -5,6 +5,8 @@ using System.Text;
 using System.Net.Http;
 using Newtonsoft.Json;
 
+using App.Server.Models.Responses;
+
 namespace App.Server.Test.Models
 {
     public static class Extensions
@@ -55,6 +57,15 @@ namespace App.Server.Test.Models
             }
 
             result.ApiCall = null;
+
+            try
+            {
+                result.BadModel = JsonConvert.DeserializeObject<BadModelResponse>(
+                    result.Data as string);
+            } catch (Exception)
+            {
+                result.BadModel = null;
+            }
 
             return result;
         }

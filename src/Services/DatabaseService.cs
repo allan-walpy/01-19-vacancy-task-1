@@ -8,34 +8,37 @@ namespace App.Server.Services
 {
     public class DatabaseService : IDatabaseService
     {
-        public const string ConfigConnectionNameKey = "database";
+        public const string DbInMemmoryConfigKey = "database:test";
+        public const string ConfigConnectionNameKey = "database:connection";
         public const string ConnectionKeyPrefix = "database";
 
         private string ConnectionString { get; }
         private ILoggerFactory LoggerFactory { get; }
         private ILogger<DatabaseService> Logger { get; }
+        private IConfiguration Config { get; }
 
         public DatabaseService(IConfiguration config, ILoggerFactory loggerFactory)
         {
+            Config = config;
             LoggerFactory = loggerFactory;
             Logger = loggerFactory.CreateLogger<DatabaseService>();
 
-            ConnectionString = GetConnectionString(config);
+            ConnectionString = GetConnectionString();
         }
 
-        private string GetConnectionString(IConfiguration config)
+        private string GetConnectionString()
         {
             //TODO:FIXME: add LogEvents class;
             var logEventId = $"{nameof(DatabaseService)}:{nameof(GetConnectionString)}";
-            var isDebug = config.GetValue<bool>(Startup.IsDevEnviromentConfigKey);
+            var isDebug = Config.GetValue<bool>(Startup.IsDevEnviromentConfigKey);
 
-            var connectionName = $"{config[ConfigConnectionNameKey]}:{(isDebug ? "debug" : "production")}";
+            var connectionName = $"{Config[ConfigConnectionNameKey]}:{(isDebug ? "debug" : "production")}";
             Logger.LogDebug(logEventId, "Fetched connection name for database {connectionName}", connectionName);
 
             var connectionKey = $"{ConnectionKeyPrefix}:{connectionName}";
             Logger.LogDebug(logEventId, "Fetched connection string key for database {connectionKey}", connectionKey);
 
-            var connectionString = config.GetSection("ConnetionStrings")[connectionKey];
+            var connectionString = Config.GetSection("ConnetionStrings")[connectionKey];
             Logger.LogTrace(logEventId, "Fetched connection string for database {connectionString}", connectionString);
 
             return connectionString;
@@ -46,9 +49,25 @@ namespace App.Server.Services
             var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
 
             optionsBuilder.UseLoggerFactory(LoggerFactory);
-            optionsBuilder.UseMySQL(ConnectionString);
+
+            var useInMemmoryDatabase = Config.GetValue<bool>(DbInMemmoryConfigKey);
+            if (useInMemmoryDatabase)
+            {
+                UseInMemoryDatabase(optionsBuilder);
+            }
+            else
+            {
+                optionsBuilder.UseMySQL(ConnectionString);
+            }
 
             return optionsBuilder.Options;
+        }
+
+        private void UseInMemoryDatabase(DbContextOptionsBuilder<DatabaseContext> optionsBuilder)
+        {
+            optionsBuilder.UseInMemoryDatabase(
+                databaseName: "test_database"
+            );
         }
 
         public DatabaseContext GetContext()

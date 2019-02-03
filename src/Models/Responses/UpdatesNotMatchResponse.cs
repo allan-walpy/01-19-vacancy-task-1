@@ -1,5 +1,3 @@
-using App.Server.Models.Database;
-
 namespace App.Server.Models.Responses
 {
     /// <summary>

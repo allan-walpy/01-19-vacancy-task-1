@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using App.Server.Models.Responses;
+
 namespace App.Server.Test.Models
 {
     public class HttpMessageModel
@@ -11,5 +13,7 @@ namespace App.Server.Test.Models
         public Dictionary<string, string[]> Headers { get; set; }
 
         public object Data { get; set; }
+
+        public BadModelResponse BadModel { get; set; }
     }
 }

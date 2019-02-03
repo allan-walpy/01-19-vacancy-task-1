@@ -93,11 +93,11 @@ namespace App.Server.Controllers.Api
         /// </remarks>
         /// <param name="vacancy">Информация о вакансии</param>
         /// <returns>Guid добавленной вакансии</returns>
-        /// <response code="200">Success</response>
+        /// <response code="201">Successfully created</response>
         /// <response code="400">Malformed request</response>
         /// <response code="409">Unable to save to database</response>
         /// <response code="500">Unknown Server Error</response>
-        [ProducesResponseType(typeof(VacancyResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(VacancyAddResponse), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(BadModelResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [Consumes(ConsumesType)]
@@ -110,7 +110,9 @@ namespace App.Server.Controllers.Api
                 return new ConflictResult();
             }
 
-            return new CustomObjectResult(id, StatusCodes.Status201Created);
+            return new CustomObjectResult(
+                new VacancyAddResponse { Id = id },
+                StatusCodes.Status201Created);
         }
 
         /// <summary>

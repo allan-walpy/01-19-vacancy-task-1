@@ -4,7 +4,7 @@ namespace App.Server.Test.Models
 {
     public class ApiPathModel
     {
-        public const string PathUrlTemplate = "http://localhost:5002/api/{0}/{1}";
+        public const string PathUrlTemplate = "{0}/{1}";
 
         public string BasePath { get; set; }
 
