@@ -13,7 +13,7 @@ namespace App.Server.Test.Api
 {
     public abstract class ApiTestBase : IDisposable
     {
-        public const string BaseUrlTemplate = "https://localhost:{0}/api/{1}";
+        public const string BaseUrlTemplate = "http://localhost:{0}/api/{1}";
 
         public abstract HttpMethod Method { get; }
         public abstract string BasePath { get; }

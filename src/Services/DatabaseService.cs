@@ -30,7 +30,7 @@ namespace App.Server.Services
         {
             //TODO:FIXME: add LogEvents class;
             var logEventId = $"{nameof(DatabaseService)}:{nameof(GetConnectionString)}";
-            var isDebug = Config.GetValue<bool>(Startup.IsDevEnviromentConfigKey);
+            var isDebug = Config.GetValue<bool>(Program.IsDevEnviromentConfigKey);
 
             var connectionName = $"{Config[ConfigConnectionNameKey]}:{(isDebug ? "debug" : "production")}";
             Logger.LogDebug(logEventId, "Fetched connection name for database {connectionName}", connectionName);

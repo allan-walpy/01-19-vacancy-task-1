@@ -7,8 +7,6 @@ namespace App.Server
 {
     public class Startup
     {
-        public const string IsDevEnviromentConfigKey = "debug";
-
         private IConfiguration _configuration;
 
         public Startup(IConfiguration configuration)

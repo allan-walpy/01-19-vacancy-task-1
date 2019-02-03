@@ -31,9 +31,9 @@
 
     <!-- compilation config; -->
     <PropertyGroup>
-        <OutputPath>../out/bin/server/$(Configuration)/</OutputPath>
+        <OutputPath>../out/bin/$(Configuration)/</OutputPath>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <DocumentationFile>../../out/bin/server/$(Configuration)/$(TargetFramework)/server.xml</DocumentationFile>
+        <DocumentationFile>../../out/bin/$(Configuration)/$(TargetFramework)/server.xml</DocumentationFile>
         <DebugSymbols>false</DebugSymbols>
         <IncludeSource>true</IncludeSource>
     </PropertyGroup>
@@ -52,6 +52,16 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-beta" />
     </ItemGroup>
 
+    <!-- configuration files managment; -->
+    <PropertyGroup>
+        <EnableDefaultContentItems>false</EnableDefaultContentItems>
+    </PropertyGroup>
+    <ItemGroup>
+        <Content Include="*.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
     <!-- debug configuration; -->
     <PropertyGroup Condition="$(Configuration)=='Debug'">
         <!-- disable documentation warnings; -->
@@ -60,6 +70,12 @@
         <NoWarn>1591;1573;</NoWarn>
         <!-- define debug in code; -->
         <DefineConstants>DEBUG;</DefineConstants>
+    </PropertyGroup>
+
+    <!-- release configuration; -->
+    <PropertyGroup Condition="$(Configuration)=='Release'">
+        <NoWarn>1591;1573;</NoWarn>
+        <DefineConstants>PRODUCTION;</DefineConstants>
     </PropertyGroup>
 
 </Project>

@@ -9,7 +9,6 @@ namespace App.Server.Test.Instance
     public class AppInstance : IDisposable
     {
         public const string DbInMemmoryConfigKey = "database:test";
-        public const string ListenUrlTemplate = "https://localhost:{0}/";
 
         public int Port { get; }
 
@@ -22,14 +21,10 @@ namespace App.Server.Test.Instance
             App.RunAsync();
         }
 
-        private string GetListenUrl()
-            => String.Format(
-                ListenUrlTemplate,
-                Port);
-
         private IWebHostBuilder ConfigureApp()
         {
             var appBuilder = Program.CreateWebHostBuilder()
+                .SuppressStatusMessages(true)
                 .ConfigureAppConfiguration((configBuilder) =>
                 {
                     configBuilder.AddInMemoryCollection(
@@ -37,16 +32,16 @@ namespace App.Server.Test.Instance
                         {
                             {
                                 DbInMemmoryConfigKey, "true"
+                            },
+                            {
+                                Program.IsDevEnviromentConfigKey, "false"
                             }
                         }
                     );
                 })
-                .UseKestrel(options => {
+                .ConfigureKestrel(options => {
                     options.Listen(IPAddress.Loopback, Port);
                 });
-                //!tmp;
-                //? Suppress start status messages;
-                //.UseSetting(WebHostDefaults.SuppressStatusMessagesKey, "True");
             return appBuilder;
         }
 

@@ -25,7 +25,7 @@
 
     <!-- compilation config; -->
     <PropertyGroup>
-        <OutputPath>../out/bin/test/$(Configuration)/</OutputPath>
+        <OutputPath>../out/bin/$(Configuration)/</OutputPath>
         <GenerateDocumentationFile>false</GenerateDocumentationFile>
         <DebugSymbols>false</DebugSymbols>
         <IncludeSource>true</IncludeSource>
