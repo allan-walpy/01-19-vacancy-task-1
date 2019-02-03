@@ -18,13 +18,15 @@ matrix:
       install:
         - choco install mysql
         - choco install dotnetcore-sdk
-      after_failure: powershell -c Get-Content out\log\*.trx
+      after_failure:
+        - cd out
+        - cd log
+        - powershell -c Get-Content *.trx
 
 script:
   - dotnet restore --verbosity q
   - dotnet build --configuration Debug --no-restore --verbosity q
-  - dotnet build --configuration Release --no-restore --verbosity q
-  - dotnet test --configuration Release --no-restore --no-build --verbosity n
+  - dotnet test --configuration Debug --no-restore --no-build --verbosity n
 
 notifications:
   email:

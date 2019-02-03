@@ -24,7 +24,10 @@ namespace App.Server
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration(config =>
                 {
-                    config.AddJsonFile(PrivateConfigFile);
+
+                    config.AddJsonFile($"{ExecutionPath}/{PrivateConfigFile}",
+                        optional: false,
+                        reloadOnChange: true);
                 })
                 .UseStartup<Startup>();
     }
