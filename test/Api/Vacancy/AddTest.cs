@@ -44,6 +44,12 @@ namespace App.Server.Test.Api.Vacancy
         }
         protected void AssertContentAs201(VacancyAddResponse expected, VacancyAddResponse actual)
         {
+            if (actual == null && expected == null)
+            {
+                return;
+            }
+
+            Assert.NotNull(actual);
             AssertGuid(actual.Id);
         }
 
@@ -56,7 +62,7 @@ namespace App.Server.Test.Api.Vacancy
                 ApiCall = null,
                 StatusCode = StatusCodes.Status201Created,
                 Headers = null,
-                Data = new VacancyAddResponse(),
+                Data = new VacancyAddResponse { Id = null },
                 BadModel = null
             };
 
@@ -68,9 +74,7 @@ namespace App.Server.Test.Api.Vacancy
                 Data = requestModel,
                 BadModel = null
             };
-            var response = SendRequest(request);
-
-            AssertResponses(response, expected);
+            AssertResponseByRequest<VacancyAddResponse>(request, expected);
         }
     }
 }

@@ -29,15 +29,7 @@ namespace App.Server
 #if PRODUCTION
             return hostBuilder.UseEnvironment(EnvironmentName.Production);
 #endif
-            var debugSetting = hostBuilder.GetSetting(IsDevEnviromentConfigKey);
-            var isDebug = Boolean.Parse(debugSetting);
-
-            if (isDebug)
-            {
-                return hostBuilder.UseEnvironment(EnvironmentName.Development);
-            }
-
-            return hostBuilder.UseEnvironment(EnvironmentName.Production);
+            return hostBuilder.UseEnvironment(EnvironmentName.Staging);
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(params string[] args)

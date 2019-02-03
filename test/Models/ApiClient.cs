@@ -6,9 +6,6 @@ namespace App.Server.Test.Models
     {
         protected static ApiCallModel AddApiCall { get; set; }
 
-        public ApiClient()
-        { }
-
         public HttpResponseMessage Send(HttpMessageModel requestInfo)
             => Send(requestInfo.ToRequest());
 

@@ -59,13 +59,14 @@ namespace App.Server.Test.Api
             return request;
         }
 
-        protected void AssertResponses(
+        protected void AssertResponseByRequest<TResponse>(
             HttpMessageModel request,
             HttpMessageModel expectedResponse,
             string additionalApiPath = null)
+            where TResponse : class
         {
             var actualResponse = SendRequest(request, additionalApiPath);
-            AssertResponses(expectedResponse, actualResponse);
+            AssertResponses<TResponse>(expectedResponse, actualResponse);
         }
 
         protected void AssertResponses<TResponse>(HttpMessageModel expected, HttpMessageModel actual)
@@ -125,13 +126,11 @@ namespace App.Server.Test.Api
 
         protected void AssertContentAs400(BadModelResponse expected, BadModelResponse actual)
         {
-            if (expected == null && actual == null)
+            if (expected == null || actual == null)
             {
                 return;
             }
 
-            Assert.NotNull(expected);
-            Assert.NotNull(actual);
             Assert.Equal(expected.Title, actual.Title);
             Assert.Equal(expected.Status, actual.Status);
             AssertList<string>(expected.Fields, actual.Fields);

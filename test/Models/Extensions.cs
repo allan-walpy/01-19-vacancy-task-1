@@ -48,7 +48,7 @@ namespace App.Server.Test.Models
             var result = new HttpMessageModel();
 
             result.StatusCode = (int)(response.StatusCode);
-            result.Data = response.Content.ReadAsStringAsync();
+            result.Data = response.Content.ReadAsStringAsync().Result;
 
             result.Headers = new Dictionary<string, string[]>();
             foreach (var header in response.Headers)
