@@ -98,7 +98,7 @@ namespace App.Server.Controllers.Api
         /// <response code="409">Unable to save to database</response>
         /// <response code="500">Unknown Server Error</response>
         [ProducesResponseType(typeof(VacancyResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(BadModelResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [Consumes(ConsumesType)]
         [HttpPost]
@@ -145,7 +145,7 @@ namespace App.Server.Controllers.Api
         /// <response code="409">Excpected updated vacancy not match with actual</response>
         /// <response code="500">Unknown Server Error</response>
         [ProducesResponseType(typeof(VacancyResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(BadModelResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(UpdatesNotMatchResponse), StatusCodes.Status409Conflict)]
         [Consumes(ConsumesType)]

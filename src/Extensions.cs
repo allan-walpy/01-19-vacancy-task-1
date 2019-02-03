@@ -51,6 +51,15 @@ namespace App.Server
             return services;
         }
 
+        public static IServiceCollection ConfigureApiBehavior(this IServiceCollection services)
+        {
+            services.Configure<ApiBehaviorOptions>(options => {
+                options.InvalidModelStateResponseFactory = ApiBehaviorOnBadModel.OnInvalidModel;
+            });
+
+            return services;
+        }
+
         public static IServiceCollection AddAppDatabase(this IServiceCollection services)
         {
             services.AddSingleton<IDatabaseService, DatabaseService>();

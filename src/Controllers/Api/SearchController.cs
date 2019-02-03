@@ -39,10 +39,10 @@ namespace App.Server.Controllers.Api
         /// </remarks>
         /// <returns>Список вакансий удовлетворяющий запросу в убывающем порядке поля <see cref="VacancyResponse.LastUpdated" /></returns>
         /// <response code="200">Success</response>
-        /// <response code="200">Malformed request</response>
+        /// <response code="400">Malformed request</response>
         /// <response code="500">Unknown Server Error</response>
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(SearchResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BadModelResponse), StatusCodes.Status400BadRequest)]
         [Consumes(ConsumesType)]
         [HttpPost]
         public IActionResult Search([FromBody] SearchRequest request)

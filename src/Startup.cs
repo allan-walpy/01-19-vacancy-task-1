@@ -21,6 +21,7 @@ namespace App.Server
             services.AddApiSpecification();
             services.AddAppDatabase();
             services.AddAppMvc();
+            services.ConfigureApiBehavior();
         }
 
         public void Configure(
