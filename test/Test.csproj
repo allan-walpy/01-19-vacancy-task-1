@@ -26,22 +26,33 @@
     <!-- compilation config; -->
     <PropertyGroup>
         <OutputPath>../out/bin/test/$(Configuration)/</OutputPath>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <DocumentationFile>../../out/bin/test/$(Configuration)/$(TargetFramework)/server.xml</DocumentationFile>
+        <GenerateDocumentationFile>false</GenerateDocumentationFile>
         <DebugSymbols>false</DebugSymbols>
         <IncludeSource>true</IncludeSource>
     </PropertyGroup>
 
     <!-- test dependencies; -->
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
-        <PackageReference Include="xunit" Version="2.4.0" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.*" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="2.2.*" />
+        <PackageReference Include="xunit" Version="2.4.*" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.*" />
     </ItemGroup>
 
     <!-- test subjects dependency; -->
     <ItemGroup>
         <ProjectReference Include="..\src\Server.csproj" />
     </ItemGroup>
+
+    <!-- disable xml documentation notices; -->
+    <PropertyGroup>
+        <NoWarn>1591;1573;</NoWarn>
+    </PropertyGroup>
+
+    <!-- logger output setting -->
+    <PropertyGroup>
+        <VSTestLogger>trx</VSTestLogger>
+        <VSTestResultsDirectory>../out/log/</VSTestResultsDirectory>
+    </PropertyGroup>
 
 </Project>

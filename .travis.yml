@@ -21,7 +21,8 @@ matrix:
 script:
   - dotnet restore --verbosity q
   - dotnet build --configuration Debug --no-restore --verbosity q
-  - dotnet test --no-restore --no-build --verbosity n
+  - dotnet build --configuration Release --no-restore --verbosity q
+  - dotnet test --configuration Release --no-restore --no-build --verbosity n
 
 notifications:
   email:
