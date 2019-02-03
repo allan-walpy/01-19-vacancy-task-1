@@ -9,6 +9,7 @@ matrix:
       sudo: enabled
       mono: none
       dotnet: 2.2
+      after_failure: cat ./out/log/*.trx
 
     #? see https://github.com/vulmy/server/blob/master/.travis.yml#L33
     #?  about configuring on travis wondows;
@@ -17,6 +18,7 @@ matrix:
       install:
         - choco install mysql
         - choco install dotnetcore-sdk
+      after_failure: type .\out\log\*.trx
 
 script:
   - dotnet restore --verbosity q
