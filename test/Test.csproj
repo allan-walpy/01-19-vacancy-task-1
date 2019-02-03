@@ -1,15 +1,47 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <!-- assembly config; -->
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <AssemblyName>App.Server.Test</AssemblyName>
+        <RootNamespace>App.Server.Test</RootNamespace>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
 
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
+    <!-- package info; -->
+    <PropertyGroup>
+        <AssemblyTitle>App.Server.Test</AssemblyTitle>
+        <PackageId>App.Server.Test</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>allan_walpy aka Andrey Lysenkov</Authors>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <Description>test for App.Server</Description>
+        <PackageProjectUrl>https://github.com/allan-walpy/01-19-vacancy-task-1/tree/master/test</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/allan-walpy/01-19-vacancy-task-1/blob/master/license</PackageLicenseUrl>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/allan-walpy/01-19-vacancy-task-1.git</RepositoryUrl>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
-    <PackageReference Include="xunit" Version="2.4.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-  </ItemGroup>
+    <!-- compilation config; -->
+    <PropertyGroup>
+        <OutputPath>../out/bin/test/$(Configuration)/</OutputPath>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>../../out/bin/test/$(Configuration)/$(TargetFramework)/server.xml</DocumentationFile>
+        <DebugSymbols>false</DebugSymbols>
+        <IncludeSource>true</IncludeSource>
+    </PropertyGroup>
+
+    <!-- test dependencies; -->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+        <PackageReference Include="xunit" Version="2.4.0" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    </ItemGroup>
+
+    <!-- test subjects dependency; -->
+    <ItemGroup>
+        <ProjectReference Include="..\src\Server.csproj" />
+    </ItemGroup>
 
 </Project>
