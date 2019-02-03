@@ -9,8 +9,6 @@ echo "--- clearing out files ---";
 
 echo "--- restoring files ---";
 
-cd src/ || exit 1;
-
 dotnet restore
 
 echo "--- done ---";

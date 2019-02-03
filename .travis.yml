@@ -10,6 +10,8 @@ matrix:
       mono: none
       dotnet: 2.2
 
+    #? see https://github.com/vulmy/server/blob/master/.travis.yml#L33
+    #?  about configuring on travis wondows;
     - os: windows
       language: shell
       install:
@@ -19,6 +21,7 @@ matrix:
 script:
   - dotnet restore --verbosity q
   - dotnet build --configuration Debug --no-restore --verbosity q
+  - dotnet test
 
 notifications:
   email:
