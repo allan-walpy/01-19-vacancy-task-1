@@ -31,17 +31,18 @@ matrix:
 
 script:
   - dotnet restore --verbosity q
-  - dotnet build --configuration Debug --no-restore --verbosity q
   - dotnet build --configuration Release --no-restore --verbosity q
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.GetAllTest" --configuration Release --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.GetTest" --configuration Release --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.AddTest" --configuration Release --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.DeleteTest" --configuration Release --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200Title" --configuration Release --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200Description" --configuration Release --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200Salary" --configuration Release --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200ContactPhone" --configuration Release --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200ContactPerson" --configuration Release --no-restore --no-build --verbosity n
+  - dotnet test --configuration Release --no-restore --no-build --verbosity n
+  - dotnet build --configuration Debug --no-restore --verbosity q
+  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.GetAllTest" --configuration Debug --no-restore --no-build --verbosity n
+  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.GetTest" --configuration Debug --no-restore --no-build --verbosity n
+  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.AddTest" --configuration Debug --no-restore --no-build --verbosity n
+  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.DeleteTest" --configuration Debug --no-restore --no-build --verbosity n
+  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200Title" --configuration Debug --no-restore --no-build --verbosity n
+  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200Description" --configuration Debug --no-restore --no-build --verbosity n
+  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200Salary" --configuration Debug --no-restore --no-build --verbosity n
+  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200ContactPhone" --configuration Debug --no-restore --no-build --verbosity n
+  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200ContactPerson" --configuration Debug --no-restore --no-build --verbosity n
 
 notifications:
   email:
