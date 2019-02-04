@@ -12,5 +12,13 @@ namespace App.Server.Test.Data
                 Add(item.Key);
             }
         }
+
+        public BaseTheoryData(IEnumerable<TKey> list)
+        {
+            foreach (var item in list)
+            {
+                Add(item);
+            }
+        }
     }
 }

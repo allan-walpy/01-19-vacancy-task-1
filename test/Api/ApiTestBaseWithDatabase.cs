@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Net.Http;
+using Newtonsoft.Json;
 
 using App.Server.Models.Requests;
+using App.Server.Models.Responses;
 using App.Server.Test.Models;
 
 namespace App.Server.Test.Api
@@ -10,18 +12,28 @@ namespace App.Server.Test.Api
     {
         protected ApiClient DatabaseAddClient { get; }
 
+        protected List<string> DatabaseGuids { get; }
+
         protected ApiTestBaseWithDatabase(List<VacancyAddRequest> database)
         {
-            PopulateDatabase(database);
+            DatabaseGuids = PopulateDatabase(database);
         }
 
-        protected void PopulateDatabase(List<VacancyAddRequest> database)
-        {
-            database.ForEach((item) => {
+        protected List<string> PopulateDatabase(List<VacancyAddRequest> database)
+            => database.ConvertAll((item) => {
                 var request = new HttpMessageModel();
                 request.Data = item;
-                SendRequest(request, HttpMethod.Post, "vacancy");
+                var response = SendRequest(request, HttpMethod.Post, "vacancy");
+                var addResponse = JsonConvert.DeserializeObject<VacancyAddResponse>(response.Data as string);
+                return addResponse.Id;
             });
+
+        protected List<VacancyResponse> GetItems()
+        {
+            var request = new HttpMessageModel();
+            var response = SendRequest(request, HttpMethod.Get, "vacancy");
+            var getAllResponse = JsonConvert.DeserializeObject<VacancyGetAllResponse>(response.Data as string);
+            return getAllResponse.List;
         }
     }
 }
