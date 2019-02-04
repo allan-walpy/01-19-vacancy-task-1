@@ -8,7 +8,7 @@ namespace App.Server.Test.Api.Vacancy
 {
     partial class AddTest
     {
-        private static Dictionary<string, VacancyAddRequest> _data201
+        public static Dictionary<string, VacancyAddRequest> Data201
             => new Dictionary<string, VacancyAddRequest>
             {
                 {
@@ -420,7 +420,7 @@ namespace App.Server.Test.Api.Vacancy
                 }
             };
 
-        private static Dictionary<string, BadModelDataItem> _data400
+        public static Dictionary<string, BadModelDataItem> Data400
             => new Dictionary<string, BadModelDataItem>
             {
                 {

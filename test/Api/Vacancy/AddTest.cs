@@ -13,11 +13,11 @@ namespace App.Server.Test.Api.Vacancy
 {
     public partial class AddTest : VacancyTestBase
     {
-        public static BadModelData Data400
-            => new BadModelData(_data400);
+        public static BadModelData TheoryData400
+            => new BadModelData(Data400);
 
-        public static VacancyAddValidData Data201
-            => new VacancyAddValidData(_data201);
+        public static VacancyAddValidData TheoryData201
+            => new VacancyAddValidData(Data201);
 
         public override HttpMethod Method => HttpMethod.Post;
 
@@ -52,10 +52,10 @@ namespace App.Server.Test.Api.Vacancy
         }
 
         [Theory]
-        [MemberData(nameof(Data201))]
+        [MemberData(nameof(TheoryData201))]
         public void Valid201(string dataKey)
         {
-            var data = _data201[dataKey];
+            var data = Data201[dataKey];
             var expected = new HttpMessageModel
             {
                 ApiCall = null,
@@ -77,10 +77,10 @@ namespace App.Server.Test.Api.Vacancy
         }
 
         [Theory]
-        [MemberData(nameof(Data400))]
+        [MemberData(nameof(TheoryData400))]
         public void Invalid400(string dataKey)
         {
-            var data = _data400[dataKey];
+            var data = Data400[dataKey];
             var expected = new HttpMessageModel
             {
                 ApiCall = null,
