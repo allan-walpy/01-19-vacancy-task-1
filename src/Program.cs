@@ -21,29 +21,15 @@ namespace App.Server
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        private static IWebHostBuilder DetectEnviroment(IWebHostBuilder hostBuilder)
-        {
-#if DEBUG
-            return hostBuilder.UseEnvironment(EnvironmentName.Development);
-#endif
-#if PRODUCTION
-            return hostBuilder.UseEnvironment(EnvironmentName.Production);
-#endif
-            return hostBuilder.UseEnvironment(EnvironmentName.Staging);
-        }
-
         public static IWebHostBuilder CreateWebHostBuilder(params string[] args)
-        {
-            var result = WebHost.CreateDefaultBuilder(args)
+            => WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration(config =>
                 {
                     config.AddJsonFile(PrivateConfigFile,
                         optional: false,
                         reloadOnChange: true);
                 })
-                .UseStartup<Startup>();
-
-            return DetectEnviroment(result);
-        }
+                .UseStartup<Startup>()
+                .DetectEnviroment();
     }
 }
