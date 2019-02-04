@@ -9,7 +9,7 @@ matrix:
       sudo: enabled
       mono: none
       dotnet: 2.2
-      before-script:
+      before_script:
         - cp ./src/appsettings.private.example.json ./src/appsettings.private.json
       after_failure: cat ./out/log/*.trx
 
@@ -20,7 +20,7 @@ matrix:
       install:
         - choco install mysql
         - choco install dotnetcore-sdk
-      before-script:
+      before_script:
         - copy src\appsettings.private.example.json src\appsettings.private.json
       after_failure:
         - cd out
