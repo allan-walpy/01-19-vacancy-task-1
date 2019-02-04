@@ -22,7 +22,7 @@ matrix:
         - choco install dotnetcore-sdk
       before_script:
         - cd src
-        - copy appsettings.private.example.json appsettings.private.json
+        - powershell -Command Copy-Item appsettings.private.example.json appsettings.private.json
         - cd ..
       after_failure:
         - cd out
