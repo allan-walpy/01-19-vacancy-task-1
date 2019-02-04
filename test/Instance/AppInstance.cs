@@ -38,8 +38,21 @@ namespace App.Server.Test.Instance
                             }
                         }
                     );
+
+                    //? disable `ReloadOnChange`, as it may trigger exception:
+                    //?  `System.IO.IOException : The configured user limit (128) on the number of inotify instances has been reached.`
+                    //? om linux systems;
+                    foreach (var configSurce in configBuilder.Sources)
+                    {
+                        var configFileSource = configSurce as FileConfigurationProvider;
+                        if (configFileSource != null)
+                        {
+                            configFileSource.Source.ReloadOnChange = false;
+                        }
+                    }
                 })
-                .ConfigureKestrel(options => {
+                .ConfigureKestrel(options =>
+                {
                     options.Listen(IPAddress.Loopback, Port);
                 });
             return appBuilder;

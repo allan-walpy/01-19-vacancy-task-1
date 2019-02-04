@@ -4,13 +4,19 @@ using Microsoft.AspNetCore.Http;
 using Xunit;
 
 using App.Server.Models.Responses;
-using App.Server.Models.Requests;
+using App.Server.Test.Data;
 using App.Server.Test.Models;
 
 namespace App.Server.Test.Api.Vacancy
 {
     public partial class AddTest : VacancyTestBase
     {
+        public static BadModelData Data400
+            => new BadModelData(_data400);
+
+        public static VacancyAddValidData Data201
+            => new VacancyAddValidData(_data201);
+
         public override HttpMethod Method => HttpMethod.Post;
 
         protected override void AssertContentAs<T>(T expected, T actual)

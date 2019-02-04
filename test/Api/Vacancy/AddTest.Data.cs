@@ -9,15 +9,8 @@ namespace App.Server.Test.Api.Vacancy
 {
     partial class AddTest
     {
-
-        public static BadModelData Data400
-            = new BadModelData(_data400);
-
-        public static VacancyAddValidData Data201
-            = new VacancyAddValidData(_data201);
-
-        private readonly static Dictionary<string, VacancyAddRequest> _data201
-            = new Dictionary<string, VacancyAddRequest>
+        private static Dictionary<string, VacancyAddRequest> _data201
+            => new Dictionary<string, VacancyAddRequest>
             {
                 {
                     "Request.Requered",
@@ -428,8 +421,8 @@ namespace App.Server.Test.Api.Vacancy
                 }
             };
 
-        private readonly static Dictionary<string, BadModelDataItem> _data400
-            = new Dictionary<string, BadModelDataItem>
+        private static Dictionary<string, BadModelDataItem> _data400
+            => new Dictionary<string, BadModelDataItem>
             {
                 {
                     "Title.Required",

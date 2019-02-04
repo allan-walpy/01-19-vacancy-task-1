@@ -22,14 +22,16 @@ namespace App.Server
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(params string[] args)
-            => WebHost.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration(config =>
+            => WebHost
+                .CreateDefaultBuilder(args)
+                .DetectEnviroment()
+                .ConfigureAppConfiguration(configBuilder =>
                 {
-                    config.AddJsonFile(PrivateConfigFile,
+                    configBuilder.AddJsonFile(
+                        PrivateConfigFile,
                         optional: false,
-                        reloadOnChange: true);
+                        reloadOnChange: false);
                 })
-                .UseStartup<Startup>()
-                .DetectEnviroment();
+                .UseStartup<Startup>();
     }
 }

@@ -6,13 +6,14 @@ namespace App.Server
     {
         public static IWebHostBuilder DetectEnviroment(this IWebHostBuilder hostBuilder)
         {
-            hostBuilder.UseEnvironment(EnvironmentName.Staging);
+            var enviroment = EnvironmentName.Staging;
 #if DEBUG
-            hostBuilder.UseEnvironment(EnvironmentName.Development);
+            enviroment = EnvironmentName.Development;
 #endif
 #if PRODUCTION
-            hostBuilder.UseEnvironment(EnvironmentName.Production);
+            enviroment = EnvironmentName.Production;
 #endif
+            hostBuilder.UseEnvironment(enviroment);
             return hostBuilder;
         }
     }
