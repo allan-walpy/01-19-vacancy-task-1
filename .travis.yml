@@ -21,7 +21,9 @@ matrix:
         - choco install mysql
         - choco install dotnetcore-sdk
       before_script:
-        - copy src\appsettings.private.example.json src\appsettings.private.json
+        - cd src
+        - copy appsettings.private.example.json appsettings.private.json
+        - cd ..
       after_failure:
         - cd out
         - cd log
