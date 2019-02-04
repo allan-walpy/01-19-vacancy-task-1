@@ -3,6 +3,7 @@
     <!-- assembly config; -->
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
+        <RuntimeFrameworkVersion>2.2.1</RuntimeFrameworkVersion>
         <AssemblyName>App.Server.Test</AssemblyName>
         <RootNamespace>App.Server.Test</RootNamespace>
         <IsPackable>false</IsPackable>
@@ -34,7 +35,7 @@
     <!-- test dependencies; -->
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.*" />
-        <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.*" />
+        <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.*" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="2.2.*" />
         <PackageReference Include="xunit" Version="2.4.*" />

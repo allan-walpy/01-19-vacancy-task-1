@@ -66,7 +66,7 @@ namespace App.Server.Test.Api.Vacancy
                 Data = data,
                 BadModel = null
             };
-            AssertResponseByRequest<VacancyAddResponse>(request, expected);
+            AssertValidResponseByRequest<VacancyAddResponse>(request, expected);
         }
 
         [Theory]
@@ -94,7 +94,7 @@ namespace App.Server.Test.Api.Vacancy
                 Data = data.RequestData,
                 BadModel = null
             };
-            AssertResponseByRequest<VacancyAddResponse>(request, expected);
+            Assert400ResponseByRequest(request, expected);
         }
     }
 }

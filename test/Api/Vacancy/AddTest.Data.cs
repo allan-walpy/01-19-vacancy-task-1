@@ -93,11 +93,11 @@ namespace App.Server.Test.Api.Vacancy
                     }
                 },
                 {
-                    "Description.0minLength",
+                    "Description.3minLength",
                     new VacancyAddRequest
                     {
                         Title = "Младший разработчик на .Net C# (Junior .Net C# Developer)",
-                        Description = String.Empty,
+                        Description = "Кок",
                         Organization = "OOO \"Not Suspicious\"",
                         EmploymentType = new List<string> { "FullTime" },
                         Salary = 1_000_000_000
@@ -124,12 +124,12 @@ namespace App.Server.Test.Api.Vacancy
                     }
                 },
                 {
-                    "Organization.0minLength",
+                    "Organization.3minLength",
                     new VacancyAddRequest
                     {
                         Title = "Младший разработчик на .Net C# (Junior .Net C# Developer)",
                         Description = "Писать программы и т.д.",
-                        Organization = String.Empty,
+                        Organization = "ООО",
                         EmploymentType = new List<string> { "FullTime" }
                     }
                 },
@@ -527,6 +527,19 @@ namespace App.Server.Test.Api.Vacancy
                     }
                 },
                 {
+                    "Organization.2less3minLength",
+                    new BadModelDataItem {
+                        InvalidFields = new [] { "Organization" },
+                        RequestData = new VacancyAddRequest
+                        {
+                            Title = "Младший разработчик на .Net C# (Junior .Net C# Developer)",
+                            Description = "Писать программы и т.д.",
+                            Organization = "OO",
+                            EmploymentType = new List<string> { "FullTime" }
+                        }
+                    }
+                },
+                {
                     "Organization.RegexForbidSymbol",
                     new BadModelDataItem {
                         InvalidFields = new [] { "Organization" },
@@ -565,13 +578,26 @@ namespace App.Server.Test.Api.Vacancy
                     }
                 },
                 {
-                    "Description.4097more4096length",
+                    "Description.4097more4096maxLength",
                     new BadModelDataItem {
                         InvalidFields = new [] { "Description" },
                         RequestData = new VacancyAddRequest
                         {
                             Title = "Младший разработчик на .Net C# (Junior .Net C# Developer)",
                             Description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipisc an",
+                            Organization = "OOO \"CSharp proffesionals\"",
+                            EmploymentType = new List<string> { "FullTime" }
+                        }
+                    }
+                },
+                {
+                    "Description.2less3minLength",
+                    new BadModelDataItem {
+                        InvalidFields = new [] { "Description" },
+                        RequestData = new VacancyAddRequest
+                        {
+                            Title = "Младший разработчик на .Net C# (Junior .Net C# Developer)",
+                            Description = "ОО",
                             Organization = "OOO \"CSharp proffesionals\"",
                             EmploymentType = new List<string> { "FullTime" }
                         }

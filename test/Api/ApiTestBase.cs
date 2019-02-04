@@ -59,21 +59,27 @@ namespace App.Server.Test.Api
             return request;
         }
 
-        protected void AssertResponseByRequest<TResponse>(
+        protected void AssertValidResponseByRequest<TResponse>(
             HttpMessageModel request,
             HttpMessageModel expectedResponse,
             string additionalApiPath = null)
             where TResponse : class
         {
             var actualResponse = SendRequest(request, additionalApiPath);
-            AssertResponses<TResponse>(expectedResponse, actualResponse);
+            AssertResponsesNoContentCheck(expectedResponse, actualResponse);
+            AssertContentObjectAs<TResponse>(expectedResponse?.Data, actualResponse?.Data);
         }
 
-        protected void AssertResponses<TResponse>(HttpMessageModel expected, HttpMessageModel actual)
-            where TResponse : class
+        protected void Assert400ResponseByRequest(
+            HttpMessageModel request,
+            HttpMessageModel expectedResponse,
+            string additionalApiPath = null)
         {
-            AssertResponsesNoContentCheck(expected, actual);
-            AssertContentObjectAs<TResponse>(expected.Data, actual.Data);
+            var actualResponse = SendRequest(request, additionalApiPath);
+            AssertResponsesNoContentCheck(expectedResponse, actualResponse);
+            AssertContentAs400(
+                expectedResponse?.Data as BadModelResponse,
+                actualResponse?.Data as BadModelResponse);
         }
 
         protected void AssertResponsesNoContentCheck(HttpMessageModel expected, HttpMessageModel actual)
@@ -106,10 +112,10 @@ namespace App.Server.Test.Api
             {
                 var expectedValues = headerExpected.Value.ToList();
 
-                Assert.True(actual.ContainsKey(headerExpected.Key));
+                Assert.Contains(actual, (a) => a.Key == headerExpected.Key);
                 foreach (var valueActual in actual[headerExpected.Key])
                 {
-                    Assert.True(expectedValues.Contains(valueActual));
+                    Assert.Contains(valueActual, expectedValues);
                 }
             }
         }
@@ -152,9 +158,10 @@ namespace App.Server.Test.Api
                 return;
             }
 
-            Assert.True(
-                expected.All((item) => actual.Contains(item))
-            );
+            foreach (var item in expected)
+            {
+                Assert.Contains(item, actual);
+            }
         }
 
         protected static void AssertStringList(List<string> expected, List<string> actual)
@@ -178,7 +185,7 @@ namespace App.Server.Test.Api
 
             for (int i = 0; i < length; i++)
             {
-                Assert.True(actual.Contains(expected[i]));
+                Assert.Contains(expected[i], actual);
             }
         }
 
