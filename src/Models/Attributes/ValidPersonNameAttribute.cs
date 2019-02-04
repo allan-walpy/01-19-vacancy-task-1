@@ -5,7 +5,7 @@ namespace App.Server.Models.Attributes
     {
         public const string ValidRegex = "^[А-яA-z-]*$";
         public const int MaxLength = 20;
-        public const int MinLength = 0;
+        public const int MinLength = 3;
 
         public ValidPersonNameAttribute()
             : base(ValidRegex, MinLength, MaxLength)

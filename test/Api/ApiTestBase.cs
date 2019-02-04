@@ -133,15 +133,53 @@ namespace App.Server.Test.Api
 
             Assert.Equal(expected.Title, actual.Title);
             Assert.Equal(expected.Status, actual.Status);
-            AssertList<string>(expected.Fields, actual.Fields);
+            if (expected.Fields != null)
+            {
+                AssertList<string>(expected.Fields, actual.Fields);
+            }
         }
 
         protected static void AssertList<T>(List<T> expected, List<T> actual)
         {
             Assert.Equal(expected?.Count, actual?.Count);
+            AssertSoftList(expected, actual);
+        }
+
+        protected static void AssertSoftList<T>(List<T> expected, List<T> actual)
+        {
+            if (expected == null)
+            {
+                return;
+            }
+
             Assert.True(
                 expected.All((item) => actual.Contains(item))
             );
+        }
+
+        protected static void AssertStringList(List<string> expected, List<string> actual)
+        {
+            expected.Sort();
+            actual.Sort();
+            var length = expected.Count;
+
+            Assert.Equal(expected.Count, actual.Count);
+            for (int i = 0; i < length; i++)
+            {
+                Assert.Equal(expected[i], actual[i]);
+            }
+        }
+
+        protected static void AssertSoftStringList(List<string> expected, List<string> actual)
+        {
+            expected.Sort();
+            actual.Sort();
+            var length = expected.Count;
+
+            for (int i = 0; i < length; i++)
+            {
+                Assert.True(actual.Contains(expected[i]));
+            }
         }
 
         protected static void AssertGuid(string id)

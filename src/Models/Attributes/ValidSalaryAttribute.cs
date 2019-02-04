@@ -5,8 +5,8 @@ namespace App.Server.Models.Attributes
     //? non negative salary;
     public class ValidSalaryAttribute : RangeAttribute
     {
-        //? double uses at RangeAttribute;
-        public const double Max = System.Double.MaxValue;
+        //? RangeAttribute uses double;
+        public const double Max = 1_000_000_000;
         public const double Min = 0;
 
         public ValidSalaryAttribute()

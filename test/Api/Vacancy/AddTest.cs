@@ -1,32 +1,17 @@
-using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using Microsoft.AspNetCore.Http;
 using Xunit;
 
 using App.Server.Models.Responses;
 using App.Server.Models.Requests;
-using App.Server.Test.Data;
 using App.Server.Test.Models;
 
 namespace App.Server.Test.Api.Vacancy
 {
-    public class AddTest : VacancyTestBase
+    public partial class AddTest : VacancyTestBase
     {
         public override HttpMethod Method => HttpMethod.Post;
-
-        public static VacancyAddValidData ValidInputData
-            => new VacancyAddValidData(
-                new List<VacancyAddRequest>
-                {
-                    new VacancyAddRequest
-                    {
-                        Title = "Младший разработчик на .Net (Junior .Net Developer)",
-                        Description = "Писать программы и т.д.",
-                        Organization = "OOO \"Not Suspicious\"",
-                        EmploymentType = new List<string> { "FullTime" }
-                    }
-                }
-            );
 
         protected override void AssertContentAs<T>(T expected, T actual)
         {
@@ -54,9 +39,10 @@ namespace App.Server.Test.Api.Vacancy
         }
 
         [Theory]
-        [MemberData(nameof(ValidInputData))]
-        public void ValidInput(VacancyAddRequest requestModel)
+        [MemberData(nameof(Data201))]
+        public void Valid201(string dataKey)
         {
+            var data = _data201[dataKey];
             var expected = new HttpMessageModel
             {
                 ApiCall = null,
@@ -71,7 +57,35 @@ namespace App.Server.Test.Api.Vacancy
                 ApiCall = null,
                 StatusCode = null,
                 Headers = null,
-                Data = requestModel,
+                Data = data,
+                BadModel = null
+            };
+            AssertResponseByRequest<VacancyAddResponse>(request, expected);
+        }
+
+        [Theory]
+        [MemberData(nameof(Data400))]
+        public void Invalid400(string dataKey)
+        {
+            var data = _data400[dataKey];
+            var expected = new HttpMessageModel
+            {
+                ApiCall = null,
+                StatusCode = StatusCodes.Status400BadRequest,
+                Headers = null,
+                Data = new BadModelResponse
+                {
+                    Fields = data.InvalidFields?.ToList()
+                },
+                BadModel = null
+            };
+
+            var request = new HttpMessageModel
+            {
+                ApiCall = null,
+                StatusCode = null,
+                Headers = null,
+                Data = data.RequestData,
                 BadModel = null
             };
             AssertResponseByRequest<VacancyAddResponse>(request, expected);
