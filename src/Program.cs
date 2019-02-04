@@ -30,7 +30,7 @@ namespace App.Server
                     configBuilder.AddJsonFile(
                         PrivateConfigFile,
                         optional: false,
-                        reloadOnChange: false);
+                        reloadOnChange: true);
                 })
                 .UseStartup<Startup>();
     }

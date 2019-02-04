@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 
 namespace App.Server.Test.Instance
 {
@@ -19,6 +20,11 @@ namespace App.Server.Test.Instance
             Port = PortGenerator.GetPort();
             App = ConfigureApp().Build();
             App.RunAsync();
+        }
+
+        private void DisableReloadOnChange()
+        {
+
         }
 
         private IWebHostBuilder ConfigureApp()
@@ -42,12 +48,12 @@ namespace App.Server.Test.Instance
                     //? disable `ReloadOnChange`, as it may trigger exception:
                     //?  `System.IO.IOException : The configured user limit (128) on the number of inotify instances has been reached.`
                     //? om linux systems;
-                    foreach (var configSurce in configBuilder.Sources)
+                    foreach (var configSource in configBuilder.Sources)
                     {
-                        var configFileSource = configSurce as FileConfigurationProvider;
+                        var configFileSource = configSource as JsonConfigurationSource;
                         if (configFileSource != null)
                         {
-                            configFileSource.Source.ReloadOnChange = false;
+                            configFileSource.ReloadOnChange = false;
                         }
                     }
                 })
