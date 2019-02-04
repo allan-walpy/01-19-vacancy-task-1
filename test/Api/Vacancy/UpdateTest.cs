@@ -13,6 +13,7 @@ namespace App.Server.Test.Api.Vacancy
 {
     public partial class UpdateTest : VacancyTestBase
     {
+        public const string Letters = "абвгдеёжзи";
         public static BaseTheoryData<int, object> DatabaseItemsId
             => new BaseTheoryData<int, object>(
                 Enumerable.Range(0, DefaultData.VacancyData.Count - 1));
@@ -190,7 +191,7 @@ namespace App.Server.Test.Api.Vacancy
         {
             var guid = DatabaseGuids[id];
             var data = DefaultData.VacancyData[id];
-            var newContactPhone = $" 8 (960) 222-33-4{id % 10}";
+            var newContactPhone = $"8 (960) 222-33-4{id % 10}";
 
             var expected = new HttpMessageModel
             {
@@ -234,11 +235,12 @@ namespace App.Server.Test.Api.Vacancy
         {
             var guid = DatabaseGuids[id];
             var data = DefaultData.VacancyData[id];
+            var letter = Letters[id % 10];
             var newContactPerson = new Person
             {
-                Name = $"newName{id}",
-                Surname = $"newSurname{id}",
-                MiddleName = $"newMiddleName{id}"
+                Name = $"newName{letter}",
+                Surname = $"newSurname{letter}",
+                MiddleName = $"newMiddleName{letter}"
             };
 
             var expected = new HttpMessageModel
