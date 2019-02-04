@@ -51,6 +51,7 @@ namespace App.Server.Services
             optionsBuilder.UseLoggerFactory(LoggerFactory);
 
             var useInMemmoryDatabase = Config.GetValue<bool>(DbInMemmoryConfigKey);
+
             if (useInMemmoryDatabase)
             {
                 UseInMemoryDatabase(optionsBuilder);
@@ -66,7 +67,7 @@ namespace App.Server.Services
         private void UseInMemoryDatabase(DbContextOptionsBuilder<DatabaseContext> optionsBuilder)
         {
             optionsBuilder.UseInMemoryDatabase(
-                databaseName: "test_database"
+                databaseName: "database_test"
             );
         }
 

@@ -29,9 +29,11 @@ namespace App.Server.Test.Api
 
         protected HttpMessageModel SendRequest(
             HttpMessageModel request,
+            HttpMethod method,
+            string basePath,
             string additionalApiPath = null)
         {
-            request = AddApiPath(request, additionalApiPath);
+            request = AddApiPath(request, method, basePath, additionalApiPath);
             request = PatchWithPort(request);
 
             var response = Client.Send(request);
@@ -39,17 +41,21 @@ namespace App.Server.Test.Api
             return response.ToModel();
         }
 
-        private HttpMessageModel AddApiPath(HttpMessageModel request, string additionalApiPath = null)
+        protected static HttpMessageModel AddApiPath(
+            HttpMessageModel request,
+            HttpMethod method,
+            string basePath,
+            string additionalApiPath = null)
         {
             request.ApiCall = Test.Extensions.UpdateIfNull(request.ApiCall, new ApiCallModel());
-            request.ApiCall.Method = Test.Extensions.UpdateIfNull(request.ApiCall.Method, Method);
+            request.ApiCall.Method = Test.Extensions.UpdateIfNull(request.ApiCall.Method, method);
             request.ApiCall.Path = Test.Extensions.UpdateIfNull(request.ApiCall.Path, new ApiPathModel());
-            request.ApiCall.Path.BasePath = Test.Extensions.UpdateIfNull(request.ApiCall.Path.BasePath, BasePath);
+            request.ApiCall.Path.BasePath = Test.Extensions.UpdateIfNull(request.ApiCall.Path.BasePath, basePath);
             request.ApiCall.Path.AdditionalPath = Test.Extensions.UpdateIfNull(request.ApiCall.Path.AdditionalPath, additionalApiPath ?? String.Empty);
             return request;
         }
 
-        private HttpMessageModel PatchWithPort(HttpMessageModel request)
+        protected HttpMessageModel PatchWithPort(HttpMessageModel request)
         {
             request.ApiCall.Path.BasePath = String.Format(
                 BaseUrlTemplate,
@@ -65,7 +71,7 @@ namespace App.Server.Test.Api
             string additionalApiPath = null)
             where TResponse : class
         {
-            var actualResponse = SendRequest(request, additionalApiPath);
+            var actualResponse = SendRequest(request, Method, BasePath, additionalApiPath);
             AssertResponsesNoContentCheck(expectedResponse, actualResponse);
             AssertContentObjectAs<TResponse>(expectedResponse?.Data, actualResponse?.Data);
         }
@@ -75,7 +81,7 @@ namespace App.Server.Test.Api
             HttpMessageModel expectedResponse,
             string additionalApiPath = null)
         {
-            var actualResponse = SendRequest(request, additionalApiPath);
+            var actualResponse = SendRequest(request, Method, BasePath, additionalApiPath);
             AssertResponsesNoContentCheck(expectedResponse, actualResponse);
             AssertContentAs400(
                 expectedResponse?.Data as BadModelResponse,

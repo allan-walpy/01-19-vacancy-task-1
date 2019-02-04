@@ -3,7 +3,6 @@ using System.IO;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace App.Server
 {
@@ -33,9 +32,6 @@ namespace App.Server
                         optional: false,
                         reloadOnChange: true);
                 })
-                .UseStartup<Startup>()
-                .ConfigureLogging(logging => {
-                    logging.ClearProviders();
-                });
+                .UseStartup<Startup>();
     }
 }

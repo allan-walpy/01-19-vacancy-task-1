@@ -4,6 +4,7 @@ using System.Net;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
+using Microsoft.Extensions.Logging;
 
 namespace App.Server.Test.Instance
 {
@@ -12,7 +13,6 @@ namespace App.Server.Test.Instance
         public const string DbInMemmoryConfigKey = "database:test";
 
         public int Port { get; }
-
         protected IWebHost App { get; }
 
         public AppInstance()
@@ -22,15 +22,14 @@ namespace App.Server.Test.Instance
             App.RunAsync();
         }
 
-        private void DisableReloadOnChange()
-        {
-
-        }
-
         private IWebHostBuilder ConfigureApp()
         {
             var appBuilder = Program.CreateWebHostBuilder()
                 .SuppressStatusMessages(true)
+                .ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                })
                 .ConfigureAppConfiguration((configBuilder) =>
                 {
                     configBuilder.AddInMemoryCollection(
@@ -61,6 +60,7 @@ namespace App.Server.Test.Instance
                 {
                     options.Listen(IPAddress.Loopback, Port);
                 });
+
             return appBuilder;
         }
 

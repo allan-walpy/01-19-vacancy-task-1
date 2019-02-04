@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using Microsoft.AspNetCore.Http;
 using Xunit;
 
 using App.Server.Models.Responses;
+using App.Server.Models.Requests;
 using App.Server.Test.Data;
 using App.Server.Test.Models;
 
@@ -19,6 +21,10 @@ namespace App.Server.Test.Api.Vacancy
 
         public override HttpMethod Method => HttpMethod.Post;
 
+        public AddTest()
+            : base (new List<VacancyAddRequest>())
+        {   }
+
         protected override void AssertContentAs<T>(T expected, T actual)
         {
             {
@@ -33,6 +39,7 @@ namespace App.Server.Test.Api.Vacancy
                 AssertContentAs400(expectedAs400, actualAs400);
             }
         }
+
         protected void AssertContentAs201(VacancyAddResponse expected, VacancyAddResponse actual)
         {
             if (actual == null && expected == null)
