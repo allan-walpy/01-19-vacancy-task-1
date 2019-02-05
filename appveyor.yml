@@ -2,11 +2,11 @@ version: '{build}'
 image: Visual Studio 2019 Preview
 
 init:
-  - ps: Copy-Item src\appsettings.private.example.json src\appsettings.private.json
-before_build:
   - cmd: dotnet --version
-  - cmd: dotnet restore --verbosity q
+before_build:
+  - ps: Copy-Item src\appsettings.private.example.json src\appsettings.private.json
 build_script:
+  - cmd: dotnet restore --verbosity q
   - cmd: dotnet build -c Debug --no-restore --verbosity q
   - cmd: dotnet build -c Release --no-restore --verbosity q
 test_script:
