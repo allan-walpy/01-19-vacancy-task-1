@@ -12,6 +12,7 @@ namespace App.Server.Test.Models
     public static class Extensions
     {
         public const string DefaultContentType = "application/json";
+        public const string BaseUrlTemplate = "http://localhost:{0}/api/{1}";
 
         public static HttpRequestMessage ToRequest(this HttpMessageModel requestInfo)
         {
@@ -68,6 +69,28 @@ namespace App.Server.Test.Models
             }
 
             return result;
+        }
+
+        public static void AddApiPath(
+            this HttpMessageModel request,
+            HttpMethod method,
+            string basePath,
+            string additionalApiPath = null)
+        {
+            request.ApiCall = Test.Extensions.UpdateIfNull(request.ApiCall, new ApiCallModel());
+            request.ApiCall.Method = Test.Extensions.UpdateIfNull(request.ApiCall.Method, method);
+            request.ApiCall.Path = Test.Extensions.UpdateIfNull(request.ApiCall.Path, new ApiPathModel());
+            request.ApiCall.Path.BasePath = Test.Extensions.UpdateIfNull(request.ApiCall.Path.BasePath, basePath);
+            request.ApiCall.Path.AdditionalPath = Test.Extensions.UpdateIfNull(request.ApiCall.Path.AdditionalPath, additionalApiPath ?? String.Empty);
+        }
+
+        public static void PatchWithPort(this HttpMessageModel request, int port)
+        {
+            request.ApiCall.Path.BasePath = String.Format(
+                BaseUrlTemplate,
+                port,
+                request.ApiCall.Path.BasePath
+            );
         }
     }
 }

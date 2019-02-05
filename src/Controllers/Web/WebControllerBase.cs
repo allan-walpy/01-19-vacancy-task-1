@@ -11,7 +11,7 @@ namespace App.Server.Controllers.Web
     {
         protected IConfiguration Configuration { get; }
 
-        public WebController(IConfiguration configuration)
+        protected WebController(IConfiguration configuration)
         {
             Configuration = configuration;
         }

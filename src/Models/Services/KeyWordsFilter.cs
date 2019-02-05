@@ -49,7 +49,7 @@ namespace App.Server.Models.Services
                     throw new ArgumentOutOfRangeException(
                         paramName: nameof(Options.Match),
                         actualValue: Options.Match,
-                        message: "Not valid Search Match Filter"
+                        message: "Unknown Search Match Filter"
                     );
             }
         }
@@ -61,28 +61,24 @@ namespace App.Server.Models.Services
             {
                 //? can't use two identic cases in switch (for `SearchStringScope.Both`);
                 //? see https://stackoverflow.com/a/44848705/6256541 ;
-                case SearchStringScope value when
-                    (value == SearchStringScope.Title
-                        || value == SearchStringScope.Both):
+                case var value when (value == SearchStringScope.Title || value == SearchStringScope.Both):
                     result.Add(
                         (vacancy) => matchMethod(vacancy.Title)
                     );
                     break;
+
                 case SearchStringScope.Description:
                 case SearchStringScope.Both:
                     result.Add(
                             (vacancy) => matchMethod(vacancy.Description)
                         );
                     break;
-            }
 
-            if (result.Count == 0)
-            {
-                throw new ArgumentOutOfRangeException(
-                    paramName: nameof(Options.Scope),
-                    actualValue: Options.Scope,
-                    message: "There must be at least one match method"
-                );
+                default:
+                    throw new ArgumentOutOfRangeException(
+                        paramName: nameof(Options.Scope),
+                        actualValue: Options.Scope,
+                        message: "Unknown Scope Search filter");
             }
 
             return result;

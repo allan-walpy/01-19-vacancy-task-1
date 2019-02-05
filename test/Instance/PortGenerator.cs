@@ -12,10 +12,8 @@ namespace App.Server.Test.Instance
         private const int PortRange = MaxPort - MinPort + 1;
         private const int WaitMilliseconds = 1000;
 
-        private static readonly object _lock = new object();
-
         private static List<int> _availiblePorts = new List<int>(Enumerable.Range(MinPort, PortRange));
-        private static IReadOnlyList<int> AvailiblePorts => _availiblePorts.AsReadOnly();
+        private static readonly object _lock = new object();
 
         public static void FreePort(int port)
         {
@@ -36,7 +34,7 @@ namespace App.Server.Test.Instance
                     Thread.Sleep(WaitMilliseconds);
                 }
             }
-            return result ?? throw new ApplicationException("generated port cannot be null");
+            return result ?? throw new ArgumentOutOfRangeException("genereted port cannot be null");
         }
 
         private static int? GetPortLock()

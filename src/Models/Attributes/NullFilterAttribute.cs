@@ -9,7 +9,7 @@ namespace App.Server.Models.Attributes
     {
         protected List<string> PropertiesName { get; }
 
-        public NullFilterAttribute(params string[] otherPropertiesName)
+        protected NullFilterAttribute(params string[] otherPropertiesName)
         {
             if (otherPropertiesName.Length == 0)
             {

@@ -13,8 +13,6 @@ namespace App.Server.Test.Api
 {
     public abstract class ApiTestBase : IDisposable
     {
-        public const string BaseUrlTemplate = "http://localhost:{0}/api/{1}";
-
         public abstract HttpMethod Method { get; }
         public abstract string BasePath { get; }
 
@@ -33,36 +31,12 @@ namespace App.Server.Test.Api
             string basePath,
             string additionalApiPath = null)
         {
-            request = AddApiPath(request, method, basePath, additionalApiPath);
-            request = PatchWithPort(request);
+            request.AddApiPath(method, basePath, additionalApiPath);
+            request.PatchWithPort(App.Port);
 
             var response = Client.Send(request);
 
             return response.ToModel();
-        }
-
-        protected static HttpMessageModel AddApiPath(
-            HttpMessageModel request,
-            HttpMethod method,
-            string basePath,
-            string additionalApiPath = null)
-        {
-            request.ApiCall = Test.Extensions.UpdateIfNull(request.ApiCall, new ApiCallModel());
-            request.ApiCall.Method = Test.Extensions.UpdateIfNull(request.ApiCall.Method, method);
-            request.ApiCall.Path = Test.Extensions.UpdateIfNull(request.ApiCall.Path, new ApiPathModel());
-            request.ApiCall.Path.BasePath = Test.Extensions.UpdateIfNull(request.ApiCall.Path.BasePath, basePath);
-            request.ApiCall.Path.AdditionalPath = Test.Extensions.UpdateIfNull(request.ApiCall.Path.AdditionalPath, additionalApiPath ?? String.Empty);
-            return request;
-        }
-
-        protected HttpMessageModel PatchWithPort(HttpMessageModel request)
-        {
-            request.ApiCall.Path.BasePath = String.Format(
-                BaseUrlTemplate,
-                App.Port,
-                request.ApiCall.Path.BasePath
-            );
-            return request;
         }
 
         protected void AssertValidResponseByRequest<TResponse>(

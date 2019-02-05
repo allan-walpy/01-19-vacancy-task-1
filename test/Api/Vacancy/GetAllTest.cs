@@ -21,7 +21,6 @@ namespace App.Server.Test.Api.Vacancy
             var expectedAs200 = expected as VacancyGetAllResponse;
             var actualAs200 = actual as VacancyGetAllResponse;
             AssertContentAs200(expectedAs200, actualAs200);
-
         }
         protected void AssertContentAs200(VacancyGetAllResponse expected, VacancyGetAllResponse actual)
         {

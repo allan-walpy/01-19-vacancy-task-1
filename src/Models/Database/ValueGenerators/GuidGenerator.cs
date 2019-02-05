@@ -6,7 +6,7 @@ namespace App.Server.Models.Database.ValueGenerators
 {
     public class GuidGenerator : ValueGenerator<string>
     {
-        private string Generate()
+        private static string Generate()
             => Guid.NewGuid().ToString();
 
         public override bool GeneratesTemporaryValues

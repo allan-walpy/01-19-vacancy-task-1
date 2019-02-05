@@ -10,6 +10,6 @@ namespace App.Server.Models.Responses
         /// <summary>
         /// Результат поискового запроса, упорядоченного по убывнию по полю <see cref="VacancyResponse.LastUpdated" />
         /// </summary>
-        public List<VacancyResponse> Result;
+        public List<VacancyResponse> Result { get; set; }
     }
 }

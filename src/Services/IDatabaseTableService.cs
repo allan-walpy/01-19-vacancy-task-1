@@ -1,6 +1,6 @@
 namespace App.Server.Services
 {
-    public interface IDatabaseTableService<TModel, TId>
+    public interface IDatabaseTableService<TModel, in TId>
         where TModel : class
     {
         TModel Get(TId id);

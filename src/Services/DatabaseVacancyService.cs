@@ -32,7 +32,7 @@ namespace App.Server.Services
         protected override DbSet<VacancyModel> GetTable(DatabaseContext databaseContext)
             => databaseContext.Vacancies;
 
-        public VacancyModel Update(string id, VacancyUpdateModel update)
+        public VacancyModel Update(string id, VacancyUpdateModel updateRequest)
         {
             var vacancy = Get(id);
             if (vacancy == null)
@@ -40,7 +40,7 @@ namespace App.Server.Services
                 return null;
             }
 
-            vacancy.Update(update);
+            vacancy.Update(updateRequest);
             return Update(id, updatedItem: vacancy);
         }
 

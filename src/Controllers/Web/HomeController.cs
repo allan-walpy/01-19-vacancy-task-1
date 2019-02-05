@@ -15,14 +15,10 @@ namespace App.Server.Controllers.Web
         { }
 
         public ActionResult Index()
-            => View("Index");
-
-        public ActionResult Help()
-            => View("Help", new HelpModel
+            => View("Redoc", new RedocModel
             {
                 Host = Configuration[HostConfigKey],
                 RedocUiVersion = Configuration[RedocUiVersionConfigKey]
             });
-
     }
 }

@@ -46,7 +46,6 @@ namespace App.Server.Controllers.Api
                 });
         }
 
-
         /// <summary>
         /// Возвращает вакансию с указанным Guid
         /// </summary>
@@ -146,7 +145,7 @@ namespace App.Server.Controllers.Api
         ///
         /// </remarks>
         /// <param name="id">Guid вакансии</param>
-        /// <param name="update">Список изменений</param>
+        /// <param name="updateRequest">Список изменений</param>
         /// <returns>Обновленная версия вакансии</returns>
         /// <response code="200">Success</response>
         /// <response code="400">Malformed request</response>
@@ -159,7 +158,7 @@ namespace App.Server.Controllers.Api
         [ProducesResponseType(typeof(UpdatesNotMatchResponse), StatusCodes.Status409Conflict)]
         [Consumes(ConsumesType)]
         [HttpPatch("{id}")]
-        public IActionResult Update(string id, [FromBody] VacancyUpdateModel update)
+        public IActionResult Update(string id, [FromBody] VacancyUpdateModel updateRequest)
         {
             var vacancy = ControllerService.Get(id);
             if (vacancy == null)
@@ -167,8 +166,8 @@ namespace App.Server.Controllers.Api
                 return new NotFoundResult();
             }
 
-            var updatedVacancy = ControllerService.Update(id, update);
-            vacancy.Update(update);
+            var updatedVacancy = ControllerService.Update(id, updateRequest);
+            vacancy.Update(updateRequest);
             bool success = vacancy.IsIdenticTo(updatedVacancy);
 
             if (!success)

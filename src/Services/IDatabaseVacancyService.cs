@@ -10,6 +10,6 @@ namespace App.Server.Services
     {
         List<VacancyModel> GetRangeBy(Func<VacancyModel, bool> predicate);
 
-        VacancyModel Update(string id, VacancyUpdateModel update);
+        VacancyModel Update(string id, VacancyUpdateModel updateRequest);
     }
 }

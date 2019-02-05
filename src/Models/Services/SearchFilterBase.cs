@@ -8,7 +8,7 @@ namespace App.Server.Models.Services
     {
         protected TOptions Options { get; }
 
-        public SearchFilterBase(TOptions options)
+        protected SearchFilterBase(TOptions options)
         {
             Options = options;
         }

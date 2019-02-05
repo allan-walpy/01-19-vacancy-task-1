@@ -24,7 +24,7 @@ namespace App.Server
             {
                 options.SwaggerEndpoint(
                     "/api/scheme.json",
-                    "vacancy.app v{version}");
+                    $"vacancy.app v{version}");
                 options.RoutePrefix = "api/debug";
                 options.DocExpansion(DocExpansion.List);
             });

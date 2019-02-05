@@ -8,7 +8,7 @@ namespace App.Server.Test.Api.Vacancy
     {
         public override string BasePath => "vacancy";
 
-        public VacancyTestBase(List<VacancyAddRequest> database)
+        protected VacancyTestBase(List<VacancyAddRequest> database)
             : base(database)
         {   }
     }

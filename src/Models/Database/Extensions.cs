@@ -18,14 +18,14 @@ namespace App.Server.Models.Database
             }
         }
 
-        public static void Update(this VacancyModel vacancy, VacancyUpdateModel update)
+        public static void Update(this VacancyModel vacancy, VacancyUpdateModel updateRequest)
         {
-            UpdateField(vacancy, ((item, value) => item.Title = value), update.Title);
-            UpdateField(vacancy, ((item, value) => item.Description = value), update.Description);
-            UpdateField(vacancy, ((item, value) => item.EmploymentType = value.ToEmploymentType()), update.EmploymentType);
-            UpdateField(vacancy, ((item, value) => item.Salary = value), update.Salary);
-            UpdateField(vacancy, ((item, value) => item.ContactPerson = value), update.ContactPerson);
-            UpdateField(vacancy, ((item, value) => item.ContactPhone = value), update.ContactPhone);
+            UpdateField(vacancy, ((item, value) => item.Title = value), updateRequest.Title);
+            UpdateField(vacancy, ((item, value) => item.Description = value), updateRequest.Description);
+            UpdateField(vacancy, ((item, value) => item.EmploymentType = value.ToEmploymentType()), updateRequest.EmploymentType);
+            UpdateField(vacancy, ((item, value) => item.Salary = value), updateRequest.Salary);
+            UpdateField(vacancy, ((item, value) => item.ContactPerson = value), updateRequest.ContactPerson);
+            UpdateField(vacancy, ((item, value) => item.ContactPhone = value), updateRequest.ContactPhone);
         }
 
         private static bool IsBothNull<T>(T item1, T item2)
