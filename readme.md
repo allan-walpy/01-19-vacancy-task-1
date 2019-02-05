@@ -20,3 +20,5 @@ Vacancy consists of:
 ## tests & builds
 
 [![travis build](https://img.shields.io/travis/com/allan-walpy/01-19-vacancy-task-1.svg?style=for-the-badge)](https://travis-ci.com/allan-walpy/01-19-vacancy-task-1)
+
+[![appveyor build](https://img.shields.io/appveyor/ci/allan-walpy/01-19-vacancy-task-1.svg?style=for-the-badge)](https://img.shields.io/appveyor/ci/allan-walpy/01-19-vacancy-task-1.svg?style=for-the-badge)
