@@ -1,0 +1,10 @@
+**/bin/
+**/out/
+**/test/
+**/obj/
+**/Dockerfile*
+**/.dockerignore*
+.vscode/
+script/
+.travis.yml
+.gitignore

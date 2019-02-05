@@ -7,7 +7,7 @@ namespace App.Server
 {
     public class Startup
     {
-        private IConfiguration _configuration;
+        private IConfiguration _configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
@@ -37,7 +37,7 @@ namespace App.Server
 
             if (isDevelopment)
             {
-                app.UseDebugClient();
+                app.UseDebugClient(_configuration);
             }
 
             app.UseAppDefaultFiles();
