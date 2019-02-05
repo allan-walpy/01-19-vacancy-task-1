@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace App.Server
@@ -15,14 +16,15 @@ namespace App.Server
             return app;
         }
 
-        public static IApplicationBuilder UseDebugClient(this IApplicationBuilder app)
+        public static IApplicationBuilder UseDebugClient(this IApplicationBuilder app, IConfiguration config)
         {
+            var version = config["version"];
             //TODO:FIXME: magic strings;
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint(
                     "/api/scheme.json",
-                    "vacancy.app v1.0.0");
+                    "vacancy.app v{version}");
                 options.RoutePrefix = "api/debug";
                 options.DocExpansion(DocExpansion.List);
             });

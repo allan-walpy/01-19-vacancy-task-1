@@ -13,7 +13,7 @@
     <PropertyGroup>
         <AssemblyTitle>App.Server.Test</AssemblyTitle>
         <PackageId>App.Server.Test</PackageId>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
         <Authors>allan_walpy aka Andrey Lysenkov</Authors>
         <NeutralLanguage>en-US</NeutralLanguage>
         <Description>test for App.Server</Description>
