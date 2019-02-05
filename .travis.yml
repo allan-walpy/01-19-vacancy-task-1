@@ -1,48 +1,24 @@
 language: csharp
 solution: project.sln
 
-matrix:
-  include:
+os: linux
+dist: xenial
+sudo: enabled
 
-    - os: linux
-      dist: xenial
-      sudo: enabled
-      mono: none
-      dotnet: 2.2
-      before_script:
-        - cp ./src/appsettings.private.example.json ./src/appsettings.private.json
-      after_failure: cat ./out/log/*.trx
+mono: none
+dotnet: 2.2
 
-    #? see https://github.com/vulmy/server/blob/master/.travis.yml#L33
-    #?  about configuring on travis wondows;
-    - os: windows
-      language: shell
-      install:
-        - choco install mysql
-        - choco install dotnetcore-sdk
-      before_script:
-        - cd src
-        - powershell -Command Copy-Item appsettings.private.example.json appsettings.private.json
-        - cd ..
-      after_failure:
-        - cd out
-        - cd log
-        - powershell -c Get-Content *.trx
+before_script:
+  - cp ./src/appsettings.private.example.json ./src/appsettings.private.json
+
+after_failure:
+  - cat ./out/log/*.trx
 
 script:
   - dotnet restore --verbosity q
+  - dotnet build --configuration Debug --no-restore --verbosity q
   - dotnet build --configuration Release --no-restore --verbosity q
   - dotnet test --configuration Release --no-restore --no-build --verbosity n
-  - dotnet build --configuration Debug --no-restore --verbosity q
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.GetAllTest" --configuration Debug --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.GetTest" --configuration Debug --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.AddTest" --configuration Debug --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.DeleteTest" --configuration Debug --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200Title" --configuration Debug --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200Description" --configuration Debug --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200Salary" --configuration Debug --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200ContactPhone" --configuration Debug --no-restore --no-build --verbosity n
-  - dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200ContactPerson" --configuration Debug --no-restore --no-build --verbosity n
 
 notifications:
   email:
