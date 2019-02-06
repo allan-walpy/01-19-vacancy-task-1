@@ -2,10 +2,19 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
+using App.Server.Middleware;
+
 namespace App.Server
 {
     partial class Extensions
     {
+        public static IApplicationBuilder UseDefaultAppErrorHandling(this IApplicationBuilder app)
+        {
+            app.UseExceptionHandler("/web/Home/Error");
+            app.UseMiddleware<ApiErrorHandlingMiddleware>();
+            return app;
+        }
+
         public static IApplicationBuilder UseApiSpecification(this IApplicationBuilder app)
         {
             app.UseSwagger(options =>

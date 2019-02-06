@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace App.Server.Models.Web
+namespace App.Server.Models.Pages
 {
     public class RedocModel : PageModel
     {

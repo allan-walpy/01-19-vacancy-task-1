@@ -8,8 +8,12 @@ namespace App.Server
 {
     public class Program
     {
+        public const string EnviromentConfigPrefix = "VACANCY_APP_";
+        public const string CommandLineArgsConfigPrefix = "--config_";
+        public const char CommandLineArgsConfigValueSeparator = '=';
         public const string PrivateConfigFile = "appsettings.private.json";
         public const string IsDevEnviromentConfigKey = "debug";
+
         public static string ExecutionPath
             => Path.GetDirectoryName(typeof(Program).Assembly.Location);
 
@@ -31,6 +35,15 @@ namespace App.Server
                         PrivateConfigFile,
                         optional: false,
                         reloadOnChange: true);
+
+                    configBuilder.AddEnvironmentVariables(EnviromentConfigPrefix);
+                    if (args.Length > 0)
+                    {
+                        configBuilder.AddCommandLine((argsContext) =>
+                        {
+                            argsContext.AddAsConfiguraionTo(configBuilder);
+                        });
+                    }
                 })
                 .UseStartup<Startup>();
     }

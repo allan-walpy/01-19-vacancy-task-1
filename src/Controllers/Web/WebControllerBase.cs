@@ -9,11 +9,11 @@ namespace App.Server.Controllers.Web
     [Route("web/[controller]/[action]")]
     public abstract class WebController : Controller
     {
-        protected IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }
 
-        protected WebController(IConfiguration configuration)
+        protected WebController(IConfiguration config)
         {
-            Configuration = configuration;
+            Configuration = config;
         }
     }
 }

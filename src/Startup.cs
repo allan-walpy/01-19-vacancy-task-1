@@ -30,7 +30,12 @@ namespace App.Server
 
             if (isDevelopment)
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseDefaultAppErrorHandling();
+            }
+            else
+            {
+                app.UseDefaultAppErrorHandling();
             }
 
             app.UseApiSpecification();
