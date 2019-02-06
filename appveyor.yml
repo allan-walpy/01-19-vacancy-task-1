@@ -10,13 +10,4 @@ build_script:
   - cmd: dotnet build -c Debug --no-restore --verbosity q
   - cmd: dotnet build -c Release --no-restore --verbosity q
 test_script:
-  #? in windows it is like all tests start simultaneously at the same time (second);
-  - cmd: dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.GetAllTest" --configuration Release --no-restore --no-build --verbosity n
-  - cmd: dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.GetTest" --configuration Release --no-restore --no-build --verbosity n
-  - cmd: dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.AddTest" --configuration Release --no-restore --no-build --verbosity n
-  - cmd: dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.DeleteTest" --configuration Release --no-restore --no-build --verbosity n
-  - cmd: dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200Title" --configuration Release --no-restore --no-build --verbosity n
-  - cmd: dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200Description" --configuration Release --no-restore --no-build --verbosity n
-  - cmd: dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200Salary" --configuration Release --no-restore --no-build --verbosity n
-  - cmd: dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200ContactPhone" --configuration Release --no-restore --no-build --verbosity n
-  - cmd: dotnet test --filter FullyQualifiedName~"App.Server.Test.Api.Vacancy.UpdateTest.Valid200ContactPerson" --configuration Release --no-restore --no-build --verbosity n
+  - cmd: dotnet test --configuration Release --no-restore --no-build --verbosity n
