@@ -9,6 +9,9 @@ namespace App.Server.Services
         : IDatabaseTableService<TModel, TId>
         where TModel : class
     {
+        private static Action<TModel> NoneActionOnModelChange
+            => (item) => {};
+
         private Action<TModel> OnAddAction { get; }
         private Action<TModel> OnUpdateAction { get; }
         protected IDatabaseService DatabaseService { get; }
@@ -18,8 +21,8 @@ namespace App.Server.Services
             Action<TModel> onUpdateAction,
             IDatabaseService databaseService)
         {
-            OnAddAction = onAddAction;
-            OnUpdateAction = onUpdateAction;
+            OnAddAction = onAddAction ?? NoneActionOnModelChange;
+            OnUpdateAction = onUpdateAction ?? NoneActionOnModelChange;
             DatabaseService = databaseService;
         }
 
