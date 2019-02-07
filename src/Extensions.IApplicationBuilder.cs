@@ -74,11 +74,11 @@ namespace App.Server
                     "api/{controller}/*"
                 );
                 routes.MapRoute(
-                    "web",
-                    "web/{controller=Home}/{action=Index}"
+                    "default",
+                    "web/{controller=Home}/{action=Index}/{id?}"
                 );
                 routes.MapRoute(
-                    "default",
+                    "redirect",
                     "{controller=IndexPage}/{action=Redirect}"
                 );
             });

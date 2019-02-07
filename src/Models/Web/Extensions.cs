@@ -1,16 +1,13 @@
-using App.Server.Models.Attributes;
 using App.Server.Models.Database;
-
+using App.Server.Models.Requests;
 using App.Server.Services;
 
-namespace App.Server.Models.Requests
+namespace App.Server.Models.Web
 {
     public static class Extensions
     {
-        public const int PersonMaxLength = ValidPersonNameAttribute.MaxLength * 6;
-
         public static VacancyModel ToModel(
-            this VacancyAddRequest request,
+            this VacancyAddModel request,
             IDatabaseOrganizationService organizationService)
         {
             var result = new VacancyModel
@@ -21,7 +18,6 @@ namespace App.Server.Models.Requests
                 ContactPhone = request.ContactPhone,
                 ContactPerson = request.ContactPerson,
                 EmploymentType = request.EmploymentType
-                    .ConvertAll((item) => item.ToEmploymentType())
             };
 
             var organizationName = request.Organization;

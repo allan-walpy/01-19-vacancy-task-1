@@ -25,6 +25,9 @@ namespace App.Server.Services
         protected override DbSet<OrganizationModel> GetTable(DatabaseContext databaseContext)
             => databaseContext.Organizations;
 
+        protected override string GetId(OrganizationModel item)
+            => item.Id;
+
         public override OrganizationModel Update(string id, OrganizationModel updatedItem)
             => throw new InvalidOperationException("Organization records can't be updated");
 

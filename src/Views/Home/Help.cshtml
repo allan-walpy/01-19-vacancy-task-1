@@ -1,0 +1,7 @@
+@model HelpModel
+@{
+    ViewData["Title"] = "Documentation";
+}
+
+<redoc untrustedSpec="true" spec-url="https://@(Model.Data.Host)/api/scheme.json"></redoc>
+<script src="https://cdn.jsdelivr.net/npm/redoc@@@(Model.Data.RedocVersion)/bundles/redoc.standalone.js"> </script>

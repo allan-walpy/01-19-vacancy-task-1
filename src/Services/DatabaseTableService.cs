@@ -25,6 +25,8 @@ namespace App.Server.Services
 
         protected abstract DbSet<TModel> GetTable(DatabaseContext databaseContext);
 
+        protected abstract TId GetId(TModel item);
+
         public virtual TModel Get(TId id)
         {
             using (var databaseContext = DatabaseService.GetContext())
@@ -33,13 +35,14 @@ namespace App.Server.Services
             }
         }
 
-        public virtual bool Add(TModel item)
+        public virtual TId Add(TModel item)
         {
             OnAddAction(item);
             using (var databaseContext = DatabaseService.GetContext())
             {
                 GetTable(databaseContext).Add(item);
-                return databaseContext.SaveChanges() > 0;
+                var success = databaseContext.SaveChanges() > 0;
+                return success ? GetId(item) : default(TId);
             }
         }
 

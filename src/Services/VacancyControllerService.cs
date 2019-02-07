@@ -27,10 +27,7 @@ namespace App.Server.Services
             => Get(id) != null;
 
         public string Add(VacancyModel vacancy)
-        {
-            bool success = VacancyService.Add(vacancy);
-            return success ? vacancy.Id : null;
-        }
+            => VacancyService.Add(vacancy);
 
         public VacancyModel Update(string id, VacancyUpdateModel vacancyUpdate)
             => VacancyService.Update(id, vacancyUpdate);

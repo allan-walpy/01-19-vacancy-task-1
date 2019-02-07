@@ -32,6 +32,9 @@ namespace App.Server.Services
         protected override DbSet<VacancyModel> GetTable(DatabaseContext databaseContext)
             => databaseContext.Vacancies;
 
+        protected override string GetId(VacancyModel item)
+            => item.Id;
+
         public VacancyModel Update(string id, VacancyUpdateModel updateRequest)
         {
             var vacancy = Get(id);
