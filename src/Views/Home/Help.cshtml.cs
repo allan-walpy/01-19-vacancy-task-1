@@ -22,10 +22,5 @@ namespace App.Server.Models.Pages
                 RedocVersion = configuration[RedocUiVersionConfigKey]
             };
         }
-
-        public void OnGet()
-        {
-            System.Console.WriteLine("Hi");
-        }
     }
 }

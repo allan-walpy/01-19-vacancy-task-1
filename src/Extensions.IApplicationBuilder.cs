@@ -8,9 +8,9 @@ namespace App.Server
 {
     partial class Extensions
     {
-        public static IApplicationBuilder UseDefaultAppErrorHandling(this IApplicationBuilder app)
+        public static IApplicationBuilder UseAppErrorHandling(this IApplicationBuilder app)
         {
-            app.UseExceptionHandler("/web/Home/Error");
+            app.UseStatusCodePagesWithReExecute("/web/Home/Error/{0}");
             app.UseMiddleware<ApiErrorHandlingMiddleware>();
             return app;
         }
@@ -74,11 +74,11 @@ namespace App.Server
                     "api/{controller}/*"
                 );
                 routes.MapRoute(
-                    "default",
+                    "web",
                     "web/{controller=Home}/{action=Index}/{id?}"
                 );
                 routes.MapRoute(
-                    "redirect",
+                    "default",
                     "{controller=IndexPage}/{action=Redirect}"
                 );
             });

@@ -1,0 +1,53 @@
+@model IEnumerable<App.Server.Models.Responses.VacancyResponse>
+
+@{
+    ViewData["Title"] = "Vacancy";
+}
+
+<h1>Управление вакансиями</h1>
+
+<p>
+    <a asp-action="Create">Создать новую</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Organization)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Organization.Name)
+            </td>
+            <td>
+                @(new DateTime(item.CreatedAt).ToString())
+            </td>
+            <td>
+                <a labe="посмотреть" asp-controller="Vacancy" asp-action="View" asp-route-id="@item.Id"><img class="figure-img in-text-icon" src="~/web/static/icons/manage/view.svg" /></a>
+                <a labe="изменить" asp-action="Edit" asp-route-id="@item.Id"><img class="figure-img in-text-icon" src="~/web/static/icons/manage/edit.svg" /></a>
+                <a labe="удалить" asp-action="Delete" asp-route-id="@item.Id" class="text-danger"><img class="figure-img in-text-icon" src="~/web/static/icons/manage/delete.svg" /></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

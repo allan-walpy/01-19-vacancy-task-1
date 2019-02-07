@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 using App.Server.Services;
+using App.Server.Models.Responses;
 using App.Server.Models.Web;
 
 namespace App.Server.Controllers.Web
@@ -12,32 +14,46 @@ namespace App.Server.Controllers.Web
         private IDatabaseOrganizationService OrganizationService { get; }
 
         public VacancyController(
+            IConfiguration configuration,
             VacancyControllerService vacancyService,
             IDatabaseOrganizationService organizationService)
+            : base (configuration)
         {
             VacancyService = vacancyService;
             OrganizationService = organizationService;
         }
 
         public IActionResult Index()
-            => View("Index");
+            => View(VacancyService.Get().ConvertAll((v) => v.ToResponse(OrganizationService)));
 
-        [HttpGet]
-        public IActionResult Add()
-            => View("Add");
+        [ActionName("View")]
+        [HttpGet("{id}")]
+        public IActionResult ViewAction([FromRoute] string id)
+            => View();
+
+        public IActionResult Create()
+            => View();
 
         [HttpPost]
-        public IActionResult Add(HttpContext context, VacancyAddModel vacancyData)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind] VacancyCreateModel vacancyData)
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToPage("Add");
+                return View(vacancyData);
             }
 
             var id = VacancyService.Add(vacancyData.ToModel(OrganizationService));
-            System.Console.WriteLine($"id is {id}");
 
-            return View("Index");
+            return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet("{id}")]
+        public IActionResult Edit()
+            => View();
+
+        [HttpGet("{id}")]
+        public IActionResult Delete()
+            => View();
     }
 }

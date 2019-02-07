@@ -1,6 +1,6 @@
 @model HelpModel
 @{
-    ViewData["Title"] = "Documentation";
+    ViewData["Title"] = "Документация";
 }
 
 <redoc untrustedSpec="true" spec-url="https://@(Model.Data.Host)/api/scheme.json"></redoc>

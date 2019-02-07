@@ -7,7 +7,7 @@ namespace App.Server.Models.Web
     public static class Extensions
     {
         public static VacancyModel ToModel(
-            this VacancyAddModel request,
+            this VacancyCreateModel request,
             IDatabaseOrganizationService organizationService)
         {
             var result = new VacancyModel

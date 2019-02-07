@@ -1,7 +1,12 @@
 @model ErrorModel
 @{
-    ViewData["Title"] = "Server Error";
+    ViewData["Title"] = $"Ошибка {@Model.StatusCode}";
 }
 
-<h1 class="text-danger">500 Error</h1>
-<h2 class="text-danger">An error occurred while processing your request</h2>
+<h1 class="text-danger">Ошибка @Model.StatusCode</h1>
+<h2 class="text-danger">@Model.Message</h2>
+
+@if(@Model.Error != null)
+{
+    <h3 class="text-danger">@Model.Error.Message</h3>
+}

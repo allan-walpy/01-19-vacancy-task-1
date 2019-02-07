@@ -4,7 +4,7 @@ using App.Server.Models.Attributes;
 
 namespace App.Server.Models.Web
 {
-    public class VacancyAddModel
+    public class VacancyCreateModel
     {
         [Required]
         [ValidVacancyTitle]
