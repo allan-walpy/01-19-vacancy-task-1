@@ -139,19 +139,5 @@ namespace App.Server.Models.Database
                 list.Add(fieldName);
             }
         }
-
-        public static List<string> GetUpdatedFieldsList(this VacancyUpdateModel updateModel)
-        {
-            List<string> result = new List<string>();
-
-            result.AddIfNotNull(updateModel.Title, nameof(updateModel.Title));
-            result.AddIfNotNull(updateModel.Salary, nameof(updateModel.Salary));
-            result.AddIfNotNull(updateModel.Description, nameof(updateModel.Description));
-            result.AddIfNotNull(updateModel.EmploymentType, nameof(updateModel.EmploymentType));
-            result.AddIfNotNull(updateModel.ContactPerson, nameof(updateModel.ContactPerson));
-            result.AddIfNotNull(updateModel.ContactPhone, nameof(updateModel.ContactPhone));
-
-            return result;
-        }
     }
 }

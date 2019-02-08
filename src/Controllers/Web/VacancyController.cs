@@ -12,7 +12,7 @@ using App.Server.Models.Web.Vacancy;
 
 namespace App.Server.Controllers.Web
 {
-    public class VacancyController : WebController
+    public partial class VacancyController : WebController
     {
         private VacancyControllerService VacancyService { get; }
         private IDatabaseOrganizationService OrganizationService { get; }
@@ -33,27 +33,36 @@ namespace App.Server.Controllers.Web
         private VacancyResponse GetVacancy(string id)
             => VacancyService.Get(id)?.ToResponse(OrganizationService);
 
-        private IndexDataModel GetDefaultIndexDataModel()
-            => new IndexDataModel
+        private IndexPageStatusModel GetNotFoundStatusModel(string id)
+            => new IndexPageStatusModel
             {
-                Data = GetAllVacancies()
+                StatusId = NotFoundStatusDataKey,
+                VacancyId = id
             };
 
-        public IActionResult Index()
-            => View(GetDefaultIndexDataModel());
-
-        [HttpPost]
-        public IActionResult Index([Bind] IndexPageState pageState)
+        public IActionResult Index([Bind] IndexPageStatusModel pageStatusModel = null)
         {
-            var model = GetDefaultIndexDataModel();
-            model.State = pageState;
-            return View(model);
+            var dataModel = new IndexDataModel
+            {
+                Data = GetAllVacancies(),
+                Status = pageStatusModel.ToStatus(PageStatusData)
+            };
+
+            return View(dataModel);
         }
 
         [ActionName("View")]
         [HttpGet("{id}")]
         public IActionResult ViewAction([FromRoute] string id)
-            => View(GetVacancy(id));
+        {
+            var vacancyData = GetVacancy(id);
+            if (vacancyData == null)
+            {
+                return RedirectToAction(nameof(Index), GetNotFoundStatusModel(id));
+            }
+
+            return View(vacancyData);
+        }
 
         public IActionResult Create()
             => View();
@@ -68,21 +77,27 @@ namespace App.Server.Controllers.Web
             }
 
             var id = VacancyService.Add(vacancyData.ToModel(OrganizationService));
+            var success = id != null && id != Guid.Empty.ToString();
 
-            var model = GetDefaultIndexDataModel();
-            model.State = new IndexPageState
+            var model = new IndexPageStatusModel
             {
-                IsSuccess = true,
-                Message = "Вакансия создана успешно"
+                StatusId = $"{nameof(Create)}:{success}",
+                VacancyId = id
             };
+
             return RedirectToAction(nameof(Index), model);
         }
 
         [HttpGet("{id}")]
         public IActionResult Edit(string id)
         {
-            var model = GetVacancy(id);
-            return View(model);
+            var vacancyData = GetVacancy(id);
+            if (vacancyData == null)
+            {
+                return RedirectToAction(nameof(Index), GetNotFoundStatusModel(id));
+            }
+
+            return View(vacancyData);
         }
 
         [HttpPost("{id}")]
@@ -98,22 +113,14 @@ namespace App.Server.Controllers.Web
             var updateRequest = storedModel.ToUpdateCommandBy(vacancyData);
 
             var updated = VacancyService.Update(vacancyData.Id, updateRequest);
-            var expectedUpdated = vacancyData.ToModel();
 
+            var expectedUpdated = vacancyData.ToModel();
             var success = updated.IsIdenticTo(expectedUpdated);
 
-            var successDependMessage = (success ? "Вакансия обновлена успешно" : "Не все поля были обновленны должнвм образом");
-            var updatedFields = updateRequest.GetUpdatedFieldsList();
-            var updatedFieldsMessage = String.Join(
-                ", ",
-                updatedFields
-            );
-
-            var model = GetDefaultIndexDataModel();
-            model.State = new IndexPageState
+            var model = new IndexPageStatusModel
             {
-                IsSuccess = success,
-                Message = $"{successDependMessage}. {(updatedFields.Count > 0 ? $"Данные поля изменены: {updatedFieldsMessage}" : "Ни одно поле не ищменено")}"
+                StatusId = $"{nameof(Edit)}:{success}",
+                VacancyId = vacancyData.Id
             };
             return RedirectToAction(nameof(Index), model);
         }
@@ -121,8 +128,13 @@ namespace App.Server.Controllers.Web
         [HttpGet("{id}")]
         public IActionResult Delete(string id)
         {
-            var model = GetVacancy(id);
-            return View(model);
+            var vacancyData = GetVacancy(id);
+            if (vacancyData == null)
+            {
+                return RedirectToAction(nameof(Index), GetNotFoundStatusModel(id));
+            }
+
+            return View(vacancyData);
         }
 
         [HttpPost("{id}")]
@@ -131,12 +143,11 @@ namespace App.Server.Controllers.Web
         public IActionResult DeleteComfirmed([Bind] string id)
         {
             var success = VacancyService.Delete(id);
-            var model = GetDefaultIndexDataModel();
 
-            model.State = new IndexPageState
+            var model = new IndexPageStatusModel
             {
-                IsSuccess = success,
-                Message = success ? "Вакансия успешно удалена" : "Что-то пошло не так при удалении вакансии"
+                StatusId = $"{nameof(Edit)}:{success}",
+                VacancyId = id
             };
             return RedirectToAction(nameof(Index), model);
         }

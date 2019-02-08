@@ -10,10 +10,10 @@
     <a asp-action="Create">Создать новую</a>
 </p>
 
-@if(Model.HasState)
+@if(Model.HasStatus)
 {
-    <p class="@(Model.State.IsSuccess ? "alert-success" : "alert-danger")">
-        @(Model.State.Message)
+    <p class="@(Model.Status.Success ? "alert-success" : "alert-danger")">
+        @(Model.Status.Message)
     </p>
 }
 

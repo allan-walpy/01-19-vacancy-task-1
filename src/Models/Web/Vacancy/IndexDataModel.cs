@@ -8,7 +8,7 @@ namespace App.Server.Models.Web.Vacancy
     {
         public ICollection<VacancyResponse> Data { get; set; }
 
-        public bool HasState => State != null;
-        public IndexPageState State { get; set; }
+        public bool HasStatus => Status != null;
+        public IndexPageStatus Status { get; set; }
     }
 }
