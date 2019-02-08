@@ -21,7 +21,7 @@ namespace App.Server.Controllers.Web
             IConfiguration configuration,
             VacancyControllerService vacancyService,
             IDatabaseOrganizationService organizationService)
-            : base (configuration)
+            : base(configuration)
         {
             VacancyService = vacancyService;
             OrganizationService = organizationService;
@@ -29,6 +29,9 @@ namespace App.Server.Controllers.Web
 
         private ICollection<VacancyResponse> GetAllVacancies()
             => VacancyService.Get().ConvertAll((v) => v.ToResponse(OrganizationService));
+
+        private VacancyResponse GetVacancy(string id)
+            => VacancyService.Get(id)?.ToResponse(OrganizationService);
 
         private IndexDataModel GetDefaultIndexDataModel()
             => new IndexDataModel
@@ -50,7 +53,7 @@ namespace App.Server.Controllers.Web
         [ActionName("View")]
         [HttpGet("{id}")]
         public IActionResult ViewAction([FromRoute] string id)
-            => View();
+            => View(GetVacancy(id));
 
         public IActionResult Create()
             => View();
@@ -78,7 +81,7 @@ namespace App.Server.Controllers.Web
         [HttpGet("{id}")]
         public IActionResult Edit(string id)
         {
-            var model = VacancyService.Get(id);
+            var model = GetVacancy(id);
             return View(model);
         }
 
@@ -118,12 +121,13 @@ namespace App.Server.Controllers.Web
         [HttpGet("{id}")]
         public IActionResult Delete(string id)
         {
-            var model = VacancyService.Get(id);
+            var model = GetVacancy(id);
             return View(model);
         }
 
         [HttpPost("{id}")]
         [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteComfirmed([Bind] string id)
         {
             var success = VacancyService.Delete(id);
