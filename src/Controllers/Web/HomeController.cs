@@ -30,7 +30,6 @@ namespace App.Server.Controllers.Web
             return View(model);
         }
 
-        //? thnx to https://codedaze.io/global-error-handling-aspnet-core-mvc/ ;
         [Route("{id}")]
         public ActionResult Error(int id)
         {
@@ -66,8 +65,11 @@ namespace App.Server.Controllers.Web
             };*/
 
             var messages = Configuration.GetSection(ErrorMessagesConfigKey);
+            //? return messages[statusCode.ToString()];
             switch(statusCode)
             {
+                case 400:
+                    return messages["400"];
                 case 404:
                     return messages["404"];
                 case 409:
