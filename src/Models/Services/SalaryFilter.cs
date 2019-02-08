@@ -1,6 +1,6 @@
-using App.Server.Models.Database;
+using Walpy.VacancyApp.Server.Models.Database;
 
-namespace App.Server.Models.Services
+namespace Walpy.VacancyApp.Server.Models.Services
 {
     public class SalaryFilter : SearchFilterBase<SalaryFilterOptions>
     {

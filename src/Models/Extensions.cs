@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-using App.Server.Models.Database;
-using App.Server.Services;
+using Walpy.VacancyApp.Server.Models.Database;
+using Walpy.VacancyApp.Server.Services;
 
-namespace App.Server.Models
+namespace Walpy.VacancyApp.Server.Models
 {
     public static class Extensions
     {

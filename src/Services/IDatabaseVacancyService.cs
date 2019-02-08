@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using App.Server.Models.Database;
+using Walpy.VacancyApp.Server.Models.Database;
 
-namespace App.Server.Services
+namespace Walpy.VacancyApp.Server.Services
 {
     public interface IDatabaseVacancyService
         : IDatabaseTableService<VacancyModel, string>

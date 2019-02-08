@@ -4,7 +4,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace App.Server
+namespace Walpy.VacancyApp.Server
 {
     public class Program
     {

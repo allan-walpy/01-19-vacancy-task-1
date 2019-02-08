@@ -1,4 +1,4 @@
-namespace App.Server.Models.Database
+namespace Walpy.VacancyApp.Server.Models.Database
 {
     /// <summary>
     /// Обновление параметра

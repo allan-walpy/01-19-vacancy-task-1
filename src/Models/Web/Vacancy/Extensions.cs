@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace App.Server.Models.Web.Vacancy
+namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
 {
     public static class Extensions
     {

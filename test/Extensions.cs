@@ -1,7 +1,7 @@
 using System.Net.Http;
 using Newtonsoft.Json;
 
-namespace App.Server.Test
+namespace Walpy.VacancyApp.Server.Test
 {
     public static class Extensions
     {

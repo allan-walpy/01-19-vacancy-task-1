@@ -1,8 +1,8 @@
 using System;
 
-using App.Server.Models.Database;
+using Walpy.VacancyApp.Server.Models.Database;
 
-namespace App.Server.Models.Services
+namespace Walpy.VacancyApp.Server.Models.Services
 {
     public abstract class SearchFilterBase<TOptions>
     {

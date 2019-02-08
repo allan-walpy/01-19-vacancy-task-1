@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 
-using App.Server.Models;
-using App.Server.Models.Requests;
-using App.Server.Test.Data;
+using Walpy.VacancyApp.Server.Models;
+using Walpy.VacancyApp.Server.Models.Requests;
+using Walpy.VacancyApp.Server.Test.Data;
 
-namespace App.Server.Test.Api.Vacancy
+namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
 {
     partial class AddTest
     {

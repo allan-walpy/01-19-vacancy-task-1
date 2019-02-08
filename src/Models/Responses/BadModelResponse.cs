@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 
-namespace App.Server.Models.Responses
+namespace Walpy.VacancyApp.Server.Models.Responses
 {
     /// <summary>
     /// Информация о запросе непрошедшем валидацию

@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace App.Server.Models.Attributes
+namespace Walpy.VacancyApp.Server.Models.Attributes
 {
     public class AnyNotNullAttribute : NullFilterAttribute
     {

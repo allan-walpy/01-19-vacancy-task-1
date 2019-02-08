@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace App.Server.Models.Responses
+namespace Walpy.VacancyApp.Server.Models.Responses
 {
     public class CustomObjectResult : ObjectResult
     {

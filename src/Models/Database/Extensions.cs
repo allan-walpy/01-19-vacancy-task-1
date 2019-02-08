@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-using App.Server.Models.Responses;
+using Walpy.VacancyApp.Server.Models.Responses;
 
-namespace App.Server.Models.Database
+namespace Walpy.VacancyApp.Server.Models.Database
 {
     public static class Extensions
     {

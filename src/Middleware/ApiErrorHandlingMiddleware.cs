@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-using App.Server.Models.Responses;
+using Walpy.VacancyApp.Server.Models.Responses;
 
-namespace App.Server.Middleware
+namespace Walpy.VacancyApp.Server.Middleware
 {
     public class ApiErrorHandlingMiddleware
     {

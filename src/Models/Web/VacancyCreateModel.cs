@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using App.Server.Models.Attributes;
+using Walpy.VacancyApp.Server.Models.Attributes;
 
-namespace App.Server.Models.Web
+namespace Walpy.VacancyApp.Server.Models.Web
 {
     public class VacancyCreateModel
     {

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-using App.Server.Models.Requests;
+using Walpy.VacancyApp.Server.Models.Requests;
 
-namespace App.Server.Test.Api.Vacancy
+namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
 {
     public abstract class VacancyTestBase : ApiTestBaseWithDatabase
     {

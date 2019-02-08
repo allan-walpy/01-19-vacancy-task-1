@@ -1,6 +1,6 @@
 using System.Net.Http;
 
-namespace App.Server.Test.Models
+namespace Walpy.VacancyApp.Server.Test.Models
 {
     public class ApiCallModel
     {

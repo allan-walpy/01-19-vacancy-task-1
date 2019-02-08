@@ -1,4 +1,4 @@
-namespace App.Server.Models.Responses
+namespace Walpy.VacancyApp.Server.Models.Responses
 {
     public class ErrorResponse
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace App.Server.Test.Data
+namespace Walpy.VacancyApp.Server.Test.Data
 {
     public class BadModelDataItem
     {

@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace App.Server.Models.Attributes
+namespace Walpy.VacancyApp.Server.Models.Attributes
 {
     public class ValidGuidStringAttribute : ValidationAttribute
     {

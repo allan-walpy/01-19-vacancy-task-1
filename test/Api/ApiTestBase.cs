@@ -5,11 +5,11 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Xunit;
 
-using App.Server.Models.Responses;
-using App.Server.Test.Instance;
-using App.Server.Test.Models;
+using Walpy.VacancyApp.Server.Models.Responses;
+using Walpy.VacancyApp.Server.Test.Instance;
+using Walpy.VacancyApp.Server.Test.Models;
 
-namespace App.Server.Test.Api
+namespace Walpy.VacancyApp.Server.Test.Api
 {
     public abstract class ApiTestBase : IDisposable
     {

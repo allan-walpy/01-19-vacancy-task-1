@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-using App.Server.Models.Web.Vacancy;
+using Walpy.VacancyApp.Server.Models.Web.Vacancy;
 
-namespace App.Server.Controllers.Web
+namespace Walpy.VacancyApp.Server.Controllers.Web
 {
     partial class VacancyController
     {

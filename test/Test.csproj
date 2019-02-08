@@ -4,19 +4,18 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
         <RuntimeFrameworkVersion>2.2.1</RuntimeFrameworkVersion>
-        <AssemblyName>App.Server.Test</AssemblyName>
-        <RootNamespace>App.Server.Test</RootNamespace>
+        <AssemblyName>Walpy.VacancyApp.Server.Test</AssemblyName>
+        <RootNamespace>Walpy.VacancyApp.Server.Test</RootNamespace>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <!-- package info; -->
     <PropertyGroup>
-        <AssemblyTitle>App.Server.Test</AssemblyTitle>
-        <PackageId>App.Server.Test</PackageId>
-        <Version>1.0.1</Version>
+        <AssemblyTitle>Walpy.VacancyApp.Server.Test</AssemblyTitle>
+        <PackageId>Walpy.VacancyApp.Server.Test</PackageId>
         <Authors>allan_walpy aka Andrey Lysenkov</Authors>
         <NeutralLanguage>en-US</NeutralLanguage>
-        <Description>test for App.Server</Description>
+        <Description>test for Walpy.VacancyApp.Server</Description>
         <PackageProjectUrl>https://github.com/allan-walpy/01-19-vacancy-task-1/tree/master/test</PackageProjectUrl>
         <PackageLicenseUrl>https://github.com/allan-walpy/01-19-vacancy-task-1/blob/master/license</PackageLicenseUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-using App.Server.Services;
+using Walpy.VacancyApp.Server.Services;
 
-namespace App.Server
+namespace Walpy.VacancyApp.Server
 {
     partial class Extensions
     {

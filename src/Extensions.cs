@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace App.Server
+namespace Walpy.VacancyApp.Server
 {
     public static partial class Extensions
     {

@@ -1,8 +1,8 @@
 using System;
 
-using App.Server.Models.Requests;
+using Walpy.VacancyApp.Server.Models.Requests;
 
-namespace App.Server.Models.Services
+namespace Walpy.VacancyApp.Server.Models.Services
 {
     public static class Extensions
     {

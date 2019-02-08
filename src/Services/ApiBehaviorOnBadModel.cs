@@ -3,9 +3,9 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-using App.Server.Models.Responses;
+using Walpy.VacancyApp.Server.Models.Responses;
 
-namespace App.Server.Services
+namespace Walpy.VacancyApp.Server.Services
 {
     public static class ApiBehaviorOnBadModel
     {

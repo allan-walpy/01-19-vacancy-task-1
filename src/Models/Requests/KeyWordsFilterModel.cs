@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
-using App.Server.Models.Attributes;
-using App.Server.Models.Services;
+using Walpy.VacancyApp.Server.Models.Attributes;
+using Walpy.VacancyApp.Server.Models.Services;
 
-namespace App.Server.Models.Requests
+namespace Walpy.VacancyApp.Server.Models.Requests
 {
     /// <summary>
     /// Настройки фильтра поиска по нанимателю

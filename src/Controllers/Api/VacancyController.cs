@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using App.Server.Models.Database;
-using App.Server.Models.Requests;
-using App.Server.Models.Responses;
-using App.Server.Services;
+using Walpy.VacancyApp.Server.Models.Database;
+using Walpy.VacancyApp.Server.Models.Requests;
+using Walpy.VacancyApp.Server.Models.Responses;
+using Walpy.VacancyApp.Server.Services;
 
-namespace App.Server.Controllers.Api
+namespace Walpy.VacancyApp.Server.Controllers.Api
 {
     public class VacancyController : ApiControllerBase
     {

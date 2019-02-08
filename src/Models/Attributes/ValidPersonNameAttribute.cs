@@ -1,4 +1,4 @@
-namespace App.Server.Models.Attributes
+namespace Walpy.VacancyApp.Server.Models.Attributes
 {
     //? applied on Name, Surname, MiddleName - string values;
     public class ValidPersonNameAttribute : ValidStringTypePropertyAttribute

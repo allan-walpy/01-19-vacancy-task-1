@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-using App.Server.Models.Database;
+using Walpy.VacancyApp.Server.Models.Database;
 
-namespace App.Server.Services
+namespace Walpy.VacancyApp.Server.Services
 {
     public class DatabaseOrganizationService
         : DatabaseTableService<OrganizationModel, string>, IDatabaseOrganizationService

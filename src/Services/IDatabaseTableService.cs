@@ -1,4 +1,4 @@
-namespace App.Server.Services
+namespace Walpy.VacancyApp.Server.Services
 {
     public interface IDatabaseTableService<TModel, TId>
         where TModel : class

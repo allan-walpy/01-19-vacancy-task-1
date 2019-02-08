@@ -1,4 +1,4 @@
-namespace App.Server.Models.Web
+namespace Walpy.VacancyApp.Server.Models.Web
 {
     public class HelpConfigurationModel
     {

@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using App.Server.Models.Database;
-using App.Server.Services;
+using Walpy.VacancyApp.Server.Models.Database;
+using Walpy.VacancyApp.Server.Services;
 
-namespace App.Server.Models.Services
+namespace Walpy.VacancyApp.Server.Models.Services
 {
     public class SearchFilter : SearchFilterBase<SearchFilterOptions>
     {

@@ -1,4 +1,4 @@
-namespace App.Server.Models
+namespace Walpy.VacancyApp.Server.Models
 {
     /// <summary>
     /// Тип занятости

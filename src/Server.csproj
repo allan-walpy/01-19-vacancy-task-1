@@ -10,14 +10,14 @@
             * see more about `AspNetCoreHostingModel` tag at microsoft docs
             * https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#hosting-models
         -->
-        <AssemblyName>App.Server</AssemblyName>
-        <RootNamespace>App.Server</RootNamespace>
+        <AssemblyName>Walpy.VacancyApp.Server</AssemblyName>
+        <RootNamespace>Walpy.VacancyApp.Server</RootNamespace>
     </PropertyGroup>
 
     <!-- package info; -->
     <PropertyGroup>
-        <AssemblyTitle>App.Server</AssemblyTitle>
-        <PackageId>App.Server</PackageId>
+        <AssemblyTitle>Walpy.VacancyApp.Server</AssemblyTitle>
+        <PackageId>Walpy.VacancyApp.Server</PackageId>
         <Version>1.0.1</Version>
         <Authors>allan_walpy aka Andrey Lysenkov</Authors>
         <NeutralLanguage>en-US</NeutralLanguage>

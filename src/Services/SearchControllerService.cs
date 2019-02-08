@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 
-using App.Server.Models.Requests;
-using App.Server.Models.Responses;
-using App.Server.Models.Services;
+using Walpy.VacancyApp.Server.Models.Requests;
+using Walpy.VacancyApp.Server.Models.Responses;
+using Walpy.VacancyApp.Server.Models.Services;
 
-namespace App.Server.Services
+namespace Walpy.VacancyApp.Server.Services
 {
     public sealed class SearchControllerService
     {

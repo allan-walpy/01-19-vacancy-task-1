@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-using App.Server.Models.Web;
+using Walpy.VacancyApp.Server.Models.Web;
 
-namespace App.Server.Controllers.Web
+namespace Walpy.VacancyApp.Server.Controllers.Web
 {
     public class HomeController : WebController
     {

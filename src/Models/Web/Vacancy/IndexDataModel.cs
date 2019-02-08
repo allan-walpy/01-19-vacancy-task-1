@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-using App.Server.Models.Responses;
+using Walpy.VacancyApp.Server.Models.Responses;
 
-namespace App.Server.Models.Web.Vacancy
+namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
 {
     public class IndexDataModel
     {

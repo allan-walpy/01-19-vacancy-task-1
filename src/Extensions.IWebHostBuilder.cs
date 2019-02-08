@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 
-namespace App.Server
+namespace Walpy.VacancyApp.Server
 {
     partial class Extensions
     {

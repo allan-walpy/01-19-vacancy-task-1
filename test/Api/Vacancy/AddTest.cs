@@ -4,12 +4,12 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Http;
 using Xunit;
 
-using App.Server.Models.Responses;
-using App.Server.Models.Requests;
-using App.Server.Test.Data;
-using App.Server.Test.Models;
+using Walpy.VacancyApp.Server.Models.Responses;
+using Walpy.VacancyApp.Server.Models.Requests;
+using Walpy.VacancyApp.Server.Test.Data;
+using Walpy.VacancyApp.Server.Test.Models;
 
-namespace App.Server.Test.Api.Vacancy
+namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
 {
     public partial class AddTest : VacancyTestBase
     {

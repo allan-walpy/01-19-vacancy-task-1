@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Configuration.CommandLine;
 using Microsoft.Extensions.Configuration;
 
-namespace App.Server
+namespace Walpy.VacancyApp.Server
 {
     public static partial class Extensions
     {

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-using App.Server.Services;
-using App.Server.Models.Database;
-using App.Server.Models.Responses;
-using App.Server.Models.Requests;
-using App.Server.Models.Web;
-using App.Server.Models.Web.Vacancy;
+using Walpy.VacancyApp.Server.Services;
+using Walpy.VacancyApp.Server.Models.Database;
+using Walpy.VacancyApp.Server.Models.Responses;
+using Walpy.VacancyApp.Server.Models.Requests;
+using Walpy.VacancyApp.Server.Models.Web;
+using Walpy.VacancyApp.Server.Models.Web.Vacancy;
 
-namespace App.Server.Controllers.Web
+namespace Walpy.VacancyApp.Server.Controllers.Web
 {
     public partial class VacancyController : WebController
     {

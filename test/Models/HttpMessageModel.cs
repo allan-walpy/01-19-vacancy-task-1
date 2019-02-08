@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-using App.Server.Models.Responses;
+using Walpy.VacancyApp.Server.Models.Responses;
 
-namespace App.Server.Test.Models
+namespace Walpy.VacancyApp.Server.Test.Models
 {
     public class HttpMessageModel
     {

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-using App.Server.Models.Attributes;
+using Walpy.VacancyApp.Server.Models.Attributes;
 
-namespace App.Server.Models.Requests
+namespace Walpy.VacancyApp.Server.Models.Requests
 {
     /// <summary>
     /// Запрос на добавление вакансии

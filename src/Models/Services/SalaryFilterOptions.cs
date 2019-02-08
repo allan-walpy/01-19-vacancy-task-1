@@ -1,4 +1,4 @@
-namespace App.Server.Models.Services
+namespace Walpy.VacancyApp.Server.Models.Services
 {
     public class SalaryFilterOptions
     {

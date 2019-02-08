@@ -1,9 +1,9 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 
-using App.Server.Models.Database;
+using Walpy.VacancyApp.Server.Models.Database;
 
-namespace App.Server.Services
+namespace Walpy.VacancyApp.Server.Services
 {
     public abstract class DatabaseTableService<TModel, TId>
         : IDatabaseTableService<TModel, TId>

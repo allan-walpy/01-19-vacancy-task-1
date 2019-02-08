@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-using App.Server.Models.Attributes;
+using Walpy.VacancyApp.Server.Models.Attributes;
 
-namespace App.Server.Models.Database
+namespace Walpy.VacancyApp.Server.Models.Database
 {
     /// <summary>
     /// Запрос на обновление данных вакансии

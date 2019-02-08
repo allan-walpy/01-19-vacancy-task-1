@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-namespace App.Server.Controllers.Web
+namespace Walpy.VacancyApp.Server.Controllers.Web
 {
     //? hides razor from api explorer;
     //? + swagger/openapi ignores controllers;

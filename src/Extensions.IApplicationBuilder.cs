@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-using App.Server.Middleware;
+using Walpy.VacancyApp.Server.Middleware;
 
-namespace App.Server
+namespace Walpy.VacancyApp.Server
 {
     partial class Extensions
     {

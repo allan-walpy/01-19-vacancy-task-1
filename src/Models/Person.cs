@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-using App.Server.Models.Attributes;
+using Walpy.VacancyApp.Server.Models.Attributes;
 
-namespace App.Server.Models
+namespace Walpy.VacancyApp.Server.Models
 {
     /// <summary>
     /// Представляет собой полное или частичное имя человека

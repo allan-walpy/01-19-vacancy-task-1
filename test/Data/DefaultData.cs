@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using App.Server.Models.Requests;
+using Walpy.VacancyApp.Server.Models.Requests;
 
-namespace App.Server.Test.Data
+namespace Walpy.VacancyApp.Server.Test.Data
 {
     public static class DefaultData
     {
         public static List<VacancyAddRequest> VacancyData
-            => App.Server.Test.Api.Vacancy.AddTest.Data201.Values.ToList();
+            => Walpy.VacancyApp.Server.Test.Api.Vacancy.AddTest.Data201.Values.ToList();
     }
 }

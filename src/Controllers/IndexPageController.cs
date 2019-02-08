@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace App.Server.Controllers
+namespace Walpy.VacancyApp.Server.Controllers
 {
     [ApiExplorerSettings(IgnoreApi = true)]
     public class IndexPageController : Controller

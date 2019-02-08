@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using App.Server.Models.Responses;
+using Walpy.VacancyApp.Server.Models.Responses;
 
-namespace App.Server.Controllers.Api
+namespace Walpy.VacancyApp.Server.Controllers.Api
 {
     [ApiController]
     [Route("api/[controller]/")]

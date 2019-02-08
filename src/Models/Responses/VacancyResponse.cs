@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace App.Server.Models.Responses
+namespace Walpy.VacancyApp.Server.Models.Responses
 {
     /// <summary>
     /// Информация о вакансии

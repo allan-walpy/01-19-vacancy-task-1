@@ -1,4 +1,4 @@
-namespace App.Server.Models.Web.Vacancy
+namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
 {
     public class IndexPageStatus
     {

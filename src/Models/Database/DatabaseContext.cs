@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-using App.Server.Models.Database.ValueGenerators;
+using Walpy.VacancyApp.Server.Models.Database.ValueGenerators;
 
-namespace App.Server.Models.Database
+namespace Walpy.VacancyApp.Server.Models.Database
 {
     public sealed class DatabaseContext : DbContext
     {
