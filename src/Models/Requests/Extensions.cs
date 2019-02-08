@@ -20,8 +20,7 @@ namespace App.Server.Models.Requests
                 Description = request.Description,
                 ContactPhone = request.ContactPhone,
                 ContactPerson = request.ContactPerson,
-                EmploymentType = request.EmploymentType
-                    .ConvertAll((item) => item.ToEmploymentType())
+                EmploymentType = request.EmploymentType.ToEmploymentType()
             };
 
             var organizationName = request.Organization;

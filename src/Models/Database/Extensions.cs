@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+using App.Server.Models.Responses;
+
 namespace App.Server.Models.Database
 {
     public static class Extensions
@@ -90,6 +92,66 @@ namespace App.Server.Models.Database
                 && (vacancy1.ContactPerson.IsIdenticPerson(vacancy2.ContactPerson))
                 && (vacancy2.EmploymentType.IsIdenticEmploymentTypes(vacancy2.EmploymentType))
                 && ComparePhones(vacancy1.ContactPhone, vacancy2.ContactPhone);
+        }
+
+        private static UpdateCommandModel<T> GenerateUpdate<T>(
+            T oldValue, T newValue)
+        {
+            if (oldValue?.Equals(newValue)
+                ?? newValue?.Equals(oldValue)
+                ?? true)
+            {
+                return null;
+            }
+
+            return new UpdateCommandModel<T>
+            {
+                IsModified = true,
+                Value = newValue
+            };
+        }
+
+        public static VacancyUpdateModel ToUpdateCommandBy(
+            this VacancyModel origin,
+            VacancyResponse updated)
+        {
+            var updateModel = new VacancyUpdateModel();
+
+            updateModel.Title = GenerateUpdate(origin.Title, updated.Title);
+            updateModel.Description = GenerateUpdate(origin.Description, updated.Description);
+            updateModel.Salary = GenerateUpdate(origin.Salary, updated.Salary);
+            updateModel.ContactPerson = GenerateUpdate(origin.ContactPerson, updated.ContactPerson);
+            updateModel.ContactPhone = GenerateUpdate(origin.ContactPhone, updated.ContactPhone);
+            updateModel.EmploymentType = GenerateUpdate(
+                origin.EmploymentType.ToList().ToStringName(),
+                updated.EmploymentType.ToList());
+
+            return updateModel;
+        }
+
+        private static void AddIfNotNull<T>(
+            this List<string> list,
+            UpdateCommandModel<T> updateCommand,
+            string fieldName)
+        {
+            if (updateCommand?.IsModified ?? false)
+            {
+                list.Add(fieldName);
+            }
+        }
+
+        public static List<string> GetUpdatedFieldsList(this VacancyUpdateModel updateModel)
+        {
+            List<string> result = new List<string>();
+
+            result.AddIfNotNull(updateModel.Title, nameof(updateModel.Title));
+            result.AddIfNotNull(updateModel.Salary, nameof(updateModel.Salary));
+            result.AddIfNotNull(updateModel.Description, nameof(updateModel.Description));
+            result.AddIfNotNull(updateModel.EmploymentType, nameof(updateModel.EmploymentType));
+            result.AddIfNotNull(updateModel.ContactPerson, nameof(updateModel.ContactPerson));
+            result.AddIfNotNull(updateModel.ContactPhone, nameof(updateModel.ContactPhone));
+
+            return result;
         }
     }
 }

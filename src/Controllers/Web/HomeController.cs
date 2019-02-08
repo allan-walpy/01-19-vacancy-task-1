@@ -9,6 +9,8 @@ namespace App.Server.Controllers.Web
     public class HomeController : WebController
     {
         public const string ErrorMessagesConfigKey = "message:error";
+        public const string HostConfigKey = "host";
+        public const string RedocUiVersionConfigKey = "redocUi";
 
         public HomeController(IConfiguration configuration)
             : base(configuration)
@@ -18,7 +20,15 @@ namespace App.Server.Controllers.Web
             => View();
 
         public ActionResult Help()
-            => View();
+        {
+            var model = new HelpConfigurationModel
+            {
+                Host = Configuration[HostConfigKey],
+                RedocVersion = Configuration[RedocUiVersionConfigKey]
+            };
+
+            return View(model);
+        }
 
         //? thnx to https://codedaze.io/global-error-handling-aspnet-core-mvc/ ;
         [Route("{id}")]

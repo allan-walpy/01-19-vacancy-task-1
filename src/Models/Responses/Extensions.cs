@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 
 using App.Server.Models.Database;
@@ -25,12 +24,25 @@ namespace App.Server.Models.Responses
                 Salary = model.Salary,
                 Description = model.Description,
                 Organization = organizationService.Get(model.OrganizationId).ToResponse(),
-                EmploymentType = model.EmploymentType?.ToList()
-                    ?.ConvertAll((item) => Enum.GetName(typeof(EmploymentType), item)),
+                EmploymentType = model.EmploymentType.ToList().ToStringName(),
                 ContactPerson = model.ContactPerson,
                 ContactPhone = model.ContactPhone,
                 LastUpdated = model.LastUpdated,
                 CreatedAt = model.CreatedAt
+            };
+
+        public static VacancyModel ToModel(this VacancyResponse modelResponse)
+            => new VacancyModel
+            {
+                Id = modelResponse.Id,
+                Title = modelResponse.Title,
+                Salary = modelResponse.Salary,
+                Description = modelResponse.Description,
+                OrganizationId = modelResponse.Organization.Id,
+                EmploymentType = modelResponse.EmploymentType.ToList().ToEmploymentType(),
+                ContactPerson = modelResponse.ContactPerson,
+                ContactPhone = modelResponse.ContactPhone,
+                CreatedAt = modelResponse.CreatedAt
             };
     }
 }

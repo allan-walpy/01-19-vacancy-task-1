@@ -14,6 +14,12 @@ namespace App.Server.Models
         public static List<EmploymentType> ToEmploymentType(this List<string> list)
             => list?.ConvertAll(ToEmploymentType);
 
+        public static string ToStringName(this EmploymentType value)
+            => Enum.GetName(typeof(EmploymentType), value);
+
+        public static List<string> ToStringName(this List<EmploymentType> employmentTypes)
+            => employmentTypes?.ConvertAll<string>(ToStringName);
+
         public static string GetOrganizationIdByName(
             this IDatabaseOrganizationService organizationService,
             string organizationName)

@@ -34,5 +34,26 @@ namespace App.Server.Models
         [ValidPersonName]
         [DisplayName("Отчество")]
         public string MiddleName { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var person = obj as Person;
+
+            if (object.Equals(obj, null)
+                || object.Equals(person, null))
+            {
+                return false;
+            }
+
+            return Name == person.Name
+                && Surname == person.Surname
+                && MiddleName == person.MiddleName;
+        }
+
+        public override int GetHashCode()
+            => ToString().GetHashCode();
+
+        public override string ToString()
+            => $"{Name} {Surname} {MiddleName}";
     }
 }
