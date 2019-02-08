@@ -39,7 +39,7 @@ namespace Walpy.VacancyApp.Server
 
             app.UseApiSpecification();
 
-            if (isDevelopment)
+            if (isDevelopment || _configuration.GetValue<bool>("debug"))
             {
                 app.UseDebugClient(_configuration);
             }
