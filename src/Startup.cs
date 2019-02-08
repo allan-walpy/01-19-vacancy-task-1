@@ -16,7 +16,7 @@ namespace Walpy.VacancyApp.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApiSpecification();
+            services.AddApiSpecification(_configuration);
             services.AddAppDatabase();
             services.AddAppMvc();
             services.ConfigureApiBehavior();

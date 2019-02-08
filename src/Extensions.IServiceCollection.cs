@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
@@ -18,7 +19,7 @@ namespace Walpy.VacancyApp.Server
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .Services;
 
-        public static IServiceCollection AddApiSpecification(this IServiceCollection services)
+        public static IServiceCollection AddApiSpecification(this IServiceCollection services, IConfiguration config)
         {
             //TODO:FIXME: get rid of magic strings;
             services.AddSwaggerGen(options =>
@@ -27,7 +28,7 @@ namespace Walpy.VacancyApp.Server
                     new OpenApiInfo
                     {
                         Title = "vacancy.app",
-                        Version = "1.0.0",
+                        Version = config["version"],
                         Description = "test task for managing vacancies",
                         Contact = new OpenApiContact
                         {
