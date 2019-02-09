@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -32,18 +33,32 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
             return regex.IsMatch(value);
         }
 
-        public override bool IsValid(object value)
+        protected override ValidationResult IsValid(object value, ValidationContext context)
         {
-            var name = value as string;
-            if (name == null)
+            if (value == null)
             {
-                //? validation on non string and null strings values is always true;
-                //? use Required on string values to make them not nullabale;
-                return true;
+                return ValidationResult.Success;
             }
 
-            return base.IsValid(name)
-                && Regexes.Any(name.IsValidByRegexPattern);
+            var name = value as string;
+
+            var baseResult = base.GetValidationResult(name, context);
+            if (baseResult.IsFailed())
+            {
+                return baseResult;
+            }
+
+            var config = Common.GetValidationConfiguration<ValidStringTypePropertyAttribute>(context, this);
+            var thisSuccess = name == null ? false : Regexes.Any(name.IsValidByRegexPattern);
+            var thisResult = thisSuccess
+                ? ValidationResult.Success :
+                new ValidationResult(
+                    String.Format(
+                        config["failed"],
+                        String.Join(", ", Regexes.ConvertAll((regex) => $"'{regex}'"))
+                ));
+
+            return thisResult;
         }
     }
 }

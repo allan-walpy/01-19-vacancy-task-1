@@ -5,17 +5,23 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
 {
     public class ValidGuidStringAttribute : ValidationAttribute
     {
-        public override bool IsValid(object value)
+        protected override ValidationResult IsValid(object value, ValidationContext context)
         {
-            var stringValue = value as string;
-            if (stringValue == null)
+            var config = Common.GetValidationConfiguration<ValidGuidStringAttribute>(context, this);
+            if (value == null)
             {
-                return false;
+                return new ValidationResult(config["failed:null"]);
             }
 
+            var stringValue = value as string;
             Guid guidParsed;
             var success = System.Guid.TryParse(stringValue, out guidParsed);
-            return success;
+            if (success)
+            {
+                return ValidationResult.Success;
+            }
+
+            return new ValidationResult(config["failed:format"]);
         }
     }
 }

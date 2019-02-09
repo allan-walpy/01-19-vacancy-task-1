@@ -1,5 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Walpy.VacancyApp.Server.Models.Attributes
 {
@@ -9,25 +12,27 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
             : base(enumType)
         { }
 
-        public override bool IsValid(object value)
+        protected override ValidationResult IsValid(object value, ValidationContext context)
         {
             if (value == null)
             {
-                return true;
+                return ValidationResult.Success;
             }
 
             var enumerableValue = value as IEnumerable;
-            if (enumerableValue == null)
-            {
-                return false;
-            }
-
-            var success = true;
+            var results = new List<ValidationResult>();
             foreach (var item in enumerableValue)
             {
-                success = success && base.IsValid(item);
+                results.Add(base.GetValidationResult(item, context));
             }
-            return success;
+
+            var success = !results.Any(Common.IsFailed);
+            if (success)
+            {
+                return ValidationResult.Success;
+            }
+
+            return results.First(Common.IsFailed);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Walpy.VacancyApp.Server
         public const string CommandLineArgsConfigPrefix = "--config_";
         public const char CommandLineArgsConfigValueSeparator = '=';
         public const string PrivateConfigFile = "appsettings.private.json";
+        public const string LocalizationConfigFile = "appsettings.language.ru-RU.json";
         public const string IsDevEnviromentConfigKey = "debug";
 
         public static string ExecutionPath
@@ -34,7 +35,13 @@ namespace Walpy.VacancyApp.Server
                     configBuilder.AddJsonFile(
                         PrivateConfigFile,
                         optional: false,
-                        reloadOnChange: true);
+                        reloadOnChange: false);
+
+                    configBuilder.AddJsonFile(
+                        LocalizationConfigFile,
+                        optional: false,
+                        reloadOnChange: true
+                    );
 
                     configBuilder.AddEnvironmentVariables(EnviromentConfigPrefix);
                     if (args.Length > 0)

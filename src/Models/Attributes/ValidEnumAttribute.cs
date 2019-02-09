@@ -12,17 +12,29 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
             EnumType = enumType;
         }
 
-        public override bool IsValid(object value)
+        protected override ValidationResult IsValid(object value, ValidationContext context)
         {
-            var stringValue = value as string;
-            if (stringValue == null)
+            if (value == null)
             {
-                return true;
+                return ValidationResult.Success;
             }
 
             object dummy;
+            var stringValue = value as string;
             var success = Enum.TryParse(EnumType, stringValue, ignoreCase: true, result: out dummy);
-            return success;
+            if (success)
+            {
+                return ValidationResult.Success;
+            }
+
+            var enumNames = EnumType.GetEnumNames();
+            var config = Common.GetValidationConfiguration<ValidEnumAttribute>(context, this);
+            return new ValidationResult(
+                String.Format(
+                    config["failed"],
+                    String.Join(
+                        ", ",
+                        enumNames)));
         }
     }
 }

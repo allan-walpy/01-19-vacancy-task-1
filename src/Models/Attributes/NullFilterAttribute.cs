@@ -9,30 +9,24 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
     {
         protected List<string> PropertiesName { get; }
 
+        /// <summary>
+        /// Creates base of Null Filter attribute
+        /// </summary>
+        /// <param name="otherPropertiesName">properties names filter applied to - if no specified, then all properties included</param>
         protected NullFilterAttribute(params string[] otherPropertiesName)
         {
-            if (otherPropertiesName.Length == 0)
-            {
-                throw new ArgumentOutOfRangeException(
-                    paramName: nameof(otherPropertiesName),
-                    actualValue: otherPropertiesName,
-                    message: "At least one property must be specified");
-            }
-
             var propertiesNames = new List<string>();
-            propertiesNames.AddRange(otherPropertiesName);
+
+            if (otherPropertiesName.Length > 0)
+            {
+                propertiesNames.AddRange(otherPropertiesName);
+            }
 
             PropertiesName = propertiesNames;
         }
 
-        protected List<PropertyInfo> GetPropertiesInfo(object value)
-        {
-            var valueType = value.GetType();
-            return PropertiesName.ConvertAll((name) => valueType.GetProperty(name));
-        }
-
         protected List<bool> GetPropertyIsNullList(object value)
-            => GetPropertiesInfo(value)
+            => Common.GetPropertiesInfo(value, PropertiesName)
                 .ConvertAll((propertyInfo) => IsExists(propertyInfo) && IsNull(propertyInfo, value));
 
         protected List<bool> GetPropertyIsNotNullList(object value)
@@ -44,6 +38,6 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
         protected bool IsNull(PropertyInfo info, object value)
             => info.GetValue(value) == null;
 
-        public override abstract bool IsValid(object value);
+        protected override abstract ValidationResult IsValid(object value, ValidationContext context);
     }
 }

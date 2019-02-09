@@ -64,11 +64,7 @@
 
     <!-- debug configuration; -->
     <PropertyGroup Condition="$(Configuration)=='Debug'">
-        <!-- disable documentation warnings; -->
-        <!-- 1591 - not xml documented member; -->
-        <!-- 1573 - not xml documented parametr; -->
         <NoWarn>1591;1573;</NoWarn>
-        <!-- define debug in code; -->
         <DefineConstants>DEBUG;</DefineConstants>
     </PropertyGroup>
 

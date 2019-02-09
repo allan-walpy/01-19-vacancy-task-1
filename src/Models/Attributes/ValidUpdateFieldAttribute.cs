@@ -14,38 +14,38 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
             Validation = validation;
         }
 
-        public override bool IsValid(object value)
+        protected override ValidationResult IsValid(object value, ValidationContext context)
         {
             if (value == null)
             {
-                return true;
+                return ValidationResult.Success;
             }
 
             //? I tried, but...
             //TODO:FIXME:;
+
             var updateString = value as UpdateCommandModel<string>;
-            var updateNullableDecimal = value as UpdateCommandModel<decimal?>;
-
-            return Validate(updateString) || Validate(updateNullableDecimal);
-        }
-
-        private bool Validate<T>(UpdateCommandModel<T> update)
-        {
-            if (update == null)
+            if (updateString != null)
             {
-                return false;
+                return Validate(updateString, context);
             }
 
-            if (!update.IsModified)
+            var updateNullableDecimal = value as UpdateCommandModel<decimal?>;
+            return Validate(updateNullableDecimal, context);
+        }
+
+        private ValidationResult Validate<T>(UpdateCommandModel<T> update, ValidationContext context)
+        {
+            if (update == null || !update.IsModified)
             {
-                return true;
+                return ValidationResult.Success;
             }
 
             var validation = Validation
                 .GetConstructor(new Type[] { })
                 .Invoke(new object[] { })
                 as ValidationAttribute;
-            return validation?.IsValid(update.Value) ?? false;
+            return validation?.GetValidationResult(update.Value, context);
         }
     }
 }

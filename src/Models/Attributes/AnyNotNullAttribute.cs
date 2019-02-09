@@ -1,3 +1,5 @@
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Walpy.VacancyApp.Server.Models.Attributes
@@ -8,17 +10,29 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
             : base(propertiesName)
         { }
 
-        public override bool IsValid(object value)
+        protected override ValidationResult IsValid(object value, ValidationContext context)
         {
             if (value == null)
             {
-                return true;
+                return ValidationResult.Success;
             }
 
-            var hasAnyProperty = GetPropertyIsNotNullList(value)
-                .Any((hasProperty) => hasProperty);
+            var notNullProperties = GetPropertyIsNotNullList(value);
+            if (notNullProperties.Any((item) => item))
+            {
+                return ValidationResult.Success;
+            }
 
-            return hasAnyProperty;
+            var config = Common.GetValidationConfiguration<AnyNotNullAttribute>(context, this);
+            var propertiesNames = Common.GetPropertiesInfo(value, PropertiesName)
+                .ConvertAll((info) => Common.GetDisplayName(info, info.Name));
+            return new ValidationResult(
+                String.Format(
+                    config["failed"],
+                    String.Join(
+                        ", ",
+                        propertiesNames))
+            );
         }
     }
 }

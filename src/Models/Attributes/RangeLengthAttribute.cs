@@ -3,27 +3,37 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Walpy.VacancyApp.Server.Models.Attributes
 {
-    public class RangeLengthAttribute : ValidationAttribute
+    public class RangeLengthAttribute : StringLengthAttribute
     {
-        public int Min { get; }
-        public int Max { get; }
-
         public RangeLengthAttribute(int min, int max)
+            : base(max)
         {
-            Max = Math.Max(max, min);
-            Min = Math.Min(max, min);
+            MinimumLength = min;
         }
 
-        public override bool IsValid(object value)
+        protected override ValidationResult IsValid(object value, ValidationContext context)
         {
             var stringValue = value as string;
             if (stringValue == null)
             {
-                return false;
+                return ValidationResult.Success;
             }
 
-            var length = stringValue.Length;
-            return length >= Min && length <= Max;
+            var success = base.IsValid(value);
+            if (success)
+            {
+                return ValidationResult.Success;
+            }
+
+            var config = Common.GetValidationConfiguration<RangeLengthAttribute>(context, this);
+            var message = config["failed"];
+            return new ValidationResult(
+                String.Format(
+                    message,
+                    MinimumLength,
+                    MaximumLength,
+                    context.DisplayName
+                ));
         }
     }
 }

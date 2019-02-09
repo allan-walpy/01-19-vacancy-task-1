@@ -1,15 +1,17 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Walpy.VacancyApp.Server.Models.Attributes
 {
     public class ValidGuidStringOrNullAttribute : ValidGuidStringAttribute
     {
-        public override bool IsValid(object value)
+        public new ValidationResult IsValid(object value, ValidationContext context)
         {
             if (value == null)
             {
-                return true;
+                return ValidationResult.Success;
             }
 
-            return base.IsValid(value);
+            return base.GetValidationResult(value, context);
         }
     }
 }

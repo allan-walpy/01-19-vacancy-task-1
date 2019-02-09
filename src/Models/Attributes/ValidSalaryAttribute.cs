@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Walpy.VacancyApp.Server.Models.Attributes
@@ -10,20 +11,23 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
         public const double Min = 0;
 
         public ValidSalaryAttribute()
-            : base(
-                minimum: Min,
-                maximum: Max
-            )
+            : base(Min, Max)
         { }
 
-        public override bool IsValid(object value)
+        protected override ValidationResult IsValid(object value, ValidationContext context)
         {
             if (value == null)
             {
-                return true;
+                return ValidationResult.Success;
             }
 
-            return base.IsValid(value);
+            var result = base.GetValidationResult(value, context);
+            if (result.IsFailed())
+            {
+                var config = Common.GetValidationConfiguration<ValidSalaryAttribute>(context, this);
+                result.ErrorMessage = String.Format(config["failed"], Minimum, Maximum);
+            }
+            return result;
         }
     }
 }
