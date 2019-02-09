@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+using Walpy.VacancyApp.Server.Models.Attributes;
 
 namespace Walpy.VacancyApp.Server.Models.Responses
 {
@@ -19,6 +22,8 @@ namespace Walpy.VacancyApp.Server.Models.Responses
         /// Название должности
         /// </summary>
         /// <example>Junior .Net Developer</example>
+        [Required]
+        [ValidVacancyTitle]
         [DisplayName("Наименование должности")]
         public string Title { get; set; }
 
@@ -26,6 +31,7 @@ namespace Walpy.VacancyApp.Server.Models.Responses
         /// Зарплата
         /// </summary>
         /// <example>15000</example>
+        [ValidSalary]
         [DisplayName("Зарплата")]
         public decimal? Salary { get; set; }
 
@@ -35,6 +41,8 @@ namespace Walpy.VacancyApp.Server.Models.Responses
         /// <example>
         /// ## Обязанности:\n  - разработка ПО;\n##Требования:\n  - знания C#;\n  - понимание основных принципов ООП;\n  - опыт работы с ASP.NET Core/MVC/WebAPI;\n  - опыт работы с Entity Framework Core;\n  - опыт работы с git;\n  - умение разбираться с технической англоязычной документацией;\n  - умение работать в команде;\n  - умение писать код, понятный другим разработчикам;
         /// </example>
+        [Required]
+        [ValidVacancyDescription]
         [DisplayName("Описание должности")]
         public string Description { get; set; }
 
@@ -48,6 +56,7 @@ namespace Walpy.VacancyApp.Server.Models.Responses
         /// Тип занятости
         /// </summary>
         /// <example>[ "FullTime", "FixedScheldure" ]</example>
+        [ValidEnumList(typeof(EmploymentType))]
         [DisplayName("Тип занятости")]
         public ICollection<string> EmploymentType { get; set; }
 
@@ -61,6 +70,7 @@ namespace Walpy.VacancyApp.Server.Models.Responses
         /// Контактный телефон
         /// </summary>
         /// <example>8 (4843) 22-33-42</example>
+        [ValidPhoneNumber]
         [DisplayName("Контактный телефон")]
         public string ContactPhone { get; set; }
 
