@@ -123,8 +123,8 @@ namespace Walpy.VacancyApp.Server.Models.Database
             updateModel.ContactPerson = GenerateUpdate(origin.ContactPerson, updated.ContactPerson);
             updateModel.ContactPhone = GenerateUpdate(origin.ContactPhone, updated.ContactPhone);
             updateModel.EmploymentType = GenerateUpdate(
-                origin.EmploymentType.ToList().ToStringName(),
-                updated.EmploymentType.ToList());
+                origin.EmploymentType?.ToList()?.ToStringName(),
+                updated.EmploymentType?.ToList());
 
             return updateModel;
         }

@@ -53,3 +53,7 @@ body {
 h1 .in-text-icon {
     height: 0.75em
 }
+
+.form-group button {
+    float: right;
+}
