@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -44,7 +43,8 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
         }
 
         public static bool IsSuccess(this ValidationResult result)
-            => result.ErrorMessage == ValidationResult.Success.ErrorMessage;
+            //? ValidationResult.Success equals to null (according to my debugger);
+            => result == null;
 
         public static bool IsFailed(this ValidationResult result)
             => !result.IsSuccess();

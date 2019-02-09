@@ -42,7 +42,7 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
 
             var name = value as string;
 
-            var baseResult = base.GetValidationResult(name, context);
+            var baseResult = base.IsValid(name, context);
             if (baseResult.IsFailed())
             {
                 return baseResult;

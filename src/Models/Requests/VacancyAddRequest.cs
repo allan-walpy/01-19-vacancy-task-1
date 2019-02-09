@@ -43,7 +43,7 @@ namespace Walpy.VacancyApp.Server.Models.Requests
         /// <summary>
         /// Тип занятости
         /// </summary>
-        /// <example>[ "FullTime", "FixedScheldure" ]</example>
+        /// <example>[ ]</example>
         [Required]
         [ValidEnumList(typeof(EmploymentType))]
         public List<string> EmploymentType { get; set; }

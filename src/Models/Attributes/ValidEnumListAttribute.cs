@@ -23,7 +23,7 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
             var results = new List<ValidationResult>();
             foreach (var item in enumerableValue)
             {
-                results.Add(base.GetValidationResult(item, context));
+                results.Add(base.IsValid(item, context));
             }
 
             var success = !results.Any(Common.IsFailed);

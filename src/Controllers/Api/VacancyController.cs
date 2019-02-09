@@ -82,18 +82,18 @@ namespace Walpy.VacancyApp.Server.Controllers.Api
         ///
         ///     POST /api/vacancy/
         ///     {
-        ///         Title: "Младший разработчик на платформе .Net (Junior .Net Developer)",
-        ///         Salary: 15000,
-        ///         Description: "Требуется разработчик для создания программы бегущих строк, прям как в матрице",
-        ///         Organization: "ООО \"Иновации Каждый День\"",
-        ///         EmploymentType: [
+        ///         "Title": "Младший разработчик на платформе .Net (Junior .Net Developer)",
+        ///         "Salary": 15000,
+        ///         "Description": "Требуется разработчик для создания программы бегущих строк, прям как в матрице",
+        ///         "Organization": "ООО \"Иновации Каждый День\"",
+        ///         "EmploymentType": [
         ///             "FullTime",
         ///             "RemoteMethod"
         ///         ],
-        ///         ContactPerson: {
+        ///         "ContactPerson": {
         ///             "Name": "Neo"
         ///         },
-        ///         ContactPhone: "8 (906) 645-13-27"
+        ///         "ContactPhone": "8 (906) 645-13-27"
         ///     }
         ///
         /// </remarks>

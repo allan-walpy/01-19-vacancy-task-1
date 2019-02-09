@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
@@ -37,7 +36,5 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
 
         protected bool IsNull(PropertyInfo info, object value)
             => info.GetValue(value) == null;
-
-        protected override abstract ValidationResult IsValid(object value, ValidationContext context);
     }
 }

@@ -21,13 +21,16 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
                 return ValidationResult.Success;
             }
 
-            var result = base.GetValidationResult(value, context);
-            if (result.IsFailed())
+            var result = base.IsValid(value, context);
+            if (result.IsSuccess())
             {
-                var config = Common.GetValidationConfiguration<ValidSalaryAttribute>(context, this);
-                result.ErrorMessage = String.Format(config["failed"], Minimum, Maximum);
+                return result;
             }
-            return result;
+
+            var config = Common.GetValidationConfiguration<ValidSalaryAttribute>(context, this);
+            return new ValidationResult(
+                String.Format(config["failed"], Minimum, Maximum)
+            );
         }
     }
 }
