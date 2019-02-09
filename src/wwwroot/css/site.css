@@ -49,3 +49,7 @@ body {
 .in-text-icon {
     height: 1.5em
 }
+
+h1 .in-text-icon {
+    height: 0.75em
+}

@@ -4,18 +4,18 @@
     ViewData["Title"] = "Vacancy";
 }
 
-<h1>Управление вакансиями</h1>
-
-<p>
-    <a asp-action="Create">Создать новую</a>
-</p>
-
 @if(Model.HasStatus)
 {
     <p class="@(Model.Status.Success ? "alert-success" : "alert-danger")">
         @(Model.Status.Message)
     </p>
 }
+
+<h1>Управление вакансиями</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Создать новую</a>
+</p>
 
 @if (@Model.Data.Count > 0)
 {
@@ -35,7 +35,9 @@
                 <th>
                     @Html.DisplayNameFor(model => data.CreatedAt)
                 </th>
-                <th></th>
+                <th>
+                    Управление
+                </th>
             </tr>
         </thead>
         <tbody>

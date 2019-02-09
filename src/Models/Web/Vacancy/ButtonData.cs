@@ -1,4 +1,4 @@
-namespace Walpy.VacancyApp.Server.Models.Web
+namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
 {
     public enum ButtonDataAction
     {

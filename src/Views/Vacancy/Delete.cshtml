@@ -8,11 +8,9 @@
 
 @Html.Partial("_ViewVacancy", @Model)
 
-<form asp-action="Delete">
-    <div class="form-gtoup">
-        <input type="hidden" asp-for="Id" />
-        <button type="submit" value="Delete" class="btn btn-primary btn-danger">Подтвердить удаление</button>
-    </div>
-</form>
-
 @Html.Partial("_BackNavigation")
+
+<form asp-action="Delete" class="d-inline">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" value="Delete" class="btn btn-primary btn-danger">Подтвердить удаление</button>
+</form>

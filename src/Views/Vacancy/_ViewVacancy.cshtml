@@ -1,8 +1,16 @@
 @model VacancyResponse
 
+@functions{
+    string[] GetDescriptionView(string descriptonValue)
+    {
+        return descriptonValue.Replace("\\n", "\n").Split('\n');
+    }
+}
+
+
 <p class="text-secondary">Внутренний идентификатор @(Model.Id)</p>
+
 <div>
-    <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
@@ -16,14 +24,22 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Salary)
         </dd>
+        <hr />
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
+            @{
+                var lines = GetDescriptionView(Model.Description);
+                foreach(var line in lines)
+                {
+                    @(line)<br />
+                }
+            }
         </dd>
+        <hr />
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Organization.Name)
+            @Html.DisplayNameFor(model => model.Organization)
         </dt>
         <dd class = "col-sm-10">
             @(Model.Organization.Name)
@@ -35,34 +51,24 @@
             @Html.DisplayFor(model => model.ContactPhone)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContactPerson.Name)
+            @Html.DisplayNameFor(model => model.ContactPerson)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ContactPerson.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContactPerson.Surname)
-        </dt>
-        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ContactPerson.Surname)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContactPerson.MiddleName)
-        </dt>
-        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ContactPerson.MiddleName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.LastUpdated)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastUpdated)
+            @(new DateTime(Model.LastUpdated).ToString())
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CreatedAt)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedAt)
+            @(new DateTime(Model.CreatedAt).ToString())
         </dd>
     </dl>
 </div>
