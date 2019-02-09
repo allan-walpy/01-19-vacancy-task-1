@@ -17,8 +17,7 @@ namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
                     {
                         Title = "Младший разработчик на .Net C# (Junior .Net C# Developer)",
                         Description = "Писать программы и т.д.",
-                        Organization = "OOO \"Not Suspicious\"",
-                        EmploymentType = new List<string> { "FullTime" }
+                        Organization = "OOO \"Not Suspicious\""
                     }
                 },
                 {
@@ -140,6 +139,26 @@ namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
                         Description = "Писать программы и т.д.",
                         Organization = "OOO \"Not Suspicious Gaming Industry LLC Never Trust Me 12345678\"",
                         EmploymentType = new List<string> { "FullTime" }
+                    }
+                },
+                {
+                    "EmploymentType.Null",
+                    new VacancyAddRequest
+                    {
+                        Title = "Младший разработчик на .Net C# (Junior .Net C# Developer)",
+                        Description = "Писать программы и т.д.",
+                        Organization = "OOO \"Not Suspicious\"",
+                        EmploymentType = null
+                    }
+                },
+                {
+                    "EmploymentType.Empty",
+                    new VacancyAddRequest
+                    {
+                        Title = "Младший разработчик на .Net C# (Junior .Net C# Developer)",
+                        Description = "Писать программы и т.д.",
+                        Organization = "OOO \"Not Suspicious\"",
+                        EmploymentType = new List<string> { }
                     }
                 },
                 {
@@ -599,31 +618,6 @@ namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
                             Description = "ОО",
                             Organization = "OOO \"CSharp proffesionals\"",
                             EmploymentType = new List<string> { "FullTime" }
-                        }
-                    }
-                },
-                {
-                    "EmploymentType.Required",
-                    new BadModelDataItem {
-                        InvalidFields = new [] { "EmploymentType" },
-                        RequestData = new
-                        {
-                            Title = "Младший разработчик на .Net C# (Junior .Net C# Developer)",
-                            Description = "Писать программы и т.д.",
-                            Organization = "OOO \"CSHARP proffesionals\""
-                        }
-                    }
-                },
-                {
-                    "EmploymentType.RequiredNotNull",
-                    new BadModelDataItem {
-                        InvalidFields = new [] { "EmploymentType" },
-                        RequestData = new VacancyAddRequest
-                        {
-                            Title = "Младший разработчик на .Net C# (Junior .Net C# Developer)",
-                            Description = "Писать программы и т.д.",
-                            Organization = "OOO \"CSHARP proffesionals\"",
-                            EmploymentType = null
                         }
                     }
                 },

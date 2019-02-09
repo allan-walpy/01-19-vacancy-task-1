@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Walpy.VacancyApp.Server.Models.Attributes;
 using Walpy.VacancyApp.Server.Models.Database;
 
@@ -20,7 +22,8 @@ namespace Walpy.VacancyApp.Server.Models.Requests
                 Description = request.Description,
                 ContactPhone = request.ContactPhone,
                 ContactPerson = request.ContactPerson,
-                EmploymentType = request.EmploymentType.ToEmploymentType()
+                EmploymentType = request.EmploymentType?.ToEmploymentType()
+                    ?? new List<EmploymentType>()
             };
 
             var organizationName = request.Organization;

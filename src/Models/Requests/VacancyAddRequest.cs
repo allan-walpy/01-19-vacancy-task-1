@@ -36,6 +36,7 @@ namespace Walpy.VacancyApp.Server.Models.Requests
         /// <summary>
         /// Название компании-работодателя
         /// </summary>
+        /// <example>ООО "Иновации Каждый День"</example>
         [Required]
         [ValidOrganizationName]
         public string Organization { get; set; }
@@ -43,8 +44,7 @@ namespace Walpy.VacancyApp.Server.Models.Requests
         /// <summary>
         /// Тип занятости
         /// </summary>
-        /// <example>[ ]</example>
-        [Required]
+        /// <example>null</example>
         [ValidEnumList(typeof(EmploymentType))]
         public List<string> EmploymentType { get; set; }
 
