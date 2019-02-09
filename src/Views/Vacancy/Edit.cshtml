@@ -85,8 +85,6 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">&lt;&dash; Назад к списку</a>
-</div>
+@Html.Partial("_BackNavigation")
 
-@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@Html.Partial("_ValidationScriptsPartial")

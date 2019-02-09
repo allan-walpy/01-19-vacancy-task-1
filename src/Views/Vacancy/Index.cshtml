@@ -54,9 +54,9 @@
                     @(new DateTime(item.CreatedAt).ToString())
                 </td>
                 <td>
-                    <a label="посмотреть" asp-controller="Vacancy" asp-action="View" asp-route-id="@item.Id"><img class="figure-img in-text-icon" src="~/web/static/icons/manage/view.svg" /></a>
-                    <a label="изменить" asp-action="Edit" asp-route-id="@item.Id"><img class="figure-img in-text-icon" src="~/web/static/icons/manage/edit.svg" /></a>
-                    <a label="удалить" asp-action="Delete" asp-route-id="@item.Id" class="text-danger"><img class="figure-img in-text-icon" src="~/web/static/icons/manage/delete.svg" /></a>
+                    @Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.View, VacancyId = @item.Id })
+                    @Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.Edit, VacancyId = @item.Id })
+                    @Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.Delete, VacancyId = @item.Id })
                 </td>
             </tr>
     }
