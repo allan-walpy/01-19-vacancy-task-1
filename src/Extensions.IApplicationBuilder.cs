@@ -33,7 +33,7 @@ namespace Walpy.VacancyApp.Server
             {
                 options.SwaggerEndpoint(
                     "/api/scheme.json",
-                    $"vacancy.app v{version}");
+                    $"Walpy.VacancyApp v{version}");
                 options.RoutePrefix = "api/debug";
                 options.DocExpansion(DocExpansion.List);
             });

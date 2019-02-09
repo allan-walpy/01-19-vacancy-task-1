@@ -27,7 +27,7 @@ namespace Walpy.VacancyApp.Server
                 options.SwaggerDoc("scheme",
                     new OpenApiInfo
                     {
-                        Title = "vacancy.app",
+                        Title = "Walpy.VacancyApp",
                         Version = config["version"],
                         Description = "test task for managing vacancies",
                         Contact = new OpenApiContact
