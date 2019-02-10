@@ -30,8 +30,8 @@ namespace Walpy.VacancyApp.Server.Models.Services
                 : new KeyWordsFilterOptions
                 {
                     SearchString = model.SearchString,
-                    Match = Enum.Parse<KeyWordsFilter.SearchStringMatch>(model.Match, ignoreCase: true),
-                    Scope = Enum.Parse<KeyWordsFilter.SearchStringScope>(model.Scope, ignoreCase: true)
+                    Match = model.Match,
+                    Scope = model.Scope
                 };
 
         public static SearchFilterOptions FromRequest(this SearchRequest request)

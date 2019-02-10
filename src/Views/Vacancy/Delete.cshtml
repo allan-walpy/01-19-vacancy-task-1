@@ -8,9 +8,9 @@
 
 @Html.Partial("_ViewVacancy", @Model)
 
-@Html.Partial("_BackNavigation")
+@Html.Partial("_BackNavigation", model: null)
 
-<form asp-action="Delete" class="d-inline">
+<form asp-action="Delete" class="d-inline" asp-antiforgery="true">
     <input type="hidden" asp-for="Id" />
     <button type="submit" value="Delete" class="btn btn-primary btn-danger">Подтвердить удаление</button>
 </form>

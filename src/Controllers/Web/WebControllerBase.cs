@@ -7,11 +7,11 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
     //? + swagger/openapi ignores controllers;
     [ApiExplorerSettings(IgnoreApi = true)]
     [Route("web/[controller]/[action]")]
-    public abstract class WebController : Controller
+    public abstract class WebControllerBase : Controller
     {
         protected IConfiguration Configuration { get; }
 
-        protected WebController(IConfiguration configuration)
+        protected WebControllerBase(IConfiguration configuration)
         {
             Configuration = configuration;
         }

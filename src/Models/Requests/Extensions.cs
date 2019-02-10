@@ -31,5 +31,40 @@ namespace Walpy.VacancyApp.Server.Models.Requests
 
             return result;
         }
+
+        public static SearchRequest ToNullable(this SearchRequest request)
+        {
+            if (request == null)
+            {
+                return null;
+            }
+
+            if (request.KeyWords != null
+                && request.KeyWords.SearchString == null)
+            {
+                request.KeyWords = null;
+            }
+
+            if (request.Organization != null
+                && request.Organization.Id == null
+                && request.Organization.Name == null)
+            {
+                request.Organization = null;
+            }
+
+            if (request.Salary != null
+                && request.Salary.Min == null
+                && request.Salary.Max == null)
+            {
+                request.Salary = null;
+            }
+
+            return request;
+        }
+
+        public static bool IsEmpty(this SearchRequest request)
+            => request.KeyWords == null
+                && request.Salary == null
+                && request.Organization == null;
     }
 }

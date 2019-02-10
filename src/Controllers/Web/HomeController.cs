@@ -6,7 +6,7 @@ using Walpy.VacancyApp.Server.Models.Web;
 
 namespace Walpy.VacancyApp.Server.Controllers.Web
 {
-    public class HomeController : WebController
+    public class HomeController : WebControllerBase
     {
         public const string ErrorMessagesConfigKey = "message:error";
         public const string HostConfigKey = "host";
@@ -16,10 +16,10 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
             : base(configuration)
         { }
 
-        public ActionResult Index()
+        public IActionResult Index()
             => View();
 
-        public ActionResult Help()
+        public IActionResult Help()
         {
             var model = new HelpConfigurationModel
             {
@@ -31,7 +31,7 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
         }
 
         [Route("{id}")]
-        public ActionResult Error(int id)
+        public IActionResult Error(int id)
         {
             var model = new ErrorModel
             {

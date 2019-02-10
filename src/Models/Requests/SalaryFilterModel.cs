@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 using Walpy.VacancyApp.Server.Models.Attributes;
 
 namespace Walpy.VacancyApp.Server.Models.Requests
@@ -6,6 +8,7 @@ namespace Walpy.VacancyApp.Server.Models.Requests
     /// Настройки фильтра поиска по зарплате
     /// </summary>
     [AnyNotNull(nameof(Max), nameof(Min))]
+    [DisplayName("Фильтр по зарплате")]
     public class SalaryFilterModel
     {
         /// <summary>
@@ -13,6 +16,7 @@ namespace Walpy.VacancyApp.Server.Models.Requests
         /// </summary>
         /// <example>60000</example>
         [ValidSalary]
+        [DisplayName("Макимальная зарплата")]
         public decimal? Max { get; set; }
 
         /// <summary>
@@ -20,6 +24,7 @@ namespace Walpy.VacancyApp.Server.Models.Requests
         /// </summary>
         /// <example>15000</example>
         [ValidSalary]
+        [DisplayName("Минимальная зарплата")]
         public decimal? Min { get; set; }
     }
 }

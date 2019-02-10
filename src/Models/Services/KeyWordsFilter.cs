@@ -3,25 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Walpy.VacancyApp.Server.Models.Database;
+using Walpy.VacancyApp.Server.Models.Requests;
 
 namespace Walpy.VacancyApp.Server.Models.Services
 {
     public class KeyWordsFilter : SearchFilterBase<KeyWordsFilterOptions>
     {
-        public enum SearchStringMatch
-        {
-            AnyWord,
-            AllWords,
-            ExactMatch
-        }
-
-        public enum SearchStringScope
-        {
-            Title,
-            Description,
-            Both
-        }
-
         protected List<String> KeyWords { get; }
         protected List<Func<VacancyModel, bool>> CheckMethods { get; }
 
@@ -39,11 +26,11 @@ namespace Walpy.VacancyApp.Server.Models.Services
         {
             switch (Options.Match)
             {
-                case SearchStringMatch.AllWords:
+                case KeyWordSearchMatch.AllWords:
                     return (item) => KeyWords.All((keyWord) => item.Contains(keyWord));
-                case SearchStringMatch.AnyWord:
+                case KeyWordSearchMatch.AnyWord:
                     return (item) => KeyWords.Any((keyWord) => item.Contains(keyWord));
-                case SearchStringMatch.ExactMatch:
+                case KeyWordSearchMatch.ExactMatch:
                     return (item) => item.Contains(Options.SearchString);
                 default:
                     throw new ArgumentOutOfRangeException(
@@ -61,14 +48,14 @@ namespace Walpy.VacancyApp.Server.Models.Services
             {
                 //? can't use two identic cases in switch (for `SearchStringScope.Both`);
                 //? see https://stackoverflow.com/a/44848705/6256541 ;
-                case var value when (value == SearchStringScope.Title || value == SearchStringScope.Both):
+                case var value when (value == KeyWordSearchScope.Title || value == KeyWordSearchScope.Both):
                     result.Add(
                         (vacancy) => matchMethod(vacancy.Title)
                     );
                     break;
 
-                case SearchStringScope.Description:
-                case SearchStringScope.Both:
+                case KeyWordSearchScope.Description:
+                case KeyWordSearchScope.Both:
                     result.Add(
                             (vacancy) => matchMethod(vacancy.Description)
                         );

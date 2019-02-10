@@ -12,7 +12,7 @@ using Walpy.VacancyApp.Server.Models.Web.Vacancy;
 
 namespace Walpy.VacancyApp.Server.Controllers.Web
 {
-    public partial class VacancyController : WebController
+    public partial class VacancyController : WebControllerBase
     {
         private VacancyControllerService VacancyService { get; }
         private IDatabaseOrganizationService OrganizationService { get; }

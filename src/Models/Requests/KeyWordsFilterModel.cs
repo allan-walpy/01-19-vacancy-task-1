@@ -1,7 +1,7 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 using Walpy.VacancyApp.Server.Models.Attributes;
-using Walpy.VacancyApp.Server.Models.Services;
 
 namespace Walpy.VacancyApp.Server.Models.Requests
 {
@@ -9,6 +9,7 @@ namespace Walpy.VacancyApp.Server.Models.Requests
     /// Настройки фильтра поиска по нанимателю
     /// </summary>
     [AnyNotNull(nameof(SearchString))]
+    [DisplayName("Фильтр по ключевым словам")]
     public class KeyWordsFilterModel
     {
         /// <summary>
@@ -16,22 +17,23 @@ namespace Walpy.VacancyApp.Server.Models.Requests
         /// </summary>
         /// <example>junior developer младший разработчик</example>
         [Required]
+        [DisplayName("Поисковая строка")]
         public string SearchString { get; set; }
 
         /// <summary>
-        /// Вид соответсвия
+        /// Тип совпадения
         /// </summary>
         /// <example>anyWord</example>
         [Required]
-        [ValidEnum(typeof(KeyWordsFilter.SearchStringMatch))]
-        public string Match { get; set; }
+        [DisplayName("Тип совпадения")]
+        public KeyWordSearchMatch Match { get; set; }
 
         /// <summary>
-        /// Поля по которым проводится поиск
+        /// Место поиска
         /// </summary>
         /// <example>title</example>
         [Required]
-        [ValidEnum(typeof(KeyWordsFilter.SearchStringScope))]
-        public string Scope { get; set; }
+        [DisplayName("Место поиска")]
+        public KeyWordSearchScope Scope { get; set; }
     }
 }

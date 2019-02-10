@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 using Walpy.VacancyApp.Server.Models.Attributes;
 
 namespace Walpy.VacancyApp.Server.Models.Requests
@@ -9,6 +11,7 @@ namespace Walpy.VacancyApp.Server.Models.Requests
     /// Указывается одно из полей, приоритет отдается полю <see cref="Id" />
     /// </remarks>
     [AnyNotNull(nameof(Id), nameof(Name))]
+    [DisplayName("Фильтр по работодателю")]
     public class OrganizationFilterModel
     {
         /// <summary>
@@ -16,6 +19,7 @@ namespace Walpy.VacancyApp.Server.Models.Requests
         /// </summary>
         /// <example>0e51bbe4-4b9f-4942-88c1-d7f657272099</example>
         [ValidGuidStringOrNull]
+        [DisplayName("Внутренний идентификатор")]
         public string Id { get; set; }
 
         /// <summary>
@@ -23,6 +27,7 @@ namespace Walpy.VacancyApp.Server.Models.Requests
         /// </summary>
         /// <example>ООО "Скучная компания"</example>
         [ValidOrganizationName]
+        [DisplayName("Наименование организации")]
         public string Name { get; set; }
     }
 }
