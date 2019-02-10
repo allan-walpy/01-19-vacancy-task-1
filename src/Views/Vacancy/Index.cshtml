@@ -1,7 +1,7 @@
 @model IndexDataModel
 
 @{
-    ViewData["Title"] = "Vacancy";
+    ViewData["Title"] = "Управление вакансиями";
 }
 
 @if(Model.HasStatus)
@@ -53,7 +53,7 @@
                     @Html.DisplayFor(modelItem => item.Organization.Name)
                 </td>
                 <td>
-                    @(new DateTime(item.CreatedAt).ToString())
+                    @(item.CreatedAt.ToViewDateTime())
                 </td>
                 <td>
                     @Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.View, VacancyId = @item.Id })

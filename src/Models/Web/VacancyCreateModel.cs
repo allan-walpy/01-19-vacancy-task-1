@@ -25,7 +25,6 @@ namespace Walpy.VacancyApp.Server.Models.Web
         [Display(Name = "Название оргнизации работодателя")]
         public string Organization { get; set; }
 
-        [Required]
         [Display(Name = "Тип занятости")]
         public List<EmploymentType> EmploymentType { get; set; }
 

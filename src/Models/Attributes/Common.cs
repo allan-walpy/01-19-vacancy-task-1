@@ -33,12 +33,12 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
             return propertiesName.ConvertAll((name) => valueType.GetProperty(name));
         }
 
-        public static string GetDisplayName(this PropertyInfo propertyInfo, string defaultValue = null)
+        public static string GetDisplayName(this MemberInfo memberInfo, string defaultValue = null)
         {
             var name = typeof(DisplayNameAttribute).Name;
-            return propertyInfo.CustomAttributes
+            return memberInfo.CustomAttributes
                 .FirstOrDefault((attribute) => attribute.AttributeType.Name == name)
-                ?.AttributeType?.Name
+                ?.ConstructorArguments?.First().Value as string
                 ?? defaultValue;
         }
 

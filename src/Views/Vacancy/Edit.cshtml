@@ -1,18 +1,13 @@
 @model VacancyResponse
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Изменение вакансии";
 }
 
 @functions{
     int GetDescriptionLineCount(string description)
     {
         return description.Split("\n").Length;
-    }
-
-    string MirrorStringChar(string value)
-    {
-        return value.Replace("`", "\\`");
     }
 }
 
@@ -23,9 +18,10 @@
 <form asp-action="Edit">
     <div class="form-group">
         <input type="hidden" asp-for="Id" class="form-control" disabled />
-        <input type="hidden" asp-for="Organization.Id" disabled />
+        <input type="hidden" asp-for="Organization" disabled />
     </div>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
     <div class="form-group">
         <table class="table">
             <tbody>
@@ -57,34 +53,43 @@
             </tbody>
         </table>
     </div>
-    <div class="form-group">
-        <label asp-for="Organization" class="control-label"></label>
-        <input asp-for="Organization.Name" class="form-control" disabled />
-    </div>
-    <div class="form-group">
-        <label asp-for="Description" class="control-label"></label>
-        @{
-            @Html.TextAreaFor(
-                model => Model.Description,
-                rows: GetDescriptionLineCount(Model.Description),
-                columns: 0,
-                htmlAttributes: new {
-                    Class = "form-control" });
-        }
-        </textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
+
     <div class="form-group">
         <table class="table">
-            <thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label asp-for="Organization" class="control-label"></label>
+                        <input asp-for="Organization.Name" class="form-control" disabled />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Description" class="control-label"></label>
+                        @{
+                            @Html.TextAreaFor(
+                                model => Model.Description,
+                                rows: GetDescriptionLineCount(Model.Description),
+                                columns: 0,
+                                htmlAttributes: new {
+                                    Class = "form-control" });
+                        }
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-group">
+        <table class="table">
+            <tbody>
                 <tr>
                     <td colspan="3">
                         <label asp-for="ContactPerson" class="control-label "></label>
                         <span asp-validation-for="ContactPerson" class="text-danger"></span>
                     </td>
                 </tr>
-            </thead>
-            <tbody>
                 <tr>
                     <td>
                         <label asp-for="ContactPerson.Name" class="control-label"></label>
@@ -102,30 +107,36 @@
                         <span asp-validation-for="ContactPerson.MiddleName" class="text-danger"></span>
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="form-group">
+                            <label asp-for="ContactPhone" class="control-label"></label>
+                            <input asp-for="ContactPhone" class="form-control" />
+                            <span asp-validation-for="ContactPhone" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
-    <div class="form-group">
-        <label asp-for="ContactPhone" class="control-label"></label>
-        <input asp-for="ContactPhone" class="form-control" />
-        <span asp-validation-for="ContactPhone" class="text-danger"></span>
-    </div>
+
     <div class="form-group">
         <table class="table">
             <tbody>
                 <tr>
                     <td>
                         <label asp-for="CreatedAt" class="control-label"></label>:
-                        @(new DateTime(Model.CreatedAt).ToString())
+                        @(Model.CreatedAt.ToViewDateTime())
                     </td>
                     <td>
                         <label asp-for="LastUpdated" class="control-label"></label>:
-                        @(new DateTime(Model.LastUpdated).ToString())
+                        @(Model.LastUpdated.ToViewDateTime())
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+
     <div class="form-group">
         @Html.Partial("_BackNavigation")
         <button type="submit" value="Update" class="btn btn-primary">Сохранить</button>

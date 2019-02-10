@@ -1,73 +1,90 @@
+@using Walpy.VacancyApp.Server.Models;
+
 @model VacancyResponse
 
 @functions{
     string[] GetDescriptionView(string descriptonValue)
     {
-        return descriptonValue.Replace("\\n", "\n").Split('\n');
+        return descriptonValue.Split('\n');
     }
 }
 
 @Html.Partial("_IdAnnotation", @Model.Id)
 
-<div>
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Salary)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Salary)
-        </dd>
-        <hr />
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @{
-                var lines = GetDescriptionView(Model.Description);
-                foreach(var line in lines)
-                {
-                    @(line)<br />
+<table class="table">
+    <tbody>
+        <tr>
+            <th>@(Html.DisplayNameFor(model => model.Title))</th>
+            <td>@(Html.DisplayFor(model => model.Title))</td>
+        </tr>
+        <tr>
+            <th>@(Html.DisplayNameFor(model => model.Salary))</th>
+            <td>@(Html.DisplayFor(model => model.Salary))</td>
+        </tr>
+        <tr>
+            <th>@(Html.DisplayNameFor(model => model.EmploymentType))</th>
+            <td>
+                @{
+                    if(Model.EmploymentType == null || Model.EmploymentType.Count == 0)
+                    {
+                        <i>ничего не указано</i>
+                    }
+                    else
+                    {
+                        @(String.Join(
+                            ", ",
+                            Model.EmploymentType.ToList().ConvertAll((enumValue) => enumValue.ToDisplayName(typeof(EmploymentType)))
+                        ))
+                    }
                 }
-            }
-        </dd>
-        <hr />
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Organization)
-        </dt>
-        <dd class = "col-sm-10">
-            @(Model.Organization.Name)
-        </dd class>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContactPhone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContactPhone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContactPerson)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContactPerson.Name)
-            @Html.DisplayFor(model => model.ContactPerson.Surname)
-            @Html.DisplayFor(model => model.ContactPerson.MiddleName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastUpdated)
-        </dt>
-        <dd class = "col-sm-10">
-            @(new DateTime(Model.LastUpdated).ToString())
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-        <dd class = "col-sm-10">
-            @(new DateTime(Model.CreatedAt).ToString())
-        </dd>
-    </dl>
-</div>
+            </td>
+        </tr>
+        <tr>
+            <th>@(Html.DisplayNameFor(model => model.Organization))</th>
+            <td>@(Model.Organization.Name)</td>
+        </tr>
+        <tr>
+            <th>@(Html.DisplayNameFor(model => model.Description))</th>
+            <td>
+                @{
+                    var lines = GetDescriptionView(Model.Description);
+                    foreach(var line in lines)
+                    {
+                        @(line)<br />
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>@(Html.DisplayNameFor(model => model.ContactPhone))</th>
+            <td>@(Html.DisplayFor(model => model.ContactPhone))</td>
+        </tr>
+        <tr>
+            <th>@(Html.DisplayNameFor(model => model.ContactPerson))</th>
+            <td>
+                @{
+                    var fullName = Model.ContactPerson.Name;
+
+                    if (Model.ContactPerson.Surname != null)
+                    {
+                        fullName += $" {Model.ContactPerson.Surname}";
+                    }
+
+                    if (Model.ContactPerson.MiddleName != null)
+                    {
+                        fullName += $" {Model.ContactPerson.MiddleName}";
+                    }
+
+                    @(fullName)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @Html.DisplayNameFor(model => model.LastUpdated): @(Model.LastUpdated.ToViewDateTime())
+                <br />
+                @Html.DisplayNameFor(model => model.CreatedAt): @(Model.CreatedAt.ToViewDateTime())
+            </td>
+        </tr>
+    </tbody>
+</table>

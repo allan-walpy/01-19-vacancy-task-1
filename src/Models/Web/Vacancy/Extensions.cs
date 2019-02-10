@@ -1,5 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+
+using Walpy.VacancyApp.Server.Models.Attributes;
 
 namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
 {
@@ -23,6 +27,21 @@ namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
                 Success = modelData.Success,
                 Message = String.Format(modelData.Message, model.VacancyId)
             };
+        }
+
+        public static string ToViewDateTime(this long timestamp)
+        {
+            var dateTime = DateTimeOffset.FromUnixTimeMilliseconds(timestamp).DateTime;
+            var date = dateTime.ToLongDateString();
+            var time = dateTime.ToLongTimeString();
+            return $"{date} {time}";
+        }
+
+        public static string ToDisplayName(this string stringEnumValue, Type enumType)
+        {
+            var value = Enum.Parse(enumType, stringEnumValue);
+            var fieldInfo = enumType.GetField(stringEnumValue);
+            return fieldInfo.GetDisplayName();
         }
     }
 }

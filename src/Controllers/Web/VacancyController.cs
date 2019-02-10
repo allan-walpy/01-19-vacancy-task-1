@@ -106,6 +106,9 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
         {
             if (!ModelState.IsValid)
             {
+                var vacancy = VacancyService.Get(vacancyData.Id);
+                //TODO:FIXME:;
+                vacancyData.Organization = OrganizationService.Get(vacancy.OrganizationId).ToResponse();
                 return View(vacancyData);
             }
 
