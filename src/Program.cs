@@ -14,6 +14,7 @@ namespace Walpy.VacancyApp.Server
         public const string PrivateConfigFile = "appsettings.private.json";
         public const string LocalizationConfigFile = "appsettings.language.ru-RU.json";
         public const string IsDevEnviromentConfigKey = "debug";
+        public const string UseDebugClientConfigKey = "debugClient";
 
         public static string ExecutionPath
             => Path.GetDirectoryName(typeof(Program).Assembly.Location);
