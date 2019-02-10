@@ -24,6 +24,26 @@ namespace Walpy.VacancyApp.Server.Middleware
             try
             {
                 await Next(context);
+                if (!IsApiPath(context))
+                {
+                    return;
+                }
+
+                var statusCode = context.Response.StatusCode;
+                if (statusCode == 400
+                    || statusCode == 404
+                    || statusCode == 409)
+                {
+                    var body = context.Items["bodyModel"];
+                    if (body == null)
+                    {
+                        body = new
+                        {
+                            StatusCode = statusCode
+                        };
+                    }
+                    WriteApiResponse(context, body).Wait();
+                }
             }
             catch (Exception error)
             {
@@ -38,31 +58,30 @@ namespace Walpy.VacancyApp.Server.Middleware
 
         private static bool HandleError(HttpContext context, Exception exception)
         {
-            if (!IsApiException(context))
+            if (!IsApiPath(context))
             {
                 return false;
             }
 
-            WriteApiResponse(context, exception).Wait();
+
+            var response = new ErrorResponse
+            {
+                Message = exception.Message,
+                Source = exception.Source,
+                Code = exception.HResult
+            };
+            context.Response.StatusCode = 500;
+            WriteApiResponse(context, response).Wait();
             return true;
         }
 
-        private static bool IsApiException(HttpContext context)
+        private static bool IsApiPath(HttpContext context)
             => context.Request.Path.StartsWithSegments(new PathString("/api"));
 
-        private static Task WriteApiResponse(HttpContext context, Exception exception)
+        private static Task WriteApiResponse(HttpContext context, object data)
         {
-            context.Response.StatusCode = 500;
-            var response = JsonConvert.SerializeObject(
-                new ErrorResponse
-                {
-                    Message = exception.Message,
-                    Source = exception.Source,
-                    Code = exception.HResult
-                });
-
+            var response = JsonConvert.SerializeObject(data);
             context.Response.ContentType = "application/json";
-
             return context.Response.WriteAsync(response);
         }
     }

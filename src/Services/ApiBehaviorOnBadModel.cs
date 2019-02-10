@@ -21,12 +21,14 @@ namespace Walpy.VacancyApp.Server.Services
 
             var invalidFields = errorDictionary.Select(e => e.Key).ToList();
 
-            return new BadRequestObjectResult(
-                new BadModelResponse
-                {
-                    Errors = errorDictionary,
-                    Fields = invalidFields
-                });
+            var response = new BadModelResponse
+            {
+                Errors = errorDictionary,
+                Fields = invalidFields
+            };
+
+            context.HttpContext.Items["bodyModel"] = response;
+            return new BadRequestObjectResult(response);
         }
     }
 }
