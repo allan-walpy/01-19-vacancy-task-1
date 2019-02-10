@@ -10,9 +10,17 @@ namespace Walpy.VacancyApp.Server
     {
         public const string OpenApiPathTemplate = "/api/{documentName}.json";
 
-        public static IApplicationBuilder UseAppErrorHandling(this IApplicationBuilder app)
+        public static IApplicationBuilder UseAppErrorHandling(this IApplicationBuilder app, bool isDebug)
         {
-            app.UseStatusCodePagesWithReExecute("/web/Home/Error/{0}");
+            if (isDebug)
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseStatusCodePagesWithReExecute("/web/Home/Error/{0}");
+            }
+
             app.UseMiddleware<ApiErrorHandlingMiddleware>();
             return app;
         }

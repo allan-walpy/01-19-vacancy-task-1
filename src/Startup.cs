@@ -28,15 +28,7 @@ namespace Walpy.VacancyApp.Server
         {
             var isDevelopment = env.IsDevelopment();
 
-            if (isDevelopment)
-            {
-                //app.UseDeveloperExceptionPage();
-                app.UseAppErrorHandling();
-            }
-            else
-            {
-                app.UseAppErrorHandling();
-            }
+            app.UseAppErrorHandling(isDevelopment);
 
             app.UseApiSpecification();
 

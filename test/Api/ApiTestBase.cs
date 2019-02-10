@@ -118,7 +118,7 @@ namespace Walpy.VacancyApp.Server.Test.Api
             }
 
             Assert.Equal(expected.Title, actual.Title);
-            Assert.Equal(expected.Status, actual.Status);
+            Assert.Equal(expected.StatusCode, actual.StatusCode);
             if (expected.Fields != null)
             {
                 AssertList<string>(expected.Fields, actual.Fields);

@@ -30,12 +30,7 @@ namespace Walpy.VacancyApp.Server.Middleware
                 }
 
                 var statusCode = context.Response.StatusCode;
-                if (statusCode == 400
-                    || statusCode == 404
-                    || statusCode == 409)
-                {
-                    WriteApiResponse(context).Wait();
-                }
+                WriteApiResponse(context).Wait();
             }
             catch (Exception error)
             {
