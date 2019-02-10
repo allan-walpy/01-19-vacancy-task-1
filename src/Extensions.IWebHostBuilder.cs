@@ -6,7 +6,7 @@ namespace Walpy.VacancyApp.Server
     {
         public static IWebHostBuilder DetectEnviroment(this IWebHostBuilder hostBuilder)
         {
-            var enviroment = EnvironmentName.Staging;
+            var enviroment = EnvironmentName.Production;
 #if DEBUG
             enviroment = EnvironmentName.Development;
 #endif

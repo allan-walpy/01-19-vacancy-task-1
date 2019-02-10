@@ -1,6 +1,9 @@
 version: '{build}'
 image: Visual Studio 2019 Preview
 
+enviroment:
+  SHORT_TEST: true
+
 init:
   - cmd: dotnet --version
 before_build:

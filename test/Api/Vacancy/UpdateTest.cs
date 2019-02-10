@@ -18,7 +18,7 @@ namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
         public const string Letters = "абвгдеёжзи";
         public static BaseTheoryData<int, object> DatabaseItemsId
             => new BaseTheoryData<int, object>(
-                Enumerable.Range(0, 2));
+                Enumerable.Range(0, Common.GetTestsCount()));
 
         public override HttpMethod Method => HttpMethod.Patch;
 
