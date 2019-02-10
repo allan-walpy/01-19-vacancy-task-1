@@ -23,7 +23,11 @@ namespace Walpy.VacancyApp.Server.Services
         public VacancyModel Get(string id)
         {
             var result = VacancyService.Get(id);
-            result.Organization = OrganizationService.Get(result.OrganizationId);
+            if (result != null)
+            {
+                result.Organization = OrganizationService.Get(result.OrganizationId);
+            }
+
             return result;
         }
 
