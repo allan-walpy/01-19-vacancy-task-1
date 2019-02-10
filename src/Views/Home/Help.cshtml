@@ -7,7 +7,7 @@
 
 @{
     var scriptPath = $"https://{Model.Host}/web/static/js/redoc.standalone.js";
-    if (Model.RedocVersion != null && Model.RedocVersion != "none")
+    if (Model.RedocVersion != null && Model.RedocVersion != "none" && Model.RedocVersion != "")
     {
         scriptPath = $"https://cdn.jsdelivr.net/npm/redoc@{Model.RedocVersion}/bundles/redoc.standalone.js";
     }
