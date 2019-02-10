@@ -1,7 +1,7 @@
 version: '{build}'
 image: Visual Studio 2019 Preview
 
-enviroment:
+environment:
   SHORT_TEST: true
 
 init:
