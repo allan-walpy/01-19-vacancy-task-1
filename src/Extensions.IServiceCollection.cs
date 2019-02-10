@@ -41,7 +41,7 @@ namespace Walpy.VacancyApp.Server
                         Contact = new OpenApiContact
                         {
                             Name = contact[nameof(OpenApiContact.Name)],
-                            Url = new Uri(contact[nameof(OpenApiInfo.Contact)]),
+                            Url = new Uri(contact[nameof(OpenApiContact.Url)]),
                             Email = contact[nameof(OpenApiContact.Email)]
                         },
                         License = new OpenApiLicense

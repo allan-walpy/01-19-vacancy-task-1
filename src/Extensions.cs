@@ -9,6 +9,6 @@ namespace Walpy.VacancyApp.Server
             => (new Regex(pattern)).IsMatch(value);
 
         public static string GetOpenApiPath(IConfiguration config)
-            => OpenApiPathTemplate.Replace("documentName", config[OpenApiNameConfigKey]);
+            => OpenApiPathTemplate.Replace("{documentName}", config[OpenApiNameConfigKey]);
     }
 }

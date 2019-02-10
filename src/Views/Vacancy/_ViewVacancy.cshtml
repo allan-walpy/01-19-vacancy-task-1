@@ -80,10 +80,19 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2">
-                @Html.DisplayNameFor(model => model.LastUpdated): @(Model.LastUpdated.ToViewDateTime())
-                <br />
-                @Html.DisplayNameFor(model => model.CreatedAt): @(Model.CreatedAt.ToViewDateTime())
+            <th>
+                @(Html.DisplayNameFor(model => model.LastUpdated))
+            </th>
+            <td>
+                @(Model.LastUpdated.ToViewDateTime())
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @(Html.DisplayNameFor(model => model.CreatedAt)):
+            </th>
+            <td>
+                @(Model.CreatedAt.ToViewDateTime())
             </td>
         </tr>
     </tbody>
