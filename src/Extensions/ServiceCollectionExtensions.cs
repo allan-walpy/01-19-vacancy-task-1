@@ -11,8 +11,6 @@ namespace Walpy.VacancyApp.Server.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-
-
         public static IServiceCollection AddAppMvc(this IServiceCollection services)
             => services.AddMvc(options =>
                 {

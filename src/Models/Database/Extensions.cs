@@ -122,5 +122,11 @@ namespace Walpy.VacancyApp.Server.Models.Database
 
             return updateModel;
         }
+
+        public static List<VacancyModel> SortByLastUpdatedDescending(this List<VacancyModel> list)
+        {
+            list.Sort((vacancy1, vacancy2) => (int)(vacancy2.LastUpdated - vacancy1.LastUpdated));
+            return list;
+        }
     }
 }

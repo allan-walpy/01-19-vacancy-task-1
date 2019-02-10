@@ -12,6 +12,17 @@ namespace Walpy.VacancyApp.Server.Test.Instance
     {
         public const string DbInMemmoryConfigKey = "database:test";
 
+        private static readonly Dictionary<string, string> DefaultAppConfig
+            = new Dictionary<string, string>
+            {
+                {
+                    DbInMemmoryConfigKey, "true"
+                },
+                {
+                    Program.IsDevEnviromentConfigKey, "false"
+                }
+            };
+
         public int Port { get; }
         protected IWebHost App { get; }
 
@@ -32,29 +43,8 @@ namespace Walpy.VacancyApp.Server.Test.Instance
                 })
                 .ConfigureAppConfiguration((configBuilder) =>
                 {
-                    configBuilder.AddInMemoryCollection(
-                        new Dictionary<string, string>
-                        {
-                            {
-                                DbInMemmoryConfigKey, "true"
-                            },
-                            {
-                                Program.IsDevEnviromentConfigKey, "false"
-                            }
-                        }
-                    );
-
-                    //? disable `ReloadOnChange`, as it may trigger exception:
-                    //?  `System.IO.IOException : The configured user limit (128) on the number of inotify instances has been reached.`
-                    //? om linux systems;
-                    foreach (var configSource in configBuilder.Sources)
-                    {
-                        var configFileSource = configSource as JsonConfigurationSource;
-                        if (configFileSource != null)
-                        {
-                            configFileSource.ReloadOnChange = false;
-                        }
-                    }
+                    configBuilder.AddInMemoryCollection(DefaultAppConfig);
+                    DisableReloadOnChange(configBuilder.Sources);
                 })
                 .ConfigureKestrel(options =>
                 {
@@ -62,6 +52,18 @@ namespace Walpy.VacancyApp.Server.Test.Instance
                 });
 
             return appBuilder;
+        }
+
+        private void DisableReloadOnChange(IList<IConfigurationSource> sources)
+        {
+            foreach (var source in sources)
+            {
+                var configFileSource = source as JsonConfigurationSource;
+                if (configFileSource != null)
+                {
+                    configFileSource.ReloadOnChange = false;
+                }
+            }
         }
 
         public void Dispose()

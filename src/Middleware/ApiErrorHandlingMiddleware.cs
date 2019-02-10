@@ -29,7 +29,6 @@ namespace Walpy.VacancyApp.Server.Middleware
                     return;
                 }
 
-                var statusCode = context.Response.StatusCode;
                 WriteApiResponse(context).Wait();
             }
             catch (Exception error)
