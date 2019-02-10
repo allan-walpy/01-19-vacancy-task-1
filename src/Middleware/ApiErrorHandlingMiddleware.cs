@@ -50,7 +50,6 @@ namespace Walpy.VacancyApp.Server.Middleware
                 return false;
             }
 
-
             var response = new ErrorResponse
             {
                 Message = exception.Message,
