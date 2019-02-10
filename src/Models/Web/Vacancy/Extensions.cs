@@ -36,10 +36,6 @@ namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
         }
 
         public static string ToDisplayName(this string stringEnumValue, Type enumType)
-        {
-            var value = Enum.Parse(enumType, stringEnumValue);
-            var fieldInfo = enumType.GetField(stringEnumValue);
-            return fieldInfo.GetDisplayName();
-        }
+            => enumType.GetField(stringEnumValue).GetDisplayName();
     }
 }

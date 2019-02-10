@@ -39,13 +39,7 @@ namespace Walpy.VacancyApp.Server.Models.Database
             => item1 == null || item2 == null;
 
         private static bool IsIdenticPerson(this Person person1, Person person2)
-        {
-            return IsBothNull(person1, person2)
-                || (!HasNull(person1, person2)
-                    && person1.Name == person2.Name
-                    && person1.Surname == person2.Surname
-                    && person1.MiddleName == person2.MiddleName);
-        }
+            => person1 == null ? person2 == null : person1.Equals(person2);
 
         private static bool IsIdenticEmploymentTypes(
             this ICollection<EmploymentType> employmentTypes1,
@@ -127,17 +121,6 @@ namespace Walpy.VacancyApp.Server.Models.Database
                 updated.EmploymentType?.ToList());
 
             return updateModel;
-        }
-
-        private static void AddIfNotNull<T>(
-            this List<string> list,
-            UpdateCommandModel<T> updateCommand,
-            string fieldName)
-        {
-            if (updateCommand?.IsModified ?? false)
-            {
-                list.Add(fieldName);
-            }
         }
     }
 }

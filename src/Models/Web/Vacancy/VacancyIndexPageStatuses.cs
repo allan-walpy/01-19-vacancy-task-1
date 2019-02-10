@@ -4,7 +4,7 @@ using Walpy.VacancyApp.Server.Controllers.Web;
 
 namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
 {
-    public class VacancyIndexPageStatuses
+    public static class VacancyIndexPageStatuses
     {
         public const string NotFoundKey = "404";
 

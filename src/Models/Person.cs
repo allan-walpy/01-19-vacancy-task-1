@@ -1,5 +1,6 @@
-using System.ComponentModel.DataAnnotations;
+using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 using Walpy.VacancyApp.Server.Models.Attributes;
 
@@ -8,7 +9,7 @@ namespace Walpy.VacancyApp.Server.Models
     /// <summary>
     /// Представляет собой полное или частичное имя человека
     /// </summary>
-    public class Person
+    public class Person : IEquatable<Person>
     {
         /// <summary>
         /// Имя
@@ -38,17 +39,15 @@ namespace Walpy.VacancyApp.Server.Models
         public override bool Equals(object obj)
         {
             var person = obj as Person;
-
-            if (object.Equals(obj, null)
-                || object.Equals(person, null))
-            {
-                return false;
-            }
-
-            return Name == person.Name
-                && Surname == person.Surname
-                && MiddleName == person.MiddleName;
+            return Equals(person);
         }
+
+        public bool Equals(Person person)
+            => person == null
+                ? false
+                : Name == person.Name
+                    && Surname == person.Surname
+                    && MiddleName == person.MiddleName;
 
         public override int GetHashCode()
             => ToString().GetHashCode();

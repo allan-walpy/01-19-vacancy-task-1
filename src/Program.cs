@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Walpy.VacancyApp.Server
 {
-    public class Program
+    public static class Program
     {
         public const string EnviromentConfigPrefix = "VACANCY_APP_";
         public const string CommandLineArgsConfigPrefix = "--config_";
