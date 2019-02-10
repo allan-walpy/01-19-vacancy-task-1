@@ -30,7 +30,8 @@ namespace Walpy.VacancyApp.Server
 
             if (isDevelopment)
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseAppErrorHandling();
             }
             else
             {

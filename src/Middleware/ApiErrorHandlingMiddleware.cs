@@ -34,15 +34,7 @@ namespace Walpy.VacancyApp.Server.Middleware
                     || statusCode == 404
                     || statusCode == 409)
                 {
-                    var body = context.Items["bodyModel"];
-                    if (body == null)
-                    {
-                        body = new
-                        {
-                            StatusCode = statusCode
-                        };
-                    }
-                    WriteApiResponse(context, body).Wait();
+                    WriteApiResponse(context).Wait();
                 }
             }
             catch (Exception error)
@@ -78,10 +70,9 @@ namespace Walpy.VacancyApp.Server.Middleware
         private static bool IsApiPath(HttpContext context)
             => context.Request.Path.StartsWithSegments(new PathString("/api"));
 
-        private static Task WriteApiResponse(HttpContext context, object data)
+        private static Task WriteApiResponse(HttpContext context, object data = null)
         {
-            var response = JsonConvert.SerializeObject(data);
-            context.Response.ContentType = "application/json";
+            var response = data == null ? String.Empty : JsonConvert.SerializeObject(data);
             return context.Response.WriteAsync(response);
         }
     }

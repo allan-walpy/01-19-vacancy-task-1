@@ -26,8 +26,6 @@ namespace Walpy.VacancyApp.Server.Services
                 Errors = errorDictionary,
                 Fields = invalidFields
             };
-
-            context.HttpContext.Items["bodyModel"] = response;
             return new BadRequestObjectResult(response);
         }
     }

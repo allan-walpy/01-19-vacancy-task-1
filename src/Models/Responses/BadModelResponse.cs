@@ -6,7 +6,7 @@ namespace Walpy.VacancyApp.Server.Models.Responses
     /// <summary>
     /// Информация о запросе непрошедшем валидацию
     /// </summary>
-    public class BadModelResponse
+    public class BadModelResponse : CustomErrorResponse
     {
         /// <summary>
         /// Все ошибки валидации, сгруппированные по полям
@@ -30,6 +30,6 @@ namespace Walpy.VacancyApp.Server.Models.Responses
         /// Http код ошибки
         /// </summary>
         /// <example>400</example>
-        public int Status => StatusCodes.Status400BadRequest;
+        public override int StatusCode => StatusCodes.Status400BadRequest;
     }
 }
