@@ -25,16 +25,16 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
             => View();
 
         [HttpPost]
+        [ActionName("Request")]
         [ValidateAntiForgeryToken]
         public IActionResult Result([Bind] SearchRequest request)
         {
-            var nullableRequest = request.ToNullable();
-            if (nullableRequest.IsEmpty())
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction("Request", request);
+                return View(request);
             }
 
-            return View(ControllerService.Search(nullableRequest));
+            return View(nameof(Result), ControllerService.Search(request.ToNullable()));
         }
     }
 }

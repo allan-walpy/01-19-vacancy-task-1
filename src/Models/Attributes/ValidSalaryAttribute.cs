@@ -7,7 +7,7 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
     public class ValidSalaryAttribute : RangeAttribute
     {
         //? RangeAttribute uses double;
-        public const double Max = 1_000_000_000;
+        public const double Max = 1_000_000_000_000;
         public const double Min = 0;
 
         public ValidSalaryAttribute()
