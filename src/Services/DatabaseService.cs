@@ -64,7 +64,7 @@ namespace Walpy.VacancyApp.Server.Services
             return optionsBuilder.Options;
         }
 
-        private void UseInMemoryDatabase(DbContextOptionsBuilder<DatabaseContext> optionsBuilder)
+        private static void UseInMemoryDatabase(DbContextOptionsBuilder<DatabaseContext> optionsBuilder)
         {
             optionsBuilder.UseInMemoryDatabase(
                 databaseName: "database_test"

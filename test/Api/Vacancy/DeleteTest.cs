@@ -11,8 +11,6 @@ namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
 {
     public partial class DeleteTest : VacancyTestBase
     {
-        //? downgrading tests;
-        //? see https://github.com/allan-walpy/01-19-vacancy-task-1/issues/24#issuecomment-460981953 ;
         public static BaseTheoryData<int, object> DatabaseItemsId
             => new BaseTheoryData<int, object>(
                 Enumerable.Range(0, Common.GetTestsCount()));

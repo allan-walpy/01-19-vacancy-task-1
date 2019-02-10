@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 
 using Walpy.VacancyApp.Server.Models.Attributes;
 

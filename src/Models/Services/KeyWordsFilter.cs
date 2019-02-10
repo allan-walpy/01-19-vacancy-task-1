@@ -46,9 +46,8 @@ namespace Walpy.VacancyApp.Server.Models.Services
             var result = new List<Func<VacancyModel, bool>>();
             switch (Options.Scope)
             {
-                //? can't use two identic cases in switch (for `SearchStringScope.Both`);
-                //? see https://stackoverflow.com/a/44848705/6256541 ;
-                case var value when (value == KeyWordSearchScope.Title || value == KeyWordSearchScope.Both):
+                case var value when
+                    (value == KeyWordSearchScope.Title || value == KeyWordSearchScope.Both):
                     result.Add(
                         (vacancy) => matchMethod(vacancy.Title)
                     );

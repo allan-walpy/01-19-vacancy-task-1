@@ -12,7 +12,7 @@ using Walpy.VacancyApp.Server.Models.Web.Vacancy;
 
 namespace Walpy.VacancyApp.Server.Controllers.Web
 {
-    public partial class VacancyController : WebControllerBase
+    public class VacancyController : WebControllerBase
     {
         private VacancyControllerService VacancyService { get; }
         private IDatabaseOrganizationService OrganizationService { get; }
@@ -33,10 +33,10 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
         private VacancyResponse GetVacancy(string id)
             => VacancyService.Get(id)?.ToResponse(OrganizationService);
 
-        private IndexPageStatusModel GetNotFoundStatusModel(string id)
+        private static IndexPageStatusModel GetNotFoundStatusModel(string id)
             => new IndexPageStatusModel
             {
-                StatusId = NotFoundStatusDataKey,
+                StatusId = VacancyIndexPageStatuses.NotFoundKey,
                 VacancyId = id
             };
 
@@ -45,7 +45,7 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
             var dataModel = new IndexDataModel
             {
                 Data = GetAllVacancies(),
-                Status = pageStatusModel.ToStatus(PageStatusData)
+                Status = pageStatusModel.ToStatus(VacancyIndexPageStatuses.Data)
             };
 
             return View(dataModel);
@@ -107,8 +107,7 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
             if (!ModelState.IsValid)
             {
                 var vacancy = VacancyService.Get(vacancyData.Id);
-                //TODO:FIXME:;
-                vacancyData.Organization = OrganizationService.Get(vacancy.OrganizationId).ToResponse();
+                vacancyData.Organization = vacancy.Organization.ToResponse();
                 return View(vacancyData);
             }
 

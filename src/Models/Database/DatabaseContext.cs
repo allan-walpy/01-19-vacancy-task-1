@@ -29,7 +29,7 @@ namespace Walpy.VacancyApp.Server.Models.Database
             ConfigureRelationships(modelBuilder);
         }
 
-        private void ConfigureVacancyTable(ModelBuilder modelBuilder)
+        private static void ConfigureVacancyTable(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<VacancyModel>()
                 .Property(v => v.Id)
@@ -52,7 +52,7 @@ namespace Walpy.VacancyApp.Server.Models.Database
                 );
         }
 
-        private void ConfigureOrganizationTable(ModelBuilder modelBuilder)
+        private static void ConfigureOrganizationTable(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<OrganizationModel>()
                 .Property(o => o.Id)
@@ -61,7 +61,7 @@ namespace Walpy.VacancyApp.Server.Models.Database
                 .HasDefaultValue(DefaultGuid);
         }
 
-        private void ConfigureRelationships(ModelBuilder modelBuilder)
+        private static void ConfigureRelationships(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<OrganizationModel>()
                 .HasMany(o => o.Vacancies)

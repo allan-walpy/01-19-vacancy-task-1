@@ -11,6 +11,11 @@ namespace Walpy.VacancyApp.Server
 {
     partial class Extensions
     {
+        public const string LicenseSectionConfigKey = "license";
+        public const string ContactsSectionConfigKey = "contact";
+        public const string OpenApiSectionConfigKey = "openapi";
+        public const string OpenApiNameConfigKey = OpenApiSectionConfigKey + ":name";
+
         public static IServiceCollection AddAppMvc(this IServiceCollection services)
             => services.AddMvc(options =>
                 {
@@ -21,25 +26,28 @@ namespace Walpy.VacancyApp.Server
 
         public static IServiceCollection AddApiSpecification(this IServiceCollection services, IConfiguration config)
         {
-            //TODO:FIXME: get rid of magic strings;
+            var openapi = config.GetSection(OpenApiSectionConfigKey);
+            var contact = config.GetSection(ContactsSectionConfigKey);
+            var license = config.GetSection(LicenseSectionConfigKey);
+
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("scheme",
+                options.SwaggerDoc(openapi["name"],
                     new OpenApiInfo
                     {
-                        Title = "Walpy.VacancyApp",
+                        Title = openapi[nameof(OpenApiInfo.Title)],
                         Version = config["version"],
-                        Description = "test task for managing vacancies",
+                        Description = openapi[nameof(OpenApiInfo.Description)],
                         Contact = new OpenApiContact
                         {
-                            Name = "allan_walpy aka Andrey Lysenkov",
-                            Url = new Uri("https://allan-walpy.github.io/"),
-                            Email = "allanwalpy@gmail.com"
+                            Name = contact[nameof(OpenApiContact.Name)],
+                            Url = new Uri(contact[nameof(OpenApiInfo.Contact)]),
+                            Email = contact[nameof(OpenApiContact.Email)]
                         },
                         License = new OpenApiLicense
                         {
-                            Name = "MIT",
-                            Url = new Uri("https://github.com/allan-walpy/01-19-vacancy-task-1/blob/master/license")
+                            Name = license[nameof(OpenApiLicense.Name)],
+                            Url = new Uri(license[nameof(OpenApiLicense.Url)])
                         }
                     });
 

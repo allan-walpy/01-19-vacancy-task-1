@@ -48,7 +48,7 @@ namespace Walpy.VacancyApp.Server
             app.UseAppDefaultFiles();
             app.UseAppStaticFiles();
 
-            app.UseAppMvc();
+            app.UseAppMvc(_configuration);
         }
     }
 }

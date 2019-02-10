@@ -21,7 +21,11 @@ namespace Walpy.VacancyApp.Server.Services
             => VacancyService.GetRangeBy((vacancy) => true);
 
         public VacancyModel Get(string id)
-            => VacancyService.Get(id);
+        {
+            var result = VacancyService.Get(id);
+            result.Organization = OrganizationService.Get(result.OrganizationId);
+            return result;
+        }
 
         public bool Exists(string id)
             => Get(id) != null;

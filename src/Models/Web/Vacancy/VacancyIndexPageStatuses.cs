@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 
-using Walpy.VacancyApp.Server.Models.Web.Vacancy;
+using Walpy.VacancyApp.Server.Controllers.Web;
 
-namespace Walpy.VacancyApp.Server.Controllers.Web
+namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
 {
-    partial class VacancyController
+    public class VacancyIndexPageStatuses
     {
-        private const string NotFoundStatusDataKey = "404";
+        public const string NotFoundKey = "404";
 
-        private static readonly IReadOnlyDictionary<string, IndexPageStatus> PageStatusData
+        public static readonly IReadOnlyDictionary<string, IndexPageStatus> Data
             = new Dictionary<string, IndexPageStatus>
             {
                 {
-                    NotFoundStatusDataKey,
+                    NotFoundKey,
                     new IndexPageStatus
                     {
                         Success = false,
@@ -20,7 +20,7 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
                     }
                 },
                 {
-                    $"{nameof(Create)}:true",
+                    $"{nameof(VacancyController.Create)}:true",
                     new IndexPageStatus
                     {
                         Success = true,
@@ -28,7 +28,7 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
                     }
                 },
                 {
-                    $"{nameof(Create)}:false",
+                    $"{nameof(VacancyController.Create)}:false",
                     new IndexPageStatus
                     {
                         Success = false,
@@ -36,7 +36,7 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
                     }
                 },
                 {
-                    $"{nameof(Edit)}:true",
+                    $"{nameof(VacancyController.Edit)}:true",
                     new IndexPageStatus
                     {
                         Success = true,
@@ -44,7 +44,7 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
                     }
                 },
                 {
-                    $"{nameof(Edit)}:false",
+                    $"{nameof(VacancyController.Edit)}:false",
                     new IndexPageStatus
                     {
                         Success = false,
@@ -52,7 +52,7 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
                     }
                 },
                 {
-                    $"{nameof(Delete)}:true",
+                    $"{nameof(VacancyController.Delete)}:true",
                     new IndexPageStatus
                     {
                         Success = true,
@@ -60,7 +60,7 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
                     }
                 },
                 {
-                    $"{nameof(Delete)}:false",
+                    $"{nameof(VacancyController.Delete)}:false",
                     new IndexPageStatus
                     {
                         Success = false,

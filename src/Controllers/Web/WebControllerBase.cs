@@ -3,8 +3,6 @@ using Microsoft.Extensions.Configuration;
 
 namespace Walpy.VacancyApp.Server.Controllers.Web
 {
-    //? hides razor from api explorer;
-    //? + swagger/openapi ignores controllers;
     [ApiExplorerSettings(IgnoreApi = true)]
     [Route("web/[controller]/[action]")]
     public abstract class WebControllerBase : Controller

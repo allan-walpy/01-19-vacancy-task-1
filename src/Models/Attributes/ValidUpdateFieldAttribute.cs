@@ -21,9 +21,6 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
                 return ValidationResult.Success;
             }
 
-            //? I tried, but...
-            //TODO:FIXME:;
-
             var updateString = value as UpdateCommandModel<string>;
             if (updateString != null)
             {

@@ -31,10 +31,10 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
         protected List<bool> GetPropertyIsNotNullList(object value)
             => GetPropertyIsNullList(value).ConvertAll((b) => !b);
 
-        protected bool IsExists(PropertyInfo info)
+        protected static bool IsExists(PropertyInfo info)
             => info == null;
 
-        protected bool IsNull(PropertyInfo info, object value)
+        protected static bool IsNull(PropertyInfo info, object value)
             => info.GetValue(value) == null;
     }
 }

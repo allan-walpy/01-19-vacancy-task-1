@@ -3,5 +3,5 @@
     ViewData["Title"] = "Документация";
 }
 
-<redoc untrustedSpec="true" spec-url="https://@(Model.Host)/api/scheme.json"></redoc>
+<redoc untrustedSpec="true" spec-url="https://@(Model.Host)@(Model.OpenApiPath)"></redoc>
 <script src="https://cdn.jsdelivr.net/npm/redoc@@@(Model.RedocVersion)/bundles/redoc.standalone.js"> </script>

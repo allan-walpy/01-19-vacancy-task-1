@@ -43,8 +43,7 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
         }
 
         public static bool IsSuccess(this ValidationResult result)
-            //? ValidationResult.Success equals to null (according to my debugger);
-            => result == null;
+            => result == ValidationResult.Success;
 
         public static bool IsFailed(this ValidationResult result)
             => !result.IsSuccess();

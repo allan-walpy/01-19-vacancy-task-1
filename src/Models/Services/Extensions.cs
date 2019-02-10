@@ -1,5 +1,3 @@
-using System;
-
 using Walpy.VacancyApp.Server.Models.Requests;
 
 namespace Walpy.VacancyApp.Server.Models.Services

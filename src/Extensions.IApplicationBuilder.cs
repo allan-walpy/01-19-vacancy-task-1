@@ -8,6 +8,8 @@ namespace Walpy.VacancyApp.Server
 {
     partial class Extensions
     {
+        public const string OpenApiPathTemplate = "/api/{documentName}.json";
+
         public static IApplicationBuilder UseAppErrorHandling(this IApplicationBuilder app)
         {
             app.UseStatusCodePagesWithReExecute("/web/Home/Error/{0}");
@@ -19,8 +21,7 @@ namespace Walpy.VacancyApp.Server
         {
             app.UseSwagger(options =>
             {
-                //TODO:FIXME: magic string;
-                options.RouteTemplate = "/api/{documentName}.json";
+                options.RouteTemplate = OpenApiPathTemplate;
             });
             return app;
         }
@@ -28,12 +29,12 @@ namespace Walpy.VacancyApp.Server
         public static IApplicationBuilder UseDebugClient(this IApplicationBuilder app, IConfiguration config)
         {
             var version = config["version"];
-            //TODO:FIXME: magic strings;
+            var openapi = config.GetSection(OpenApiSectionConfigKey);
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint(
-                    "/api/scheme.json",
-                    $"Walpy.VacancyApp v{version}");
+                    GetOpenApiPath(config),
+                    $"{openapi["title"]} v{version}");
                 options.RoutePrefix = "api/debug";
                 options.DocExpansion(DocExpansion.List);
             });
@@ -58,12 +59,12 @@ namespace Walpy.VacancyApp.Server
             return app;
         }
 
-        public static IApplicationBuilder UseAppMvc(this IApplicationBuilder app)
+        public static IApplicationBuilder UseAppMvc(this IApplicationBuilder app, IConfiguration config)
             => app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    "api.scheme",
-                    "api/scheme.json"
+                    "api.openapi",
+                    GetOpenApiPath(config)
                 );
                 routes.MapRoute(
                     "api.debug",

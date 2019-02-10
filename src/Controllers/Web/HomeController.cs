@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -12,9 +13,13 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
         public const string HostConfigKey = "host";
         public const string RedocUiVersionConfigKey = "redocUi";
 
+        private IConfiguration ErrorMessages { get; }
+
         public HomeController(IConfiguration configuration)
             : base(configuration)
-        { }
+        {
+            ErrorMessages = Configuration.GetSection(ErrorMessagesConfigKey);
+        }
 
         public IActionResult Index()
             => View();
@@ -24,7 +29,8 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
             var model = new HelpConfigurationModel
             {
                 Host = Configuration[HostConfigKey],
-                RedocVersion = Configuration[RedocUiVersionConfigKey]
+                RedocVersion = Configuration[RedocUiVersionConfigKey],
+                OpenApiPath = Extensions.GetOpenApiPath(Configuration)
             };
 
             return View(model);
@@ -55,28 +61,13 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
 
         private string ErrorGetMessage(int statusCode)
         {
-            //? C# 8 not supported(?);
-            /*return statusCode switch
+            try
             {
-                int 404 => messages["404"];
-                int 409 => messages["409"];
-                int 500 => messages["500"];
-                _ => throw new NotSupportedOperation();
-            };*/
-
-            var messages = Configuration.GetSection(ErrorMessagesConfigKey);
-            //? return messages[statusCode.ToString()];
-            switch(statusCode)
+                return ErrorMessages[statusCode.ToString()];
+            }
+            catch (Exception)
             {
-                case 400:
-                    return messages["400"];
-                case 404:
-                    return messages["404"];
-                case 409:
-                    return messages["409"];
-                case 500:
-                default:
-                    return messages["500"];
+                return ErrorMessages["500"];
             }
         }
     }

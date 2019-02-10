@@ -23,7 +23,10 @@ namespace Walpy.VacancyApp.Server.Models.Responses
                 Title = model.Title,
                 Salary = model.Salary,
                 Description = model.Description,
-                Organization = organizationService.Get(model.OrganizationId).ToResponse(),
+                Organization = ((model.Organization == null)
+                    ? organizationService.Get(model.OrganizationId)
+                    : model.Organization
+                    ).ToResponse(),
                 EmploymentType = model.EmploymentType?.ToList()?.ToStringName(),
                 ContactPerson = model.ContactPerson,
                 ContactPhone = model.ContactPhone,
