@@ -91,6 +91,17 @@ namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
                     }
                 },
                 {
+                    "Description.Max1_000_000_000_000",
+                    new VacancyAddRequest
+                    {
+                        Title = "Младший разработчик на .Net C# (Junior .Net C# Developer)",
+                        Description = "Кок",
+                        Organization = "OOO \"Not Suspicious\"",
+                        EmploymentType = new List<string> { "FullTime" },
+                        Salary = 1_000_000_000_000
+                    }
+                },
+                {
                     "Description.3minLength",
                     new VacancyAddRequest
                     {
@@ -98,7 +109,7 @@ namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
                         Description = "Кок",
                         Organization = "OOO \"Not Suspicious\"",
                         EmploymentType = new List<string> { "FullTime" },
-                        Salary = 1_000_000_000
+                        Salary = 5000
                     }
                 },
                 {
@@ -649,7 +660,7 @@ namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
                     }
                 },
                 {
-                    "Salary.1_000_000_001More1_000_000_000",
+                    "Salary.1_000_000_000_001More1_000_000_000_000",
                     new BadModelDataItem {
                         InvalidFields = new [] { "Salary" },
                         RequestData = new VacancyAddRequest
@@ -658,7 +669,7 @@ namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
                             Description = "Писать программы и т.д.",
                             Organization = "OOO \"CSHARP proffesionals\"",
                             EmploymentType = new List<string> { "FullTime" },
-                            Salary = 1_000_000_001
+                            Salary = 1_000_000_000_001
                         }
                     }
                 },
