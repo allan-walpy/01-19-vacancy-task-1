@@ -8,7 +8,7 @@ using Walpy.VacancyApp.Server.Test.Data;
 
 namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
 {
-    public partial class GetAllTest : VacancyTestBase
+    public class GetAllTest : VacancyTestBase
     {
         public override HttpMethod Method => HttpMethod.Get;
 

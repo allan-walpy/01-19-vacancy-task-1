@@ -9,7 +9,7 @@ dotnet build -c Release
 
 echo "Listing tests"
 
-dotnet test -c Release -t
+dotnet test -c Release --no-build --no-restore -t
 
 echo "Doing tests"
 

@@ -11,7 +11,7 @@ using Walpy.VacancyApp.Server.Test.Data;
 
 namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
 {
-    public partial class UpdateTest : VacancyTestBase
+    public class UpdateTest : VacancyTestBase
     {
         public const string Letters = "абвгдеёжзи";
         public static BaseTheoryData<int, object> DatabaseItemsId

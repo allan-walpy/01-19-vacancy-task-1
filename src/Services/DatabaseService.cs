@@ -28,18 +28,16 @@ namespace Walpy.VacancyApp.Server.Services
 
         private string GetConnectionString()
         {
-            //TODO:FIXME: add LogEvents class;
-            var logEventId = $"{nameof(DatabaseService)}:{nameof(GetConnectionString)}";
             var isDebug = Config.GetValue<bool>(Program.IsDevEnviromentConfigKey);
 
             var connectionName = $"{Config[ConfigConnectionNameKey]}:{(isDebug ? "debug" : "production")}";
-            Logger.LogDebug(logEventId, "Fetched connection name for database {connectionName}", connectionName);
+            Logger.LogDebug("Fetched connection name for database {connectionName}", connectionName);
 
             var connectionKey = $"{ConnectionKeyPrefix}:{connectionName}";
-            Logger.LogDebug(logEventId, "Fetched connection string key for database {connectionKey}", connectionKey);
+            Logger.LogDebug("Fetched connection string key for database {connectionKey}", connectionKey);
 
             var connectionString = Config.GetSection("ConnetionStrings")[connectionKey];
-            Logger.LogTrace(logEventId, "Fetched connection string for database {connectionString}", connectionString);
+            Logger.LogTrace("Fetched connection string for database {connectionString}", connectionString);
 
             return connectionString;
         }
@@ -54,10 +52,12 @@ namespace Walpy.VacancyApp.Server.Services
 
             if (useInMemmoryDatabase)
             {
+                Logger.LogDebug("using in memmory database");
                 UseInMemoryDatabase(optionsBuilder);
             }
             else
             {
+                Logger.LogDebug("using in mysql database");
                 optionsBuilder.UseMySQL(ConnectionString);
             }
 
@@ -75,7 +75,7 @@ namespace Walpy.VacancyApp.Server.Services
         {
             var options = GetDatabaseOptions();
             var result = new DatabaseContext(options);
-            Logger.LogTrace($"{nameof(DatabaseService)}:{nameof(GetContext)}", "Fetched DatabaseContext with {ConnectionString}", ConnectionString);
+            Logger.LogTrace("Fetched DatabaseContext with {ConnectionString}", ConnectionString);
             return result;
         }
     }

@@ -11,13 +11,13 @@ using Walpy.VacancyApp.Server.Test.Models;
 
 namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
 {
-    public partial class AddTest : VacancyTestBase
+    public class AddTest : VacancyTestBase
     {
         public static BadModelData TheoryData400
-            => new BadModelData(Data400);
+            => new BadModelData(DefaultData.VacancyAddData400);
 
         public static VacancyAddValidData TheoryData201
-            => new VacancyAddValidData(Data201);
+            => new VacancyAddValidData(DefaultData.VacancyAddData201);
 
         public override HttpMethod Method => HttpMethod.Post;
 
@@ -55,7 +55,7 @@ namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
         [MemberData(nameof(TheoryData201))]
         public void Valid201(string dataKey)
         {
-            var data = Data201[dataKey];
+            var data = DefaultData.VacancyAddData201[dataKey];
             var expected = new HttpMessageModel
             {
                 ApiCall = null,
@@ -80,7 +80,7 @@ namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
         [MemberData(nameof(TheoryData400))]
         public void Invalid400(string dataKey)
         {
-            var data = Data400[dataKey];
+            var data = DefaultData.VacancyAddData400[dataKey];
             var expected = new HttpMessageModel
             {
                 ApiCall = null,

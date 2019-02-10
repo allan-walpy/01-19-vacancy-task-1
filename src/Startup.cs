@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using Walpy.VacancyApp.Server.Extensions;
+
 namespace Walpy.VacancyApp.Server
 {
     public class Startup

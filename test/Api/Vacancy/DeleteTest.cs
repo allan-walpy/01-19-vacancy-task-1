@@ -9,7 +9,7 @@ using Walpy.VacancyApp.Server.Test.Data;
 
 namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
 {
-    public partial class DeleteTest : VacancyTestBase
+    public class DeleteTest : VacancyTestBase
     {
         public static BaseTheoryData<int, object> DatabaseItemsId
             => new BaseTheoryData<int, object>(

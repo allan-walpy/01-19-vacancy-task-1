@@ -4,6 +4,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
+using Walpy.VacancyApp.Server.Extensions;
+
 namespace Walpy.VacancyApp.Server
 {
     public static class Program

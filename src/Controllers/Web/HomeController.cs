@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
+using Walpy.VacancyApp.Server.Extensions;
 using Walpy.VacancyApp.Server.Models.Web;
 
 namespace Walpy.VacancyApp.Server.Controllers.Web
@@ -30,7 +31,7 @@ namespace Walpy.VacancyApp.Server.Controllers.Web
             {
                 Host = Configuration[HostConfigKey],
                 RedocVersion = Configuration[RedocUiVersionConfigKey],
-                OpenApiPath = Extensions.GetOpenApiPath(Configuration)
+                OpenApiPath = CommonExtensions.GetOpenApiPath(Configuration)
             };
 
             return View(model);

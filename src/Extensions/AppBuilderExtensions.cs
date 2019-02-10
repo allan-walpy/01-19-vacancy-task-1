@@ -4,12 +4,10 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 
 using Walpy.VacancyApp.Server.Middleware;
 
-namespace Walpy.VacancyApp.Server
+namespace Walpy.VacancyApp.Server.Extensions
 {
-    partial class Extensions
+    public static class AppBuilderExtensions
     {
-        public const string OpenApiPathTemplate = "/api/{documentName}.json";
-
         public static IApplicationBuilder UseAppErrorHandling(this IApplicationBuilder app, bool isDebug)
         {
             if (isDebug)
@@ -29,7 +27,7 @@ namespace Walpy.VacancyApp.Server
         {
             app.UseSwagger(options =>
             {
-                options.RouteTemplate = OpenApiPathTemplate;
+                options.RouteTemplate = CommonExtensions.OpenApiPathTemplate;
             });
             return app;
         }
@@ -37,11 +35,11 @@ namespace Walpy.VacancyApp.Server
         public static IApplicationBuilder UseDebugClient(this IApplicationBuilder app, IConfiguration config)
         {
             var version = config["version"];
-            var openapi = config.GetSection(OpenApiSectionConfigKey);
+            var openapi = config.GetSection(CommonExtensions.OpenApiSectionConfigKey);
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint(
-                    GetOpenApiPath(config),
+                    CommonExtensions.GetOpenApiPath(config),
                     $"{openapi["title"]} v{version}");
                 options.RoutePrefix = "api/debug";
                 options.DocExpansion(DocExpansion.List);
@@ -72,7 +70,7 @@ namespace Walpy.VacancyApp.Server
             {
                 routes.MapRoute(
                     "api.openapi",
-                    GetOpenApiPath(config)
+                    CommonExtensions.GetOpenApiPath(config)
                 );
                 routes.MapRoute(
                     "api.debug",

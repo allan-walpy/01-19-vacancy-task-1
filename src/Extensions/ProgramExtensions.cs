@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration.CommandLine;
 using Microsoft.Extensions.Configuration;
 
-namespace Walpy.VacancyApp.Server
+namespace Walpy.VacancyApp.Server.Extensions
 {
-    partial class Extensions
+    public static class ProgramExtensions
     {
         public static IWebHostBuilder DetectEnviroment(this IWebHostBuilder hostBuilder)
         {

@@ -7,14 +7,11 @@ using Microsoft.OpenApi.Models;
 
 using Walpy.VacancyApp.Server.Services;
 
-namespace Walpy.VacancyApp.Server
+namespace Walpy.VacancyApp.Server.Extensions
 {
-    partial class Extensions
+    public static class ServiceCollectionExtensions
     {
-        public const string LicenseSectionConfigKey = "license";
-        public const string ContactsSectionConfigKey = "contact";
-        public const string OpenApiSectionConfigKey = "openapi";
-        public const string OpenApiNameConfigKey = OpenApiSectionConfigKey + ":name";
+
 
         public static IServiceCollection AddAppMvc(this IServiceCollection services)
             => services.AddMvc(options =>
@@ -26,9 +23,9 @@ namespace Walpy.VacancyApp.Server
 
         public static IServiceCollection AddApiSpecification(this IServiceCollection services, IConfiguration config)
         {
-            var openapi = config.GetSection(OpenApiSectionConfigKey);
-            var contact = config.GetSection(ContactsSectionConfigKey);
-            var license = config.GetSection(LicenseSectionConfigKey);
+            var openapi = config.GetSection(CommonExtensions.OpenApiSectionConfigKey);
+            var contact = config.GetSection(CommonExtensions.ContactsSectionConfigKey);
+            var license = config.GetSection(CommonExtensions.LicenseSectionConfigKey);
 
             services.AddSwaggerGen(options =>
             {
