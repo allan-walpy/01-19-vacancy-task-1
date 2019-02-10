@@ -24,12 +24,12 @@ namespace Walpy.VacancyApp.Server.Models.Responses
         /// Общее описание ошибки
         /// </summary>
         /// <example>One or more validation errors occurred.</example>
-        public string Title => "One or more validation errors occurred.";
+        public string Title { get; set; }
 
-        /// <summary>
-        /// Http код ошибки
-        /// </summary>
-        /// <example>400</example>
-        public override int StatusCode => StatusCodes.Status400BadRequest;
+        public BadModelResponse()
+            : base(StatusCodes.Status400BadRequest)
+        {
+            Title = "One or more validation errors occurred.";
+        }
     }
 }

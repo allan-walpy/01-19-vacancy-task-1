@@ -53,8 +53,7 @@ namespace Walpy.VacancyApp.Server.Middleware
             var response = new ErrorResponse
             {
                 Message = exception.Message,
-                Source = exception.Source,
-                Code = exception.HResult
+                Source = exception.Source
             };
             context.Response.StatusCode = 500;
             WriteApiResponse(context, response).Wait();
