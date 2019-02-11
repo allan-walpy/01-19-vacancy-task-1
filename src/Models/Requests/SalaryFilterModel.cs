@@ -7,6 +7,7 @@ namespace Walpy.VacancyApp.Server.Models.Requests
     /// <summary>
     /// Настройки фильтра поиска по зарплате
     /// </summary>
+    [ValidSalaryFilter]
     [AnyNotNull(nameof(Max), nameof(Min))]
     [DisplayName("Фильтр по зарплате")]
     public class SalaryFilterModel

@@ -13,7 +13,7 @@
 
 <h1>Изменение вакансии</h1>
 
-@Html.Partial("_IdAnnotation", @Model.Id)
+@(Html.Partial("_IdAnnotation", Model.Id))
 
 <form asp-action="Edit" asp-antiforgery="true">
     <div class="form-group">
@@ -67,7 +67,7 @@
                     <td>
                         <label asp-for="Description" class="control-label"></label>
                         @{
-                            @Html.TextAreaFor(
+                            Html.TextAreaFor(
                                 model => Model.Description,
                                 rows: GetDescriptionLineCount(Model.Description),
                                 columns: 0,
@@ -138,9 +138,9 @@
     </div>
 
     <div class="form-group">
-        @Html.Partial("_BackNavigation", model: null)
+        @(Html.Partial("_BackNavigation", model: null))
         <button type="submit" value="Update" class="btn btn-primary">Сохранить</button>
     </div>
 </form>
 
-@Html.Partial("_ValidationScriptsPartial")
+@(Html.Partial("_ValidationScripts"))

@@ -3,14 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Walpy.VacancyApp</title>
-    <link rel="icon" href="~/web/static/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
-        asp-fallback-href="~/web/static/css/bootstrap.min.css"
-        asp-fallback-test-class="sr-only"
-        asp-fallback-test-property="position"
-        asp-fallback-test-value="absolute" />
-    <link rel="stylesheet" href="~/web/static/css/site.css" />
+    <title>@(ViewData["Title"]) - Walpy.VacancyApp</title>
+    <link rel="icon" href="~/favicon.ico">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/site.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
     <header>
@@ -27,7 +24,7 @@
                             <a class="nav-link text-dark" href="/web/Vacancy/Index">Администрирование</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="/web/Search/Index">Поиск по вакансиям</a>
+                            <a class="nav-link text-dark" href="/web/Search/Index">Поиск</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="/web/Home/Help">Документация</a>
@@ -42,7 +39,7 @@
     </header>
     <div id="main" class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            @(RenderBody())
         </main>
     </div>
     <footer class="border-top footer text-muted">
@@ -50,5 +47,6 @@
             &copy; 2019 - <a class="text-dark" href="https://github.com/allan-walpy/01-19-vacancy-task-1#readme">Walpy.VacancyApp</a> by <a class="text-dark" href="https://allan-walpy.github.io/">Andrey Lysenkov aka allan_walpy</a>
         </div>
     </footer>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

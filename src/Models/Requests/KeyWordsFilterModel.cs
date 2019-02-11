@@ -1,14 +1,11 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-using Walpy.VacancyApp.Server.Models.Attributes;
-
 namespace Walpy.VacancyApp.Server.Models.Requests
 {
     /// <summary>
     /// Настройки фильтра поиска по нанимателю
     /// </summary>
-    [AnyNotNull(nameof(SearchString))]
     [DisplayName("Фильтр по ключевым словам")]
     public class KeyWordsFilterModel
     {

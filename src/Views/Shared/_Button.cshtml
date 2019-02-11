@@ -1,8 +1,8 @@
 @model ButtonData
 
 @{
-    var type = @Model.ActionType;
-    var id = @Model.VacancyId;
+    var type = Model.ActionType;
+    var id = Model.VacancyId;
 
     string label = null;
     string aspAction = null;
@@ -31,11 +31,10 @@
             break;
         default:
             throw new System.ArgumentOutOfRangeException(
-                paramName: nameof(@Model.ActionType),
-                actualValue: @Model.ActionType,
+                paramName: nameof(Model.ActionType),
+                actualValue: Model.ActionType,
                 message: "Unexcpected button type provided");
     }
 
-    <a label="@label" asp-action="@aspAction" asp-route-id="@id" class="@linkClass"><img class="figure-img in-text-icon" src="~/web/static/icons/manage/@(image).svg" /></a>
-
+    <a label="@(label)" asp-action="@(aspAction)" asp-route-id="@(id)" class="@(linkClass)"><img class="figure-img in-text-icon" src="~/icons/manage/@(image).svg" /></a>
 }

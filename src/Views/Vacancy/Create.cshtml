@@ -45,23 +45,23 @@
         <table class="table">
             <tbody>
                 <tr>
-                    <td>
+                     <td>
                         <label asp-for="Organization"></label>
-                        @{
-                            @Html.TextAreaFor(
-                                model => Model.Description,
-                                rows: 10,
-                                columns: 0,
-                                htmlAttributes: new {
-                                    Class = "form-control" });
-                        }
+                        <input class="form-control" asp-for="Organization" />
                         <span asp-validation-for="Organization" class="text-danger"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label asp-for="Description"></label>
-                        <input class="form-control" asp-for="Description" />
+                        @{
+                            Html.TextAreaFor(
+                                model => Model.Description,
+                                rows: 10,
+                                columns: 0,
+                                htmlAttributes: new {
+                                    Class = "form-control" });
+                        }
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </td>
                 </tr>
@@ -106,10 +106,10 @@
         </table>
     </div>
 
-    <div class="form-gtoup">
-        @Html.Partial("_BackNavigation", model: null)
+    <div class="form-group">
+        @(Html.Partial("_BackNavigation", model: null))
         <button type="submit" value="Create" class="btn btn-primary">Создать</button>
     </div>
 </form>
 
-@Html.Partial("_ValidationScriptsPartial")
+@(Html.Partial("_ValidationScripts"))

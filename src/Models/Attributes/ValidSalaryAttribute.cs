@@ -12,7 +12,7 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
             : base(Min, Max)
         { }
 
-        protected override ValidationResult IsValid(object value, ValidationContext context)
+        public ValidationResult ValidateValue(object value, ValidationContext context)
         {
             if (value == null)
             {
@@ -30,5 +30,8 @@ namespace Walpy.VacancyApp.Server.Models.Attributes
                 String.Format(config["failed"], Minimum, Maximum)
             );
         }
+
+        protected override ValidationResult IsValid(object value, ValidationContext context)
+            => ValidateValue(value, context);
     }
 }

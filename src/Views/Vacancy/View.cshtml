@@ -6,10 +6,10 @@
 
 <h1>
     Подробности вакансии
-    @Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.Edit, VacancyId = @Model.Id })
-    @Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.Delete, VacancyId = @Model.Id })
+    @(Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.Edit, VacancyId = Model.Id }))
+    @(Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.Delete, VacancyId = Model.Id }))
 </h1>
 
-@Html.Partial("_ViewVacancy", @Model)
+@(Html.Partial("_ViewVacancy", Model))
 
-@Html.Partial("_BackNavigation", model: null)
+@(Html.Partial("_BackNavigation", model: null))

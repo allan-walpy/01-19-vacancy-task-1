@@ -10,16 +10,16 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => data.Title)
+                    @(Html.DisplayNameFor(model => data.Title))
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => data.Salary)
+                    @(Html.DisplayNameFor(model => data.Salary))
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => data.Organization)
+                    @(Html.DisplayNameFor(model => data.Organization))
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => data.CreatedAt)
+                    @(Html.DisplayNameFor(model => data.CreatedAt))
                 </th>
                 <th>
                     Управление
@@ -30,21 +30,21 @@
     @foreach (var item in Model) {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    @(Html.DisplayFor(modelItem => item.Title))
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Salary)
+                    @(Html.DisplayFor(modelItem => item.Salary))
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Organization.Name)
+                    @(Html.DisplayFor(modelItem => item.Organization.Name))
                 </td>
                 <td>
                     @(item.CreatedAt.ToViewDateTime())
                 </td>
                 <td>
-                    @Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.View, VacancyId = @item.Id })
-                    @Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.Edit, VacancyId = @item.Id })
-                    @Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.Delete, VacancyId = @item.Id })
+                    @(Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.View, VacancyId = item.Id }))
+                    @(Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.Edit, VacancyId = item.Id }))
+                    @(Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.Delete, VacancyId = item.Id }))
                 </td>
             </tr>
     }

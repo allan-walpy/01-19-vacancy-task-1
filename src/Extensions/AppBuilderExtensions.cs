@@ -59,9 +59,7 @@ namespace Walpy.VacancyApp.Server.Extensions
 
         public static IApplicationBuilder UseAppStaticFiles(this IApplicationBuilder app)
         {
-            var options = new StaticFileOptions();
-            options.RequestPath = "/web/static";
-            app.UseStaticFiles(options);
+            app.UseStaticFiles();
             return app;
         }
 

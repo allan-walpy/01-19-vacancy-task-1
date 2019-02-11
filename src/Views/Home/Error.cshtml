@@ -1,12 +1,12 @@
 @model ErrorModel
 @{
-    ViewData["Title"] = $"Ошибка {@Model.StatusCode}";
+    ViewData["Title"] = $"Ошибка {Model.StatusCode}";
 }
 
-<h1 class="text-danger">Ошибка @Model.StatusCode</h1>
-<h2 class="text-danger">@Model.Message</h2>
+<h1 class="text-danger">Ошибка @(Model.StatusCode)</h1>
+<h2 class="text-danger">@(Model.Message)</h2>
 
-@if(@Model.Error != null)
+@if(Model.Error != null)
 {
-    <h3 class="text-danger">@Model.Error.Message</h3>
+    <h3 class="text-danger">@(Model.Error.Message)</h3>
 }

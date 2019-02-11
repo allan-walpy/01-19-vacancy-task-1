@@ -1,3 +1,5 @@
+using System;
+
 using Walpy.VacancyApp.Server.Models.Database;
 
 namespace Walpy.VacancyApp.Server.Models.Services
@@ -6,7 +8,22 @@ namespace Walpy.VacancyApp.Server.Models.Services
     {
         public SalaryFilter(SalaryFilterOptions options)
             : base(options)
-        { }
+        {
+            CheckLimits();
+        }
+
+        protected void CheckLimits()
+        {
+            if (Options.Max == null || Options.Min == null)
+            {
+                return;
+            }
+
+            var max = Math.Max(Options.Max ?? 0, Options.Min ?? 0);
+            var min = Math.Min(Options.Max ?? 0, Options.Min ?? 0);
+            Options.Min = min;
+            Options.Max = max;
+        }
 
         protected bool CheckMax(decimal salary)
             => Options.Max == null ? true : salary <= Options.Max;

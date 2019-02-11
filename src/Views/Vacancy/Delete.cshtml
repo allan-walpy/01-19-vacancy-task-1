@@ -6,9 +6,9 @@
 
 <h1>Удаление вакансии</h1>
 
-@Html.Partial("_ViewVacancy", @Model)
+@(Html.Partial("_ViewVacancy", Model))
 
-@Html.Partial("_BackNavigation", model: null)
+@(Html.Partial("_BackNavigation", model: null))
 
 <form asp-action="Delete" class="d-inline" asp-antiforgery="true">
     <input type="hidden" asp-for="Id" />
