@@ -55,14 +55,14 @@
 
 ### Api
 
+> Известные особенности с поиском: поисковая строка в запросе `api/search/` (`keyWordFilter`) зависит от регистра
+
 Документация по api приложения доступно по адрессам:
 
 - [OpenApi specification json file](https://vacancy.walpy.cf/api/openapi.json);
 - [Redoc UI](https://vacancy.walpy.cf/web/home/help);
 - [Swagger UI](https://vacancy.walpy.cf/api/debug);
     > Известные баги Swagger UI: при сворачивании/разворачивании секции GET запроса, другая секция с GET запросом так же разворачивается (`GET api/vacancy/` & `GET api/vacancy/{id}`)
-
-> Известные особенности с поиском: поисковая строка в запросе `api/search/` зависят от регистра
 
 ### Web
 
