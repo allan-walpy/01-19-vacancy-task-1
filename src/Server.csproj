@@ -18,7 +18,7 @@
     <PropertyGroup>
         <AssemblyTitle>Walpy.VacancyApp.Server</AssemblyTitle>
         <PackageId>Walpy.VacancyApp.Server</PackageId>
-        <Version>1.2.5</Version>
+        <Version>1.2.6</Version>
         <Authors>allan_walpy aka Andrey Lysenkov</Authors>
         <NeutralLanguage>en-US</NeutralLanguage>
         <Description>Some test task</Description>

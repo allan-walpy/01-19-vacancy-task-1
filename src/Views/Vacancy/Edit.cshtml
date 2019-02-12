@@ -68,7 +68,7 @@
                     <td>
                         <label asp-for="Description" class="control-label"></label>
                         <textarea asp-for="Description" class="form-control"
-                            cols="@(GetDescriptionLineCount(Model.Description))"></textarea>
+                            rows="@(GetDescriptionLineCount(Model.Description))"></textarea>
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </td>
                 </tr>
