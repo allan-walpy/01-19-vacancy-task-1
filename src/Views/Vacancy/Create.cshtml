@@ -54,14 +54,8 @@
                 <tr>
                     <td>
                         <label asp-for="Description"></label>
-                        @{
-                            Html.TextAreaFor(
-                                model => Model.Description,
-                                rows: 10,
-                                columns: 0,
-                                htmlAttributes: new {
-                                    Class = "form-control" });
-                        }
+                         <textarea asp-for="Description" class="form-control"
+                            rows="10"></textarea>
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </td>
                 </tr>

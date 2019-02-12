@@ -39,8 +39,8 @@
 
 Исполняемые файлы:
 
-- [`ubuntu 18.04 x64` published self-contained версия](https://github.com/allan-walpy/01-19-vacancy-task-1/releases/download/v1.2.6/self-contained.ubuntu.18.04-x64.zip)
-- [`windows 10 x64` published self-contained версия](https://github.com/allan-walpy/01-19-vacancy-task-1/releases/download/v1.2.6/self-contained.win10-x64.zip)
+- [`ubuntu 18.04 x64` published self-contained версия](https://github.com/allan-walpy/01-19-vacancy-task-1/releases/download/v1.2.7/self-contained.ubuntu.18.04-x64.zip)
+- [`windows 10 x64` published self-contained версия](https://github.com/allan-walpy/01-19-vacancy-task-1/releases/download/v1.2.7/self-contained.win10-x64.zip)
 
 Для функционирования программы необходимо скопировать [файл `appsettings.private.example.json`](https://github.com/allan-walpy/01-19-vacancy-task-1/blob/master/src/appsettings.private.example.json) в `appsettings.private.json` и указать необходимые настройки:
 
