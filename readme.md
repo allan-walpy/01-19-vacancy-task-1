@@ -75,6 +75,11 @@
 
 `Travis CI` и `Appveyor CI` были использованны для облегчения разработки
 
+> Известные баги:
+>
+> - довольно продолжительное исполнение тестов на windows (возможно связанное с `EF Core In Memmory Database`);
+> - исполнение всех тестов сразу приведет к ошибке `Connection Refused`, для `workaround` они запускаются пачками - [пример bash скрипта для запуска тестов](https://github.com/allan-walpy/01-19-vacancy-task-1/blob/master/script/test.sh)
+
 | CI & Platform | Status |
 | ------------: | :----- |
 | [![travis:linux](https://img.shields.io/badge/travis-ubuntu-blue.svg?longCache=true&style=for-the-badge)](https://travis-ci.com/) | [![travis build](https://img.shields.io/travis/com/allan-walpy/01-19-vacancy-task-1.svg?style=for-the-badge)](https://travis-ci.com/allan-walpy/01-19-vacancy-task-1) |
