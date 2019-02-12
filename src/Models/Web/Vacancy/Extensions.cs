@@ -12,9 +12,9 @@ namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
             IReadOnlyDictionary<string, IndexPageStatus> data)
         {
             IndexPageStatus modelData = new IndexPageStatus();
-            var success = model?.StatusId != null
-                ? data.TryGetValue(model.StatusId, out modelData)
-                : false;
+            var success = model?.StatusId == null
+                ? false
+                : data.TryGetValue(model.StatusId.ToLower(), out modelData);
             if (!success)
             {
                 return null;

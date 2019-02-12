@@ -7,7 +7,8 @@
 @functions{
     int GetDescriptionLineCount(string description)
     {
-        return description.Split("\n").Length;
+        var descriptionLength = description?.Split("\n")?.Length ?? 0;
+        return Math.Max(descriptionLength, 3);
     }
 }
 
@@ -66,14 +67,8 @@
                 <tr>
                     <td>
                         <label asp-for="Description" class="control-label"></label>
-                        @{
-                            Html.TextAreaFor(
-                                model => Model.Description,
-                                rows: GetDescriptionLineCount(Model.Description),
-                                columns: 0,
-                                htmlAttributes: new {
-                                    Class = "form-control" });
-                        }
+                        <textarea asp-for="Description" class="form-control"
+                            cols="@(GetDescriptionLineCount(Model.Description))"></textarea>
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </td>
                 </tr>

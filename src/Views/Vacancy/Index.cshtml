@@ -4,7 +4,7 @@
     ViewData["Title"] = "Управление вакансиями";
 }
 
-@if(Model.HasStatus)
+@if(Model.Status != null)
 {
     <p class="@(Model.Status.Success ? "alert-success" : "alert-danger")">
         @(Model.Status.Message)

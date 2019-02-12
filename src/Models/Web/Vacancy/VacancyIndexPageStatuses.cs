@@ -12,7 +12,7 @@ namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
             = new Dictionary<string, IndexPageStatus>
             {
                 {
-                    NotFoundKey,
+                    NotFoundKey.ToLower(),
                     new IndexPageStatus
                     {
                         Success = false,
@@ -20,7 +20,7 @@ namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
                     }
                 },
                 {
-                    $"{nameof(VacancyController.Create)}:true",
+                    $"{nameof(VacancyController.Create)}:true".ToLower(),
                     new IndexPageStatus
                     {
                         Success = true,
@@ -28,7 +28,7 @@ namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
                     }
                 },
                 {
-                    $"{nameof(VacancyController.Create)}:false",
+                    $"{nameof(VacancyController.Create)}:false".ToLower(),
                     new IndexPageStatus
                     {
                         Success = false,
@@ -36,7 +36,7 @@ namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
                     }
                 },
                 {
-                    $"{nameof(VacancyController.Edit)}:true",
+                    $"{nameof(VacancyController.Edit)}:true".ToLower(),
                     new IndexPageStatus
                     {
                         Success = true,
@@ -44,7 +44,7 @@ namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
                     }
                 },
                 {
-                    $"{nameof(VacancyController.Edit)}:false",
+                    $"{nameof(VacancyController.Edit)}:false".ToLower(),
                     new IndexPageStatus
                     {
                         Success = false,
@@ -52,7 +52,7 @@ namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
                     }
                 },
                 {
-                    $"{nameof(VacancyController.Delete)}:true",
+                    $"{nameof(VacancyController.Delete)}:true".ToLower(),
                     new IndexPageStatus
                     {
                         Success = true,
@@ -60,7 +60,7 @@ namespace Walpy.VacancyApp.Server.Models.Web.Vacancy
                     }
                 },
                 {
-                    $"{nameof(VacancyController.Delete)}:false",
+                    $"{nameof(VacancyController.Delete)}:false".ToLower(),
                     new IndexPageStatus
                     {
                         Success = false,
