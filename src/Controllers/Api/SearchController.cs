@@ -43,7 +43,6 @@ namespace Walpy.VacancyApp.Server.Controllers.Api
         /// <response code="500">Unknown Server Error</response>
         [ProducesResponseType(typeof(SearchResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(BadModelResponse), StatusCodes.Status400BadRequest)]
-        [Consumes(ConsumesType)]
         [HttpPost]
         public IActionResult Search([FromBody] SearchRequest request)
             => new OkObjectResult(ControllerService.Search(request));

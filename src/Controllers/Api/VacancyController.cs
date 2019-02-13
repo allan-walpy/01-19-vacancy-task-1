@@ -106,7 +106,6 @@ namespace Walpy.VacancyApp.Server.Controllers.Api
         [ProducesResponseType(typeof(VacancyAddResponse), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(BadModelResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        [Consumes(ConsumesType)]
         [HttpPost]
         public IActionResult Add([FromBody] VacancyAddRequest vacancy)
         {
@@ -156,7 +155,6 @@ namespace Walpy.VacancyApp.Server.Controllers.Api
         [ProducesResponseType(typeof(BadModelResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(UpdatesNotMatchResponse), StatusCodes.Status409Conflict)]
-        [Consumes(ConsumesType)]
         [HttpPatch("{id}")]
         public IActionResult Update(string id, [FromBody] VacancyUpdateModel updateRequest)
         {
