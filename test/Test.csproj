@@ -3,7 +3,7 @@
     <!-- assembly config; -->
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
-        <RuntimeFrameworkVersion>2.2.1</RuntimeFrameworkVersion>
+        <RuntimeFrameworkVersion>2.2.2</RuntimeFrameworkVersion>
         <AssemblyName>Walpy.VacancyApp.Server.Test</AssemblyName>
         <RootNamespace>Walpy.VacancyApp.Server.Test</RootNamespace>
         <IsPackable>false</IsPackable>

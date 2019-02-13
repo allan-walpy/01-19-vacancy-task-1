@@ -3,7 +3,7 @@
     <!-- assembly config; -->
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
-        <RuntimeFrameworkVersion>2.2.1</RuntimeFrameworkVersion>
+        <RuntimeFrameworkVersion>2.2.2</RuntimeFrameworkVersion>
         <RuntimeIdentifiers>ubuntu.18.04-x64;win10-x64;</RuntimeIdentifiers>
         <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
         <!--
@@ -42,7 +42,7 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.*" />
-        <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.*" PrivateAssets="All" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.*" />
         <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="*" />
     </ItemGroup>
