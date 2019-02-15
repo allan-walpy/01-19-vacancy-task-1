@@ -81,6 +81,7 @@
 >
 > - довольно продолжительное исполнение тестов на windows (возможно связанное с `EF Core In Memmory Database`);
 > - исполнение всех тестов сразу приведет к ошибке `Connection Refused`, для `workaround` они запускаются пачками - [пример bash скрипта для запуска тестов](https://github.com/allan-walpy/01-19-vacancy-task-1/blob/master/script/test.sh)
+> - #29 версии v1.2.8+ крашатся в appveyor CI - нет `image` что содержал бы версию dotnet core работающего с runtime v2.2.2
 
 | CI & Platform | Status |
 | ------------: | :----- |
