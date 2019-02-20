@@ -36,5 +36,5 @@
                 message: "Unexcpected button type provided");
     }
 
-    <a label="@(label)" asp-action="@(aspAction)" asp-route-id="@(id)" class="@(linkClass)"><img class="figure-img in-text-icon" src="~/icons/manage/@(image).svg" /></a>
+    <a label="@(label)" asp-controller="Vacancy" asp-action="@(aspAction)" asp-route-id="@(id)" class="@(linkClass)"><img class="figure-img in-text-icon" src="~/icons/manage/@(image).svg" /></a>
 }
