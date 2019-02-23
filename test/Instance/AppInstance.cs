@@ -6,7 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Logging;
 
-namespace Walpy.VacancyApp.Server.Test.Instance
+using Program = Walpy.VacancyApp.Server.All.Program;
+
+namespace Walpy.VacancyApp.Test.Instance
 {
     public class AppInstance : IDisposable
     {

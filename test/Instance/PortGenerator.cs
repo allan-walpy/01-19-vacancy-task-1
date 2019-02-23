@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace Walpy.VacancyApp.Server.Test.Instance
+namespace Walpy.VacancyApp.Test.Instance
 {
     public static class PortGenerator
     {

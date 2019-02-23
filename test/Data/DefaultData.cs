@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Walpy.VacancyApp.Server.Models;
-using Walpy.VacancyApp.Server.Models.Requests;
+using Walpy.VacancyApp.Server.All.Models;
+using Walpy.VacancyApp.Server.All.Models.Requests;
 
-namespace Walpy.VacancyApp.Server.Test.Data
+namespace Walpy.VacancyApp.Test.Data
 {
     public static class DefaultData
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Walpy.VacancyApp.Server.Test.Models
+namespace Walpy.VacancyApp.Test.Models
 {
     public class ApiPathModel
     {

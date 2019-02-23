@@ -2,11 +2,11 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Http;
 using Xunit;
 
-using Walpy.VacancyApp.Server.Models.Responses;
-using Walpy.VacancyApp.Server.Test.Models;
-using Walpy.VacancyApp.Server.Test.Data;
+using Walpy.VacancyApp.Server.All.Models.Responses;
+using Walpy.VacancyApp.Test.Models;
+using Walpy.VacancyApp.Test.Data;
 
-namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
+namespace Walpy.VacancyApp.Test.Api.Vacancy
 {
     public class GetAllTest : VacancyTestBase
     {

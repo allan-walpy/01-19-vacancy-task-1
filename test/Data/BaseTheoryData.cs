@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace Walpy.VacancyApp.Server.Test.Data
+namespace Walpy.VacancyApp.Test.Data
 {
     public class BaseTheoryData<TKey, TValue> : TheoryData<TKey>
     {

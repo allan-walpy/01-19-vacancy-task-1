@@ -5,9 +5,9 @@ using System.Text;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-using Walpy.VacancyApp.Server.Models.Responses;
+using Walpy.VacancyApp.Server.All.Models.Responses;
 
-namespace Walpy.VacancyApp.Server.Test.Models
+namespace Walpy.VacancyApp.Test.Models
 {
     public static class Extensions
     {

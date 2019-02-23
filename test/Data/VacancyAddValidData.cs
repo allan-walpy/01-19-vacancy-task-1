@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-using Walpy.VacancyApp.Server.Models.Requests;
+using Walpy.VacancyApp.Server.All.Models.Requests;
 
-namespace Walpy.VacancyApp.Server.Test.Data
+namespace Walpy.VacancyApp.Test.Data
 {
     public class VacancyAddValidData : BaseTheoryData<string, VacancyAddRequest>
     {

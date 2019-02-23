@@ -1,7 +1,7 @@
 using System;
-using Walpy.VacancyApp.Server.Test.Data;
+using Walpy.VacancyApp.Test.Data;
 
-namespace Walpy.VacancyApp.Server.Test.Api.Vacancy
+namespace Walpy.VacancyApp.Test.Api.Vacancy
 {
     public static class Common
     {

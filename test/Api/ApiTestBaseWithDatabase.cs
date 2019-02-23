@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-using Walpy.VacancyApp.Server.Models.Requests;
-using Walpy.VacancyApp.Server.Models.Responses;
-using Walpy.VacancyApp.Server.Test.Models;
+using Walpy.VacancyApp.Server.All.Models.Requests;
+using Walpy.VacancyApp.Server.All.Models.Responses;
+using Walpy.VacancyApp.Test.Models;
 
-namespace Walpy.VacancyApp.Server.Test.Api
+namespace Walpy.VacancyApp.Test.Api
 {
     public abstract class ApiTestBaseWithDatabase : ApiTestBase
     {
