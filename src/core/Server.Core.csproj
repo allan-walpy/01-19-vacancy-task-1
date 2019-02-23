@@ -25,9 +25,9 @@
 
     <!-- compilation config; -->
     <PropertyGroup>
-        <OutputPath>../out/bin/$(Configuration)/</OutputPath>
+        <OutputPath>../../out/bin/$(Configuration)/</OutputPath>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <DocumentationFile>../../out/bin/$(Configuration)/$(TargetFramework)/server.all.xml</DocumentationFile>
+        <DocumentationFile>../../../out/bin/$(Configuration)/$(TargetFramework)/server.all.xml</DocumentationFile>
         <DebugSymbols>false</DebugSymbols>
         <IncludeSource>true</IncludeSource>
     </PropertyGroup>
