@@ -1,4 +1,4 @@
-namespace Walpy.VacancyApp.Server.All.Models.Attributes
+namespace Walpy.VacancyApp.Server.Core.Attributes
 {
     public class ValidPhoneNumberAttribute : ValidStringTypePropertyAttribute
     {

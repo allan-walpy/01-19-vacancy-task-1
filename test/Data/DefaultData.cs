@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Walpy.VacancyApp.Server.All.Models;
+using Walpy.VacancyApp.Server.Core.Types;
 using Walpy.VacancyApp.Server.All.Models.Requests;
 
 namespace Walpy.VacancyApp.Test.Data

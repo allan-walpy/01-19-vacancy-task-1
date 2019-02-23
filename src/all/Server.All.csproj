@@ -48,6 +48,11 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-beta" />
     </ItemGroup>
 
+    <!-- internal dependency; -->
+    <ItemGroup>
+        <ProjectReference Include="..\core\Server.Core.csproj" />
+    </ItemGroup>
+
     <!-- configuration files managment; -->
     <PropertyGroup>
         <EnableDefaultContentItems>false</EnableDefaultContentItems>

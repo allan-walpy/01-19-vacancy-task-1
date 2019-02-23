@@ -2,7 +2,7 @@ using System;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace Walpy.VacancyApp.Server.All.Models.Database.ValueGenerators
+namespace Walpy.VacancyApp.Server.Core.Database.ValueGenerators
 {
     public class GuidGenerator : ValueGenerator<string>
     {

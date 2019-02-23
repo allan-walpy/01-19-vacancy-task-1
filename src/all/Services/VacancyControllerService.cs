@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-using Walpy.VacancyApp.Server.All.Models.Database;
+using Walpy.VacancyApp.Server.Core.Database;
 
 namespace Walpy.VacancyApp.Server.All.Services
 {

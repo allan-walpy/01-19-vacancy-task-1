@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 
-using Walpy.VacancyApp.Server.All.Models.Attributes;
-using Walpy.VacancyApp.Server.All.Models.Database;
-
 using Walpy.VacancyApp.Server.All.Services;
+using Walpy.VacancyApp.Server.Core.Attributes;
+using Walpy.VacancyApp.Server.Core.Database;
+using Walpy.VacancyApp.Server.Core.Types;
+
 
 namespace Walpy.VacancyApp.Server.All.Models.Requests
 {

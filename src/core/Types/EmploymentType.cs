@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace Walpy.VacancyApp.Server.All.Models
+namespace Walpy.VacancyApp.Server.Core.Types
 {
     /// <summary>
     /// Тип занятости

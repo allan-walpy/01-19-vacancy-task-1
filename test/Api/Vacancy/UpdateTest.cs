@@ -3,8 +3,8 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Http;
 using Xunit;
 
-using Walpy.VacancyApp.Server.All.Models;
-using Walpy.VacancyApp.Server.All.Models.Database;
+using Walpy.VacancyApp.Server.Core.Types;
+using Walpy.VacancyApp.Server.Core.Database;
 using Walpy.VacancyApp.Server.All.Models.Responses;
 using Walpy.VacancyApp.Test.Models;
 using Walpy.VacancyApp.Test.Data;

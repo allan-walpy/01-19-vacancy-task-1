@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-using Walpy.VacancyApp.Server.All.Models.Attributes;
+using Walpy.VacancyApp.Server.Core.Attributes;
 
 namespace Walpy.VacancyApp.Server.All.Models.Web.Vacancy
 {

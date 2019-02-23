@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 
-namespace Walpy.VacancyApp.Server.All.Models.Attributes
+namespace Walpy.VacancyApp.Server.Core.Attributes
 {
     public static class Common
     {

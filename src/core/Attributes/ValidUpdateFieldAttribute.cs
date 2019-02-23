@@ -1,9 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-using Walpy.VacancyApp.Server.All.Models.Database;
+using Walpy.VacancyApp.Server.Core.Database;
 
-namespace Walpy.VacancyApp.Server.All.Models.Attributes
+namespace Walpy.VacancyApp.Server.Core.Attributes
 {
     public class ValidUpdateFieldAttribute : ValidationAttribute
     {

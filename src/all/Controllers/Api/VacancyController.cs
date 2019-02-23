@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using Walpy.VacancyApp.Server.All.Models.Database;
+using Walpy.VacancyApp.Server.Core.Database;
+using Walpy.VacancyApp.Server.Core.Types;
 using Walpy.VacancyApp.Server.All.Models.Requests;
 using Walpy.VacancyApp.Server.All.Models.Responses;
 using Walpy.VacancyApp.Server.All.Services;

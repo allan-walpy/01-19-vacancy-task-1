@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace Walpy.VacancyApp.Server.All.Models.Attributes
+namespace Walpy.VacancyApp.Server.Core.Attributes
 {
     public abstract class NullFilterAttribute : ValidationAttribute
     {

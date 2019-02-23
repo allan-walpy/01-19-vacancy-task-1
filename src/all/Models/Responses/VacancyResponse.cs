@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-using Walpy.VacancyApp.Server.All.Models.Attributes;
+using Walpy.VacancyApp.Server.Core.Attributes;
+using Walpy.VacancyApp.Server.Core.Types;
 
 namespace Walpy.VacancyApp.Server.All.Models.Responses
 {

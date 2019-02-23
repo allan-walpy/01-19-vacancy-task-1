@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-using Walpy.VacancyApp.Server.All.Models.Attributes;
+using Walpy.VacancyApp.Server.Core.Attributes;
 
-namespace Walpy.VacancyApp.Server.All.Models.Database
+namespace Walpy.VacancyApp.Server.Core.Database
 {
     [Table(DatabaseContext.OrganizationTableName)]
     public class OrganizationModel

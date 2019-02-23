@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-using Walpy.VacancyApp.Server.All.Models.Database;
+using Walpy.VacancyApp.Server.Core.Database;
 
 namespace Walpy.VacancyApp.Server.All.Services
 {

@@ -1,4 +1,6 @@
-namespace Walpy.VacancyApp.Server.All.Models.Attributes
+using Walpy.VacancyApp.Server.Core.Types;
+
+namespace Walpy.VacancyApp.Server.Core.Attributes
 {
     public class ValidEmploymentTypeListAttribute : ValidEnumListAttribute
     {

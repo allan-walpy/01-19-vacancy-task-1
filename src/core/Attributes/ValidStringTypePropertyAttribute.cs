@@ -4,9 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-using Walpy.VacancyApp.Server.All.Extensions;
-
-namespace Walpy.VacancyApp.Server.All.Models.Attributes
+namespace Walpy.VacancyApp.Server.Core.Attributes
 {
     public class ValidStringTypePropertyAttribute : RangeLengthAttribute
     {

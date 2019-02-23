@@ -1,13 +1,12 @@
 using System.ComponentModel;
 
-using Walpy.VacancyApp.Server.All.Models.Attributes;
+using Walpy.VacancyApp.Server.Core.Attributes;
 
 namespace Walpy.VacancyApp.Server.All.Models.Requests
 {
     /// <summary>
     /// Настройки фильтра поиска по зарплате
     /// </summary>
-    [ValidSalaryFilter]
     [AnyNotNull(nameof(Max), nameof(Min))]
     [DisplayName("Фильтр по зарплате")]
     public class SalaryFilterModel
