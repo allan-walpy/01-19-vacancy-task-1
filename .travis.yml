@@ -9,7 +9,7 @@ mono: none
 dotnet: 2.2
 
 before_script:
-  - cp ./src/appsettings.private.example.json ./src/appsettings.private.json
+  - cp ./src/all/appsettings.private.example.json ./src/all/appsettings.private.json
 
 script:
   - dotnet restore --verbosity q
