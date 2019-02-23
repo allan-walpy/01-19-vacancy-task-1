@@ -1,0 +1,20 @@
+@model IndexDataModel
+
+@{
+    ViewData["Title"] = "Управление вакансиями";
+}
+
+@if(Model.Status != null)
+{
+    <p class="@(Model.Status.Success ? "alert-success" : "alert-danger")">
+        @(Model.Status.Message)
+    </p>
+}
+
+<h1>Управление вакансиями</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Создать новую</a>
+</p>
+
+@(Html.Partial("_VacancyShortView", Model.Data))

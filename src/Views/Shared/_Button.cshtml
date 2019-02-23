@@ -1,0 +1,40 @@
+@model ButtonData
+
+@{
+    var type = Model.ActionType;
+    var id = Model.VacancyId;
+
+    string label = null;
+    string aspAction = null;
+    string linkClass = null;
+    string image = null;
+
+    switch (type)
+    {
+        case ButtonDataAction.View:
+            label = "посмотреть";
+            aspAction = "View";
+            linkClass = "text-info";
+            image = "view";
+            break;
+        case ButtonDataAction.Edit:
+            label = "изменить";
+            aspAction = "Edit";
+            linkClass = "text-info";
+            image = "edit";
+            break;
+        case ButtonDataAction.Delete:
+            label = "удалить";
+            aspAction = "Delete";
+            linkClass = "text-danger";
+            image = "delete";
+            break;
+        default:
+            throw new System.ArgumentOutOfRangeException(
+                paramName: nameof(Model.ActionType),
+                actualValue: Model.ActionType,
+                message: "Unexcpected button type provided");
+    }
+
+    <a label="@(label)" asp-controller="Vacancy" asp-action="@(aspAction)" asp-route-id="@(id)" class="@(linkClass)"><img class="figure-img in-text-icon" src="~/icons/manage/@(image).svg" /></a>
+}

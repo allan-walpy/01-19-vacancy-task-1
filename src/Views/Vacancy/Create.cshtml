@@ -1,0 +1,109 @@
+@model VacancyCreateModel
+
+@{
+    ViewData["Title"] = "Создать вакансию";
+}
+
+<h1>Создать новую вакансию</h1>
+
+<form asp-action="Create" asp-antiforgery="true">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>
+                        <label asp-for="Title"></label>
+                        <input class="form-control" asp-for="Title" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <label asp-for="Salary"></label>
+                        <input class="form-control" asp-for="Salary" />
+                        <span asp-validation-for="Salary" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <label asp-for="EmploymentType"></label>
+                        <select class="form-control" asp-for="EmploymentType">
+                            <option value="FullTime" asp-for="EmploymentType.FullTime">Полный рабочий день</option>
+                            <option value="PartialTime" asp-for="EmploymentType.PartialTime">Частичная занятость</option>
+                            <option value="FixedScheldure" asp-for="EmploymentType.FixedSchelure">Постоянный график</option>
+                            <option value="FlexibleScheldure" asp-for="EmploymentType.FlexibleScheldure">Гибкий график</option>
+                            <option value="ShiftScheldure" asp-for="EmploymentType.ShiftScheldure">Сменный график</option>
+                            <option value="RemoteMethod" asp-for="EmploymentType.RemoteMethod">Удаленная работа</option>
+                            <option value="ShiftMethod" asp-for="EmploymentType.ShiftMethod">Вахтовый метод</option>
+                        </select>
+                        <span asp-validation-for="EmploymentType" class="text-danger"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-group">
+        <table class="table">
+            <tbody>
+                <tr>
+                     <td>
+                        <label asp-for="Organization"></label>
+                        <input class="form-control" asp-for="Organization" />
+                        <span asp-validation-for="Organization" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Description"></label>
+                         <textarea asp-for="Description" class="form-control"
+                            rows="10"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-group">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td colspan="3">
+                        <label asp-for="ContactPerson" class="control-label "></label>
+                        <span asp-validation-for="ContactPerson" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="ContactPerson.Name"></label>
+                        <input class="form-control" asp-for="ContactPerson.Name" />
+                        <span asp-validation-for="ContactPerson.Name" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <label asp-for="ContactPerson.Surname"></label>
+                        <input class="form-control" asp-for="ContactPerson.Surname" />
+                        <span asp-validation-for="ContactPerson.Surname" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <label asp-for="ContactPerson.MiddleName"></label>
+                        <input class="form-control" asp-for="ContactPerson.MiddleName" />
+                        <span asp-validation-for="ContactPerson.MiddleName" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <label asp-for="ContactPhone"></label>
+                        <input class="form-control" asp-for="ContactPhone" />
+                        <span asp-validation-for="ContactPhone" class="text-danger"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-group">
+        @(Html.Partial("_BackNavigation", model: null))
+        <button type="submit" value="Create" class="btn btn-primary">Создать</button>
+    </div>
+</form>
+
+@(Html.Partial("_ValidationScripts"))

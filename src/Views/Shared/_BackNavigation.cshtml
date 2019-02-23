@@ -1,0 +1,11 @@
+@model string
+
+@{
+    var linkValue = Model;
+    if (linkValue == null)
+    {
+        linkValue = "К администрированию вакансий";
+    }
+
+    <a asp-action="Index" class="btn btn-secondary">&lt;&dash; @(linkValue)</a>
+}

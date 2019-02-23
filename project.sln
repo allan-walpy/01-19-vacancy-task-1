@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "src\all\Server.All.csproj", "{6A42DC1E-DB78-4127-B3B0-1CB38B9DDF99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "src\Server.csproj", "{6A42DC1E-DB78-4127-B3B0-1CB38B9DDF99}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "test\Test.csproj", "{7C4D3B56-ECF1-4941-9A8C-4D403684B1C0}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{81942088-CB7C-41AB-BAE8-1A23AD34E574}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Core", "src\core\Server.Core.csproj", "{7BF480F6-F4F6-4B5D-9434-1D0511247155}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,20 +44,5 @@ Global
 		{7C4D3B56-ECF1-4941-9A8C-4D403684B1C0}.Release|x64.Build.0 = Release|Any CPU
 		{7C4D3B56-ECF1-4941-9A8C-4D403684B1C0}.Release|x86.ActiveCfg = Release|Any CPU
 		{7C4D3B56-ECF1-4941-9A8C-4D403684B1C0}.Release|x86.Build.0 = Release|Any CPU
-		{7BF480F6-F4F6-4B5D-9434-1D0511247155}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7BF480F6-F4F6-4B5D-9434-1D0511247155}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7BF480F6-F4F6-4B5D-9434-1D0511247155}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{7BF480F6-F4F6-4B5D-9434-1D0511247155}.Debug|x64.Build.0 = Debug|Any CPU
-		{7BF480F6-F4F6-4B5D-9434-1D0511247155}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7BF480F6-F4F6-4B5D-9434-1D0511247155}.Debug|x86.Build.0 = Debug|Any CPU
-		{7BF480F6-F4F6-4B5D-9434-1D0511247155}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7BF480F6-F4F6-4B5D-9434-1D0511247155}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7BF480F6-F4F6-4B5D-9434-1D0511247155}.Release|x64.ActiveCfg = Release|Any CPU
-		{7BF480F6-F4F6-4B5D-9434-1D0511247155}.Release|x64.Build.0 = Release|Any CPU
-		{7BF480F6-F4F6-4B5D-9434-1D0511247155}.Release|x86.ActiveCfg = Release|Any CPU
-		{7BF480F6-F4F6-4B5D-9434-1D0511247155}.Release|x86.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{7BF480F6-F4F6-4B5D-9434-1D0511247155} = {81942088-CB7C-41AB-BAE8-1A23AD34E574}
 	EndGlobalSection
 EndGlobal

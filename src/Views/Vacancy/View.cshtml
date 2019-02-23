@@ -1,0 +1,15 @@
+@model VacancyResponse
+
+@{
+    ViewData["Title"] = "Просмотр вакансии";
+}
+
+<h1>
+    Подробности вакансии
+    @(Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.Edit, VacancyId = Model.Id }))
+    @(Html.Partial("_Button", new ButtonData { ActionType = ButtonDataAction.Delete, VacancyId = Model.Id }))
+</h1>
+
+@(Html.Partial("_ViewVacancy", Model))
+
+@(Html.Partial("_BackNavigation", model: null))
