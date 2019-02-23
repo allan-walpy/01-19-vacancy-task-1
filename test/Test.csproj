@@ -43,7 +43,6 @@
 
     <!-- test subjects dependency; -->
     <ItemGroup>
-        <ProjectReference Include="..\src\all\Server.All.csproj" />
         <ProjectReference Include="..\src\core\Server.Core.csproj" />
 
     </ItemGroup>

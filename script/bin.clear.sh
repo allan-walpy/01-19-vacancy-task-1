@@ -11,9 +11,6 @@ sudo rm -r -f ./out
 sudo rm -r -f ./src/out
 
 #? remove `obj` of server project;
-sudo rm -r -f ./src/all/obj
-sudo rm -r -f ./scr/all/out
-
 sudo rm -r -f ./src/core/obj
 sudo rm -r -f ./src/core/out
 
