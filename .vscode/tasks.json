@@ -9,7 +9,7 @@
                 "build",
                 "-c",
                 "Debug",
-                "${workspaceFolder}/src/Server.csproj"
+                "${workspaceFolder}/src/all/Server.All.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -21,7 +21,7 @@
                 "build",
                 "-c",
                 "Release",
-                "${workspaceFolder}/src/Server.csproj"
+                "${workspaceFolder}/src/all/Server.All.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
