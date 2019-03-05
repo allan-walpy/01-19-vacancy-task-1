@@ -1,28 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <!-- assembly config; -->
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
         <RuntimeFrameworkVersion>2.2.2</RuntimeFrameworkVersion>
-        <RuntimeIdentifiers>ubuntu.18.04-x64;win10-x64;</RuntimeIdentifiers>
-        <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
-        <!--
-            * see more about `AspNetCoreHostingModel` tag at microsoft docs
-            * https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#hosting-models
-        -->
-        <AssemblyName>Walpy.VacancyApp.Server</AssemblyName>
-        <RootNamespace>Walpy.VacancyApp.Server</RootNamespace>
+        <AssemblyName>Walpy.VacancyApp.Server.Core</AssemblyName>
+        <RootNamespace>Walpy.VacancyApp.Server.Core</RootNamespace>
     </PropertyGroup>
 
     <!-- package info; -->
     <PropertyGroup>
-        <AssemblyTitle>Walpy.VacancyApp.Server</AssemblyTitle>
-        <PackageId>Walpy.VacancyApp.Server</PackageId>
-        <Version>1.2.10-alpha</Version>
+        <AssemblyTitle>Walpy.VacancyApp.Server.Core</AssemblyTitle>
+        <PackageId>Walpy.VacancyApp.Server.Core</PackageId>
+        <Version>2.0.0-alpha</Version>
         <Authors>allan_walpy aka Andrey Lysenkov</Authors>
         <NeutralLanguage>en-US</NeutralLanguage>
-        <Description>Some test task</Description>
-        <PackageProjectUrl>https://github.com/allan-walpy/01-19-vacancy-task-1/tree/master/src</PackageProjectUrl>
+        <Description>Core app logic</Description>
+        <PackageProjectUrl>https://github.com/allan-walpy/01-19-vacancy-task-1/tree/master/src/core</PackageProjectUrl>
         <PackageLicenseUrl>https://github.com/allan-walpy/01-19-vacancy-task-1/blob/master/license</PackageLicenseUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <RepositoryType>git</RepositoryType>
@@ -31,25 +25,18 @@
 
     <!-- compilation config; -->
     <PropertyGroup>
-        <OutputPath>../out/bin/$(Configuration)/</OutputPath>
+        <OutputPath>../../out/bin/$(Configuration)/</OutputPath>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <DocumentationFile>../../out/bin/$(Configuration)/$(TargetFramework)/server.xml</DocumentationFile>
+        <DocumentationFile>../../../out/bin/$(Configuration)/$(TargetFramework)/server.all.xml</DocumentationFile>
         <DebugSymbols>false</DebugSymbols>
         <IncludeSource>true</IncludeSource>
     </PropertyGroup>
 
-    <!-- system dependencies; -->
+    <!-- third party dependencies; -->
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.App" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.*" />
-        <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.*" PrivateAssets="All" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.*" />
         <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="*" />
-    </ItemGroup>
-
-    <!-- dev dependencies; -->
-    <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-beta" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     </ItemGroup>
 
     <!-- configuration files managment; -->
@@ -70,7 +57,6 @@
 
     <!-- release configuration; -->
     <PropertyGroup Condition="$(Configuration)=='Release'">
-        <NoWarn>1591;1573;</NoWarn>
         <DefineConstants>PRODUCTION;</DefineConstants>
     </PropertyGroup>
 

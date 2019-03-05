@@ -4,18 +4,18 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
         <RuntimeFrameworkVersion>2.2.2</RuntimeFrameworkVersion>
-        <AssemblyName>Walpy.VacancyApp.Server.Test</AssemblyName>
-        <RootNamespace>Walpy.VacancyApp.Server.Test</RootNamespace>
+        <AssemblyName>Walpy.VacancyApp.Test</AssemblyName>
+        <RootNamespace>Walpy.VacancyApp.Test</RootNamespace>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <!-- package info; -->
     <PropertyGroup>
-        <AssemblyTitle>Walpy.VacancyApp.Server.Test</AssemblyTitle>
-        <PackageId>Walpy.VacancyApp.Server.Test</PackageId>
+        <AssemblyTitle>Walpy.VacancyApp.Test</AssemblyTitle>
+        <PackageId>Walpy.VacancyApp.Test</PackageId>
         <Authors>allan_walpy aka Andrey Lysenkov</Authors>
         <NeutralLanguage>en-US</NeutralLanguage>
-        <Description>test for Walpy.VacancyApp.Server</Description>
+        <Description>test for Walpy.VacancyApp.Server.All</Description>
         <PackageProjectUrl>https://github.com/allan-walpy/01-19-vacancy-task-1/tree/master/test</PackageProjectUrl>
         <PackageLicenseUrl>https://github.com/allan-walpy/01-19-vacancy-task-1/blob/master/license</PackageLicenseUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -43,7 +43,8 @@
 
     <!-- test subjects dependency; -->
     <ItemGroup>
-        <ProjectReference Include="..\src\Server.csproj" />
+        <ProjectReference Include="..\src\core\Server.Core.csproj" />
+
     </ItemGroup>
 
     <!-- disable xml documentation notices; -->
